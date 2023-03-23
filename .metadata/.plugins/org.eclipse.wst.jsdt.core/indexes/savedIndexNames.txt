@@ -1,6 +1,0 @@
-INDEX VERSION 1.4+E:\Desktop\Git\PJWEB\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
-3362456657.index
-796009738.index
-1014024704.index
-3479101271.index
-1579972912.index
