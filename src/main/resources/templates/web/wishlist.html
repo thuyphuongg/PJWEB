@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+        <!-- Mobile Metas -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Site Metas -->
+        <title>Wishlist</title>
+        <meta name="keywords" content="">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <!-- Site Icons -->
+        <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+        <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" th:href="@{/web/css/bootstrap.min.css}">
+        <!-- Site CSS -->
+        <link rel="stylesheet" th:href="@{/web/css/style.css}">
+        <!-- Responsive CSS -->
+        <link rel="stylesheet" th:href="@{/web/css/responsive.css}">
+        <!-- Custom CSS -->
+        <link rel="stylesheet" th:href="@{/web/css/custom.css}">
+
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+    </head>
+<body>
+<div th:replace="~{/web/fragment::main-top}"></div>
+<div th:replace="~{/web/fragment::header}"></div>
+<div th:replace="~{/web/fragment::top-search}"></div>
+
+<!-- Start All Title Box -->
+<div class="all-title-box">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h2>Danh sách yêu thích</h2>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+                    <li class="breadcrumb-item active">Danh sách yêu thích</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End All Title Box -->
+
+<!-- Start Wishlist  -->
+<div class="wishlist-box-main">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="table-main table-responsive">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Sản phẩm</th>
+                            <th>Tên sản phẩm</th>
+                            <th>Giá </th>
+                            <th>Thêm</th>
+                            <th>Xóa</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td class="thumbnail-img">
+                                <a href="#">
+                                    <img class="img-fluid" src="images/img-pro-01.jpg" alt="" />
+                                </a>
+                            </td>
+                            <td class="name-pr">
+                                <a href="#">
+                                   Cây Kim Ngân
+                                </a>
+                            </td>
+                            <td class="price-pr">
+                                <p>300.000 đ</p>
+                            </td>
+                            <td class="add-pr">
+                                <a class="btn hvr-hover" href="#">Thêm vào giỏ hàng</a>
+                            </td>
+                            <td class="remove-pr">
+                                <a href="#">
+                                    <i class="fas fa-times"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="thumbnail-img">
+                                <a href="#">
+                                    <img class="img-fluid" src="images/img-pro-02.jpg" alt="" />
+                                </a>
+                            </td>
+                            <td class="name-pr">
+                                <a href="#">
+                                    Cây Ngọc Ngân                                </a>
+                            </td>
+                            <td class="price-pr">
+                                <p>300.000 đ</p>
+                            </td>
+                            <td class="add-pr">
+                                <a class="btn hvr-hover" href="#">Thêm vào giỏ hàng</a>
+                            </td>
+                            <td class="remove-pr">
+                                <a href="#">
+                                    <i class="fas fa-times"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="thumbnail-img">
+                                <a href="#">
+                                    <img class="img-fluid" src="images/img-pro-03.jpg" alt="" />
+                                </a>
+                            </td>
+                            <td class="name-pr">
+                                <a href="#">
+                                    Cây Phát Tài
+                                </a>
+                            </td>
+                            <td class="price-pr">
+                                <p>200.000 đ</p>
+                            </td>
+                            <td class="add-pr">
+                                <a class="btn hvr-hover" href="#">Thêm vào giỏ hàng</a>
+                            </td>
+                            <td class="remove-pr">
+                                <a href="#">
+                                    <i class="fas fa-times"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Wishlist -->
+
+<!-- End Instagram Feed  -->
+<div th:replace="~{web/fragment::instagram}"></div>
+<div th:replace="~{web/fragment::footer}"></div>
+<div th:replace="~{web/fragment::copyright}"></div>
+<a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
+
+<th:block th:insert="~{web/fragment::body/script}"></th:block>
+</body>
+</html>
