@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<!-- Basic -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Site Metas -->
+    <title>GIỚI THIỆU</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Site Icons -->
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" th:href="@{/web/css/bootstrap.min.css}">
+    <!-- Site CSS -->
+    <link rel="stylesheet" th:href="@{/web/css/style.css}">
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" th:href="@{/web/css/responsive.css}">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" th:href="@{/web/css/custom.css}">
+
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+<div th:replace="~{/web/fragment::main-top}"></div>
+<div th:replace="~{/web/fragment::header}"></div>
+<div th:replace="~{/web/fragment::top-search}"></div>
+
+
+<!-- Start All Title Box -->
+<div class="all-title-box">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h2>GIỚI THIỆU</h2>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">TRANG CHỦ</a></li>
+                    <li class="breadcrumb-item active">GIỚI THIỆU</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End All Title Box -->
+
+<!-- Start About Page  -->
+<div class="about-box-main">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="banner-frame"><img class="img-fluid" src="images/about-img.jpg" alt=""/>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <h2 class="noo-sh-title-top">Chào mừng bạn đến với WebCayCanh</h2>
+                <p> Cây cảnh, từ trước đến nay vẫn được xem như vật trang trí, làm đẹp không gian sống cho con người.
+                    Cây để bàn, bonsai, terrarium, cây thuỷ sinh hoặc cây treo chậu… mỗi loại mỗi cây đều có ý nghĩa và
+                    vẻ đẹp riêng của mình, góp phần đáng kể làm cho cuộc sống chúng ta thêm sinh động, trở nên đáng yêu
+                    và thanh bình hơn.</p>
+                <p>Nhưng tại WebCayCanh, chúng tôi muốn mang đến cho bạn không chỉ là cây cảnh, chúng tôi muốn mang đến
+                    cho bạn những trải nghiệm tuyệt vời mà không nơi nào có.</p>
+                <a class="btn hvr-hover" href="#">Xem thêm</a>
+            </div>
+        </div>
+        <div class="row my-5">
+            <div class="col-sm-6 col-lg-4">
+                <div class="service-block-inner">
+                    <h3>VỀ WebCayCanh</h3>
+                    <li>-Đứng đầu lĩnh vực Online về thị trường cây cảnh.</li>
+                    <li>-Bảo hành sau khi mua cây.</li>
+                    <li>Tư vấn chuyên nghiệp.</li>
+                    <li>Hỗ trợ giải đáp thắc mắc.</li>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-4">
+                <div class="service-block-inner">
+                    <h3>WebCayCanh làm những gì?</h3>
+                    <p>WebCayCanh làm 3 hạng mục chính:</p>
+                    <p>– Bán Cây Cảnh để bàn, văn phòng, nội thất, phong thủy…</p>
+                    <p>– Chăm sóc cây cho văn phòng, tòa nhà, tại nhà.</p>
+                    <p>– Thiết kế và tư vấn bố trí cây xanh.</p>
+
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-4">
+                <div class="service-block-inner">
+                    <h3>Sứ mệnh</h3>
+                    <p>WebCayCanh đặt ra cho mình sứ mệnh cung cấp các loại cây làm đẹp không gian sống và không chỉ vậy, còn cung cấp thêm các giá trị tinh thần cho khách hàng, là điểm đến cho mọi khách hàng có nhu cầu tìm mua những cây cảnh trang trí đẹp, phù hợp cá tính, phong thuỷ, không gian sống và làm việc.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:replace="~{web/fragment::instagram}"></div>
+<div th:replace="~{web/fragment::footer}"></div>
+<div th:replace="~{web/fragment::copyright}"></div>
+<a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
+<th:block th:insert="~{web/fragment::body/script}"></th:block>
+
+</body>
+
+</html>
