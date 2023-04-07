@@ -38,4 +38,16 @@ public class Tree {
     @Column(name = "description", nullable = false)
     private String description;
 
+    @Column(name = "quantity")
+    private String quantity;
+
+    @Column(name = "discount")
+    private Float discount;
+
+    @Column(name = "hot_tree")
+    private Boolean hotTree;
+
+    @Column(name = "new_tree")
+    private Boolean newTree;
+
 }
