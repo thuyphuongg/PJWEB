@@ -1,26 +1,28 @@
 package com.cdweb.Treestore.domain;
 
-import javax.persistence.*;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import javax.persistence.Column;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @Entity
-@Table(name = "category")
-public class Category {
+@Table(name = "banner")
+public class Banner {
     @Id
     @Column(name = "id", nullable = false)
     private Long id;
-
-    @Column(name = "name", nullable = false)
+    @Column
     private String name;
-
-    @Column(name = "category_status")
-    private boolean categoryStatus;
-
+    @Column
+    private String url;
 }

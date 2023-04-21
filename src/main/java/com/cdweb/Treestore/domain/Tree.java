@@ -1,6 +1,6 @@
 package com.cdweb.Treestore.domain;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.*;
 
 import java.sql.Date;
@@ -31,9 +31,8 @@ public class Tree {
     @Column(name = "view")
     private Integer view;
 
-    @Enumerated
-    @Column(name = "tree_status", nullable = false)
-    private TreeStatus treeStatus;
+    @Column(name = "active", nullable = false)
+    private boolean active;
 
     @Column(name = "description", nullable = false)
     private String description;
@@ -49,5 +48,7 @@ public class Tree {
 
     @Column(name = "new_tree")
     private Boolean newTree;
-
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
 }

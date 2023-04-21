@@ -1,10 +1,10 @@
 package com.cdweb.Treestore.dto;
 
-import com.cdweb.Treestore.domain.TreeStatus;
 import lombok.*;
 
 import java.io.Serializable;
 import java.sql.Date;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -17,6 +17,6 @@ public class TreeDto implements Serializable {
     private  String imageLink;
     private  Date dateCreated;
     private  Integer view;
-    private  TreeStatus treeStatus;
+    private  Boolean active;
     private  String description;
 }
