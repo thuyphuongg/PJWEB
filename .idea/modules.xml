@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/PJWEB.iml" filepath="$PROJECT_DIR$/.idea/PJWEB.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Treestore.iml" filepath="$PROJECT_DIR$/Treestore.iml" />
     </modules>
   </component>
 </project>
