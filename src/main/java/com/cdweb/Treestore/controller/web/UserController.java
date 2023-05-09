@@ -12,7 +12,6 @@ import org.springframework.web.servlet.ModelAndView;
 import java.security.Principal;
 
 @RestController
-@RequestMapping("/user")
 public class UserController {
     @Autowired
     private IUserService userService;
