@@ -8,12 +8,6 @@ import java.util.List;
 
 public interface ICategoryService {
 
-//    List<CategoryDto> getAllCategories();
-//    CategoryDto getCategoryById(int id);
-//    void addCategory(CategoryDto category);
-//    void updateCategory(CategoryDto category);
-//    void deleteCategory(int id);
-//    List<CategoryDto> findAll();
 
     List<CategoryDto> findAll();
 
@@ -27,10 +21,5 @@ public interface ICategoryService {
 
     CategoryDto findById(long id);
 
-//    private CategoryRepository categoryRepository;
-//
-//    public  Category save(Category entity) {
-//        return categoryRepository.save(entity);
-//    }
 
 }
