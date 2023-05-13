@@ -20,4 +20,6 @@ public class UserDto implements Serializable {
     private String phone;
     private boolean isEnabled;
     private List<RoleDto> roleList;
+    private List<String> role;
+
 }

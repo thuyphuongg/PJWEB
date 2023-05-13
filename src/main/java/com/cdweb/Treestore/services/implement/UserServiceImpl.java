@@ -30,8 +30,8 @@ public class UserServiceImpl implements IUserService {
     private UserRepository userRepository;
     @Autowired
     private UserConvert userConvert;
-//    @Autowired
-//    BCryptPasswordEncoder encoder;
+    @Autowired
+    BCryptPasswordEncoder encoder;
     @Autowired
     private ConfirmationTokenRepository confirmationTokenRepository;
     @Autowired
@@ -63,43 +63,42 @@ public class UserServiceImpl implements IUserService {
     }
 
     public UserDto sendMail(UserDto user, HttpServletRequest request) {
-//        User userEntity = new User();
-//        User existingUser = userRepository.findByEmailIgnoreCaseAndIsEnabled(user.getEmail(), true);
-//        if (existingUser != null) {
-//            return null;
-//        } else {
-//            User temp = userRepository.findByEmailIgnoreCaseAndIsEnabled(user.getEmail(), false);
-//            if (temp != null) {
-//                userRepository.delete(temp);
-//            }
-//            user.setPassword(encoder.encode(user.getPassword()));
-//            List<RoleDto> list = new ArrayList<>();
-//            Role role = roleRepository.findByName("ROLE_USER");
-//            list.add(roleConvert.toDTO(role));
-//            user.setRoleList(list);
-//            userEntity = userRepository.save(this.userConvert.toEntity(user));
-//
-//            ConfirmationToken confirmationToken = new ConfirmationToken(userEntity);
-//
-//            confirmationTokenRepository.save(confirmationToken);
-//
-//
-//            String baseUrl = ServletUriComponentsBuilder.fromRequestUri(request)
-//                    .replacePath(null)
-//                    .build()
-//                    .toUriString();
-//
-//            SimpleMailMessage mailMessage = new SimpleMailMessage();
-//            mailMessage.setTo(user.getEmail());
-//            mailMessage.setSubject("Complete Registration!");
-//            mailMessage.setFrom("bookstorenlu2021@gmail.com");
-//            mailMessage.setText("To confirm your account, please click here : "
-//                    + baseUrl + "/confirm-account?token=" + confirmationToken.getConfirmationToken());
-//
-//            emailSenderService.sendEmail(mailMessage);
-//            return userConvert.toDTO(userEntity);
-//        }
-        return null;
+        User userEntity = new User();
+        User existingUser = userRepository.findByEmailIgnoreCaseAndIsEnabled(user.getEmail(), true);
+        if (existingUser != null) {
+            return null;
+        } else {
+            User temp = userRepository.findByEmailIgnoreCaseAndIsEnabled(user.getEmail(), false);
+            if (temp != null) {
+                userRepository.delete(temp);
+            }
+            user.setPassword(encoder.encode(user.getPassword()));
+            List<RoleDto> list = new ArrayList<>();
+            Role role = roleRepository.findByName("ROLE_USER");
+            list.add(roleConvert.toDTO(role));
+            user.setRoleList(list);
+            userEntity = userRepository.save(this.userConvert.toEntity(user));
+
+            ConfirmationToken confirmationToken = new ConfirmationToken(userEntity);
+
+            confirmationTokenRepository.save(confirmationToken);
+
+
+            String baseUrl = ServletUriComponentsBuilder.fromRequestUri(request)
+                    .replacePath(null)
+                    .build()
+                    .toUriString();
+
+            SimpleMailMessage mailMessage = new SimpleMailMessage();
+            mailMessage.setTo(user.getEmail());
+            mailMessage.setSubject("Complete Registration!");
+            mailMessage.setFrom("19130177@st.hcmuaf.edu.vn");
+            mailMessage.setText("To confirm your account, please click here : "
+                    + baseUrl + "/confirm-account?token=" + confirmationToken.getConfirmationToken());
+
+            emailSenderService.sendEmail(mailMessage);
+            return userConvert.toDTO(userEntity);
+        }
     }
 
     @Override
@@ -154,48 +153,48 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public UserDto changePassword(UserDto user) {
-//        User userEntity = this.userRepository.findByEmailIgnoreCase(user.getEmail());
-//
-//
-//        if (user.getFullName() != null) {
-//            userEntity.setFullName(user.getFullName());
-//        }
-//        if (user.getPhone() != null) {
-//            userEntity.setPhone(user.getPhone());
-//        }
-//        if (user.getAddress() != null) {
-//            userEntity.setAddress(user.getAddress());
-//        }
-//        if (user.isEnabled()) {
-//            userEntity.setEnabled(true);
-//        }
-//        if (user.getPassword() != "" && user.getPassword() != null) {
-//            userEntity.setPassword(encoder.encode(user.getPassword()));
-//        }
-//        if (user.getRoleList() != null && user.getRoleList().size() != 0) {
-//            userEntity.setRoleList(userEntity.getRoleList());
-//        }
-//        userEntity = this.userRepository.save(userEntity);
-//        if (user.getPassword() != "" && user.getPassword() != null) {
-//            if (userEntity != null) {
-//                List<PasswordResetToken> passwordResetTokens = this.passwordTokenRepository.findByUser(userEntity);
-//                if (passwordResetTokens.size() > 0) {
-//                    for (PasswordResetToken passwordResetToken : passwordResetTokens) {
-//                        this.passwordTokenRepository.delete(passwordResetToken);
-//                    }
-//
-//                }
-//            }
-//        }
-//        return this.userConvert.toDTO(userEntity);
-        return null;
+        User userEntity = this.userRepository.findByEmailIgnoreCase(user.getEmail());
+
+
+        if (user.getFullName() != null) {
+            userEntity.setFullName(user.getFullName());
+        }
+        if (user.getPhone() != null) {
+            userEntity.setPhone(user.getPhone());
+        }
+        if (user.getAddress() != null) {
+            userEntity.setAddress(user.getAddress());
+        }
+        if (user.isEnabled()) {
+            userEntity.setEnabled(true);
+        }
+        if (user.getPassword() != "" && user.getPassword() != null) {
+            userEntity.setPassword(encoder.encode(user.getPassword()));
+        }
+        if (user.getRoleList() != null && user.getRoleList().size() != 0) {
+            userEntity.setRoleList(userEntity.getRoleList());
+        }
+        userEntity = this.userRepository.save(userEntity);
+        if (user.getPassword() != "" && user.getPassword() != null) {
+            if (userEntity != null) {
+                List<PasswordResetToken> passwordResetTokens = this.passwordTokenRepository.findByUser(userEntity);
+                if (passwordResetTokens.size() > 0) {
+                    for (PasswordResetToken passwordResetToken : passwordResetTokens) {
+                        this.passwordTokenRepository.delete(passwordResetToken);
+                    }
+
+                }
+            }
+        }
+        return this.userConvert.toDTO(userEntity);
+
     }
 
     @Override
     public boolean checkPass(String password, String email) {
-//        User user = this.userRepository.findByEmail(email);
-//        return encoder.matches(password, user.getPassword());
-        return false;
+        User user = this.userRepository.findByEmail(email);
+        return encoder.matches(password, user.getPassword());
+
     }
 
     @Override
