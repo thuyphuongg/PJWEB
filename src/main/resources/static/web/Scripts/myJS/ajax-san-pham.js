@@ -20,20 +20,20 @@ function show(result) {
 
 function showProduct(list) {
     var str = "";
-    for (let tree of Array.isArray(list)) {
+    for (let tree of list) {
         str += "  <div class='col-md-3 col-sm-3 col-xs-6 product-resize product-item-box'>";
         str += "    <div class='product-item'>"
         str += "       <div class='image image-resize'>"
-        str += "      <a href='/chi-tiet-san-pham?id=" + tree.id_tree + "'>";
-        str += "       <img src='" + tree.image_link + "'style='display: inline-block;height: 252px '>";
+        str += "      <a href='/chi-tiet-san-pham?id=" + tree.idTree + "'>";
+        str += "       <img src='" + tree.imageLink + "'style='display: inline-block;height: 252px '>";
         str += "      </a>";
         str += "   <span class='hot'>";
         str += tree.discount ? tree.discountFormat : "Mới" + "</span>";
         str += "    </div>";
         str += "   <div class='right-block'>";
         str += "    <h2 class='name'>";
-        str += "       <a href='/chi-tiet-san-pham?id=" + tree.id_tree + "'>";
-        str += tree.name_tree + "</a>";
+        str += "       <a href='/chi-tiet-san-pham?id=" + tree.idTree + "'>";
+        str += tree.nameTree + "</a>";
         str += " </h2>";
         str += " <div class='rating'>";
         str += " <div class='rating-1'>";
@@ -133,14 +133,14 @@ function pagination(total, page) {
     return str;
 }
 
-function addCart(id_tree) {
+function addCart(idTree) {
     $.ajax({
         method: 'get',
         url: 'them-san-pham',
         dataType: 'json',
         cache: 'false',
         data: {
-            id_tree: id_tree
+            idTree: idTree
         }
     }).done(function (list) {
         if (list == null) {
