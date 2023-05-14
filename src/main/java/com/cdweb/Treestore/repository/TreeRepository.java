@@ -3,42 +3,43 @@ package com.cdweb.Treestore.repository;
 import com.cdweb.Treestore.domain.Tree;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 @Repository
-public interface TreeRepository extends CrudRepository<Tree,Long> {
+public interface TreeRepository extends JpaRepository<Tree,Long> {
     Tree findOneByIdTree(Long id);
 
     Page<Tree> findAll(Pageable pageable);
 
     Page<Tree> findAllByActive(boolean active, Pageable pageable);
 
-    Page<Tree> findAllByActiveAndHotTree(boolean active, boolean hotBook, Pageable pageable);
+    Page<Tree> findAllByActiveAndHotTree(boolean active, boolean hotTree, Pageable pageable);
 
-    Page<Tree> findAllByActiveAndNewTree(boolean active, boolean newBook, Pageable pageable);
+    Page<Tree> findAllByActiveAndNewTree(boolean active, boolean newTree, Pageable pageable);
 
-    Page<Tree> findAllByActiveAndCategoryName(boolean active, String category, Pageable pageable);
-
-
-    public Page<Tree> findByActiveAndDiscountGreaterThan(boolean active, double discount, Pageable pageable);
+    Page<Tree> findAllByActiveAndCategoryId(boolean active, Long id, Pageable pageable);
 
 
-    public int countAllByActiveAndCategoryName(boolean active, String category_code);
-
-    public int countAllByActiveAndHotTree(boolean active, boolean hot_book);
+     Page<Tree> findByActiveAndDiscountGreaterThan(boolean active, double discount, Pageable pageable);
 
 
-    public int countAllByActiveAndNewTree(boolean active, boolean new_book);
+     int countAllByActiveAndCategoryId(boolean active, Long id);
 
-    public int countAllByActive(boolean active);
+     int countAllByActiveAndHotTree(boolean active, boolean hot);
 
-    public int countAllByActiveAndDiscountGreaterThan(boolean active, double discount);
 
-    public Page<Tree> findByActiveAndNameTreeContains(boolean b, String title, Pageable pageable);
+     int countAllByActiveAndNewTree(boolean active, boolean newTree);
 
-    public int countAllByActiveAndNameTreeContains(boolean active, String title);
+     int countAllByActive(boolean active);
 
-    public List<Tree> findByActiveAndNameTreeContains(boolean active, String title);
+     int countAllByActiveAndDiscountGreaterThan(boolean active, double discount);
+
+     Page<Tree> findByActiveAndNameTreeContains(boolean b, String title, Pageable pageable);
+
+     int countAllByActiveAndNameTreeContains(boolean active, String title);
+
+     List<Tree> findByActiveAndNameTreeContains(boolean active, String title);
 }

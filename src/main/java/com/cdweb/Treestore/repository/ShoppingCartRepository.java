@@ -10,8 +10,8 @@ import java.util.List;
 
 @Repository
 public interface ShoppingCartRepository extends JpaRepository<ShoppingCart,Long> {
-    @Query(value = "select s.* from shopping_cart s where s.book_id=:book_id and user_id=:user_id",nativeQuery = true)
-    public ShoppingCart findCart(@Param("book_id") long book_id, @Param("user_id") long user_id);
+    @Query(value = "select s.* from shopping_cart s where s.id_tree=:id_tree and user_id=:user_id",nativeQuery = true)
+    public ShoppingCart findCart(@Param("id_tree") long id_tree, @Param("user_id") long user_id);
 
     @Query(value = "select count(s.id) from shopping_cart s where user_id=:user_id ",nativeQuery = true)
     public int countBook(@Param("user_id")long user_id);

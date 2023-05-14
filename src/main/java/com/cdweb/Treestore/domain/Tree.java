@@ -42,7 +42,7 @@ public class Tree {
     private String quantity;
 
     @Column(name = "discount")
-    private Float discount;
+    private double discount;
 
     @Column(name = "hot_tree")
     private Boolean hotTree;

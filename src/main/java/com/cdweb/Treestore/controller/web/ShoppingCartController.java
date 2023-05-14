@@ -40,7 +40,7 @@ public class ShoppingCartController {
         List<ShoppingCartDto> cartList = this.shoppingCartService.getProduct(email);
         double total = 0;
         for (ShoppingCartDto cart : cartList) {
-            total += cart.getTree().getPrice() * cart.getQuantity();
+            total += cart.getTree().getPrice() *  (1 - cart.getTree().getDiscount() / 100) * cart.getQuantity();
         }
         output.setTotal(total);
         output.setList(cartList);

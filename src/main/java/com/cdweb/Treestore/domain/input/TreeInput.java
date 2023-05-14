@@ -23,7 +23,11 @@ public class TreeInput {
     private String description;
     private String quantity;
     private Float discount;
-    private Boolean hotTree;
-    private Boolean newTree;
+    private Boolean hotTree= false;
+    private Boolean newTree = false;
     private Category category;
+    private Integer limit = 12;
+    private String sortName = "id";
+    private String sortBy = "asc";
+    private boolean sale = false;
 }
