@@ -30,6 +30,8 @@ public class UserController {
         return mav;
     }
 
+
+
     @RequestMapping(value = "/confirm-account", method = {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView confirmEmail(@RequestParam(name = "token") String confirmationToken, Model model) {
         UserDto user = userService.confirmEmail(confirmationToken);
@@ -63,6 +65,7 @@ public class UserController {
 
     @GetMapping("/user")
     public UserDto user(Principal principal) {
+
         if (principal != null) {
             UserDto user = this.userService.findByEmail(principal.getName());
             user.setPassword("");

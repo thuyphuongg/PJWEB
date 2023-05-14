@@ -13,11 +13,14 @@ public class AppConfig {
 
     @Autowired
     private UserDetailsServiceImpl userDetailsService;
-
     @Bean
-    public PasswordEncoder passwordEncoder() {
+    public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
     }
+//    @Bean
+//    public PasswordEncoder passwordEncoder() {
+//        return new BCryptPasswordEncoder();
+//    }
     @Bean
     public UserDetailsServiceImpl userDetailsService(){
         return userDetailsService;

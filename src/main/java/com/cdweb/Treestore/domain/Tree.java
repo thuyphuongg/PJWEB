@@ -4,6 +4,7 @@ import javax.persistence.*;
 import lombok.*;
 
 import java.sql.Date;
+import java.text.DecimalFormat;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -41,7 +42,7 @@ public class Tree {
     private String quantity;
 
     @Column(name = "discount")
-    private Float discount;
+    private double discount;
 
     @Column(name = "hot_tree")
     private Boolean hotTree;
@@ -51,4 +52,20 @@ public class Tree {
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
+    public String getPriceFormat() {
+        DecimalFormat formatter = new DecimalFormat("###,###,###");
+        return formatter.format(this.price) + " VND";
+    }
+
+    public String getPriceDiscount() {
+        double price = this.price * (1 - this.discount / 100);
+        DecimalFormat formatter = new DecimalFormat("###,###,###");
+        return formatter.format(price) + " VND";
+    }
+
+    public static String formatPrice(double price) {
+        DecimalFormat formatter = new DecimalFormat("###,###,###");
+        return formatter.format(price) + " VND";
+    }
+
 }
