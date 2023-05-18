@@ -42,7 +42,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 				grantList.add(authority);
 			}
 		}
-		UserDetails userDetails = (UserDetails) new org.springframework.security.core.userdetails.User(user.getEmail(), //
+		UserDetails userDetails = (UserDetails)new org.springframework.security.core.userdetails.User(user.getEmail(), //
 				user.getPassword(), grantList);
 
 		return userDetails;

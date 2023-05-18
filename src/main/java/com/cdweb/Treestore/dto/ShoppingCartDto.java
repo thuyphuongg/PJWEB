@@ -17,25 +17,14 @@ public class ShoppingCartDto implements Serializable {
     private long quantity;
     private  UserDto user;
     private  TreeDto tree;
-    private double total;
-    private List<ShoppingCartDto> list = new ArrayList<>();
 
-
-    public String getFormat() {
+    public String getTotal() {
         DecimalFormat formatter = new DecimalFormat("###,###,###");
-        return formatter.format(total) + " VND";
+        return formatter.format(this.quantity * this.tree.getPrice() * (1 - this.tree.getDiscount() / 100)) + " VND";
     }
-
-    public List<ShoppingCartDto> getList() {
-        return list;
-    }
-
-    public void setList(List<ShoppingCartDto> list) {
-        this.list = list;
-    }
-
-    public String pay() {
+    public String getTotal(double p) {
         DecimalFormat formatter = new DecimalFormat("###,###,###");
-        return formatter.format(total + 25000) + " VND";
+        return formatter.format(p) + " VND";
     }
+
 }

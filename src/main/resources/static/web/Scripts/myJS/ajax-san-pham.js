@@ -142,9 +142,9 @@ function addCart(idTree) {
         data: {
             idTree: idTree
         }
-    }).done(function (list) {
-        if (list == null) {
-            window.location = "/dang-nhap";
+    }).done(function (response) {
+        if (response == null) {
+            window.location.href = "/dang-nhap";
         } else {
             alert("Sản phẩm đã được thêm vào giỏ hàng!");
         }
