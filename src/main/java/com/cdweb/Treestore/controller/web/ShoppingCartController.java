@@ -1,8 +1,9 @@
 package com.cdweb.Treestore.controller.web;
 
+import com.cdweb.Treestore.domain.output.CartOutput;
 import com.cdweb.Treestore.dto.ShoppingCartDto;
 import com.cdweb.Treestore.services.IShoppingCartService;
-//import com.cdweb.api.web.output.CartOutput;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,8 +35,8 @@ public class ShoppingCartController {
 
 
     @GetMapping("/cart-item")
-    public ShoppingCartDto getItems(Principal principal) {
-        ShoppingCartDto output = new ShoppingCartDto();
+    public CartOutput getItems(Principal principal) {
+        CartOutput output = new CartOutput();
         String email = principal.getName();
         List<ShoppingCartDto> cartList = this.shoppingCartService.getProduct(email);
         double total = 0;
@@ -48,9 +49,9 @@ public class ShoppingCartController {
     }
 
     @GetMapping("/update-quantity")
-    public ShoppingCartDto updateQuantity(@Param("id") long id, @Param("quantity") int quantity, Principal principal) {
+    public CartOutput updateQuantity(@Param("id") long id, @Param("quantity") int quantity, Principal principal) {
 
-        ShoppingCartDto output = new ShoppingCartDto();
+        CartOutput output = new CartOutput();
         String email = principal.getName();
         List<ShoppingCartDto> cartList = this.shoppingCartService.updateQuantity(id, quantity, email);
         double total = 0;
