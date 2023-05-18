@@ -148,6 +148,8 @@ function addCart(idTree) {
         } else {
             alert("Sản phẩm đã được thêm vào giỏ hàng!");
         }
+    }).fail(function (xhr, textStatus, errorThrown) {
+        console.log(xhr.responseText);
     });
 }
 
