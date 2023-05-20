@@ -1,6 +1,5 @@
 package com.cdweb.Treestore.dto;
 
-import com.cdweb.Treestore.dto.RoleDto;
 import lombok.*;
 
 import java.io.Serializable;

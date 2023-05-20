@@ -1,6 +1,5 @@
 package com.cdweb.Treestore.services;
 
-import com.cdweb.Treestore.dto.TreeDto;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;

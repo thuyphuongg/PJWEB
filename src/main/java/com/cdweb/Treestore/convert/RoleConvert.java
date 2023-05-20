@@ -12,13 +12,10 @@ public class RoleConvert {
     private ModelMapper modelMapper;
 
     public RoleDto toDTO(Role roleEntity) {
-        if (roleEntity == null) {
-            return null;
-        }
         return modelMapper.map(roleEntity, RoleDto.class);
     }
 
-    public Role toEntity(RoleDto roleDTO) {
+    public Role roleEntity(RoleDto roleDTO) {
         return modelMapper.map(roleDTO, Role.class);
     }
 }

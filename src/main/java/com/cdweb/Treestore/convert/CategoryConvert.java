@@ -11,8 +11,8 @@ public class CategoryConvert {
     @Autowired
     private ModelMapper modelMapper;
 
-    public CategoryDto toDTO(Category category){
-        return modelMapper.map(category,CategoryDto.class);
+    public CategoryDto toDTO(Category categoryEntity){
+        return modelMapper.map(categoryEntity,CategoryDto.class);
     }
     public Category toEntity(CategoryDto categoryDTO){
         return modelMapper.map(categoryDTO, Category.class);

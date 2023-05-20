@@ -1,18 +1,26 @@
 package com.cdweb.Treestore.dto;
 
-import com.cdweb.Treestore.domain.User;
-import lombok.*;
-
-import java.io.Serializable;
-import java.util.List;
-
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@Setter
-@Data
-public class RoleDto implements Serializable {
+public class RoleDto {
     private Long id;
     private String name;
-    private List<User> userList;
+
+    public RoleDto() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }
+
