@@ -24,13 +24,11 @@ public class ShoppingCartController {
 
     @GetMapping("/them-san-pham")
     public ShoppingCartDto addProduct(@RequestParam(name = "tree_id", required = false, defaultValue = "0") long tree_id, Principal principal) {
-
         if (principal == null) {
             return null;
         }
         String email = principal.getName();
         return this.shoppingCartService.addProduct(tree_id, email);
-
     }
 
 
@@ -42,7 +40,6 @@ public class ShoppingCartController {
         double total = 0;
         for (ShoppingCartDto cart : cartList) {
             total += cart.getTree().getPrice() * (1 - cart.getTree().getDiscount() / 100) * cart.getQuantity();
-
         }
         output.setTotal(total);
         output.setList(cartList);
@@ -58,7 +55,6 @@ public class ShoppingCartController {
         double total = 0;
         for (ShoppingCartDto cart : cartList) {
             total += cart.getTree().getPrice() * (1 - cart.getTree().getDiscount() / 100) * cart.getQuantity();
-
         }
         output.setTotal(total);
         output.setList(cartList);

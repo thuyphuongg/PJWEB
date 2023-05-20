@@ -1,6 +1,6 @@
 package com.cdweb.Treestore.controller.web;
 
-import com.cdweb.Treestore.domain.output.ListTreeOutput;
+import com.cdweb.Treestore.api.output.TreeOutput;
 import com.cdweb.Treestore.services.ITreeService;
 import com.cdweb.Treestore.services.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +19,59 @@ public class TreeController {
     private ITreeService treeService;
     @Autowired
     private IUserService userService;
+
+    //  ?category=lang-mang&page=1&limit=5&sort=name&order=asc
+    @GetMapping("/danh-sach-san-pham")
+    public TreeOutput listCustomer(
+            @RequestParam(name = "category", required = false, defaultValue = "null") String category,
+            @RequestParam(name = "page", required = false, defaultValue = "1") Integer page,
+            @RequestParam(name = "limit", required = false, defaultValue = "12") Integer limit,
+            @RequestParam(name = "sort", required = false, defaultValue = "id") String sortName,
+            @RequestParam(name = "order", required = false, defaultValue = "ASC") String sortBy,
+            @RequestParam(name = "hot", required = false, defaultValue = "false") boolean hot,
+            @RequestParam(name = "new", required = false, defaultValue = "false") boolean newTree,
+            @RequestParam(name = "sale", required = false, defaultValue = "false") boolean sale,
+            @RequestParam(name = "name", required = false, defaultValue = "null") String name
+    ) {
+        TreeOutput treeOutput = new TreeOutput();
+        Sort sortable = null;
+
+        if ("ASC".equalsIgnoreCase(sortBy)) {
+            sortable = Sort.by(sortName).ascending();
+        }
+        if ("DESC".equalsIgnoreCase(sortBy)) {
+            sortable = Sort.by(sortName).descending();
+        }
+        Pageable pageable = PageRequest.of(page - 1, limit, sortable);
+        if (!"null".equalsIgnoreCase(name)) {
+            treeOutput.setListResult(treeService.findByName(name, pageable));
+            treeOutput.setPage(page);
+            treeOutput.setTotalPage((int) Math.ceil((double) (treeService.countByName(name)) / limit));
+        } else if (!"null".equalsIgnoreCase(category)) {
+            treeOutput.setListResult(treeService.findByCategory(category, pageable));
+            treeOutput.setPage(page);
+            treeOutput.setTotalPage((int) Math.ceil((double) (treeService.countByCategory(category)) / limit));
+        } else if (hot) {
+            treeOutput.setListResult(treeService.findByHot(pageable));
+            treeOutput.setPage(page);
+            treeOutput.setTotalPage((int) Math.ceil((double) (treeService.countByHot()) / limit));
+        } else if (newTree) {
+            treeOutput.setListResult(treeService.findByNew(pageable));
+            treeOutput.setPage(page);
+            treeOutput.setTotalPage((int) Math.ceil((double) (treeService.countByNew()) / limit));
+        } else if (sale) {
+            treeOutput.setListResult(treeService.findByDiscount(pageable));
+            treeOutput.setPage(page);
+            int count = treeService.countByDiscount();
+            treeOutput.setTotalPage((int) Math.ceil((double) (count) / limit));
+        } else {
+            treeOutput.setListResult(treeService.findAll(pageable));
+            treeOutput.setPage(page);
+            treeOutput.setTotalPage((int) Math.ceil((double) (treeService.countAll()) / limit));
+        }
+        return treeOutput;
+    }
+
     @GetMapping("/san-pham")
     public ModelAndView productPage(Principal principal) {
         ModelAndView mav = new ModelAndView("web/san-pham.html");
@@ -31,66 +84,17 @@ public class TreeController {
         mav.addObject("user", userDto);
         return mav;
     }
-    @GetMapping("/danh-sach-san-pham")
-    public ListTreeOutput listCustomer(
-            @RequestParam(name = "category", required = false) Long id,
-            @RequestParam(name = "page", required = false, defaultValue = "1") Integer page,
-            @RequestParam(name = "limit", required = false, defaultValue = "12") Integer limit,
-            @RequestParam(name = "sort", required = false, defaultValue = "idTree") String sortName,
-            @RequestParam(name = "order", required = false, defaultValue = "ASC") String sortBy,
-            @RequestParam(name = "hot", required = false, defaultValue = "false") boolean hotTree,
-            @RequestParam(name = "new", required = false, defaultValue = "false") boolean newTree,
-            @RequestParam(name = "sale", required = false, defaultValue = "false") boolean sale,
-            @RequestParam(name = "name_tree", required = false, defaultValue = "null") String nameTree
-    ) {
-        ListTreeOutput listTreeOutput = new ListTreeOutput();
-        Sort sortable = null;
-        if ("ASC".equalsIgnoreCase(sortBy)) {
-            sortable = Sort.by(sortName).ascending();
-        }
-        if ("DESC".equalsIgnoreCase(sortBy)) {
-            sortable = Sort.by(sortName).descending();
-        }
-        Pageable pageable = PageRequest.of(page - 1, limit, sortable);
-        if (!"null".equalsIgnoreCase(nameTree)) {
-            listTreeOutput.setListResult(treeService.findByTitle(nameTree, pageable));
-            listTreeOutput.setPage(page);
-            listTreeOutput.setTotalPage((int) Math.ceil((double) (treeService.countByTitle(nameTree)) / limit));
-        } else if (id != null && id != 0) {
-            listTreeOutput.setListResult(treeService.findByCategoryId(id, pageable));
-            listTreeOutput.setPage(page);
-            listTreeOutput.setTotalPage((int) Math.ceil((double) (treeService.countByCategory(id)) / limit));
-        } else if (hotTree) {
-            listTreeOutput.setListResult(treeService.findByHot(pageable));
-            listTreeOutput.setPage(page);
-            listTreeOutput.setTotalPage((int) Math.ceil((double) (treeService.countByHot()) / limit));
-        } else if (newTree) {
-            listTreeOutput.setListResult(treeService.findByNew(pageable));
-            listTreeOutput.setPage(page);
-            listTreeOutput.setTotalPage((int) Math.ceil((double) (treeService.countByNew()) / limit));
-        } else if (sale) {
-            listTreeOutput.setListResult(treeService.findByDiscount(pageable));
-            listTreeOutput.setPage(page);
-            int count = treeService.countByDiscount();
-            listTreeOutput.setTotalPage((int) Math.ceil((double) (count) / limit));
-        } else {
-            listTreeOutput.setListResult(treeService.findAll(pageable));
-            listTreeOutput.setPage(page);
-            listTreeOutput.setTotalPage((int) Math.ceil((double) (treeService.countAll()) / limit));
-        }
-        return listTreeOutput;
-    }
 
     @GetMapping("/chi-tiet-san-pham")
     public ModelAndView treeDetailPage(Principal principal) {
         ModelAndView mav = new ModelAndView("web/chi-tiet-san-pham.html");
-        UserDto userDTO;
+        UserDto userDto;
         if (principal != null) {
-            userDTO = this.userService.findByEmail(principal.getName());
+            userDto = this.userService.findByEmail(principal.getName());
         } else {
-            userDTO = null;
+            userDto = null;
         }
-        mav.addObject("user", userDTO);
+        mav.addObject("user", userDto);
         return mav;
     }
 
@@ -101,14 +105,15 @@ public class TreeController {
     }
 
 
-    @PostMapping(value = "/save-book")
-    public TreeDto createBook(@RequestBody TreeDto treeDto) {
-        return treeService.save(treeDto);
+    @PostMapping(value = "/save-tree")
+    public TreeDto createTree(@RequestBody TreeDto treeDTO) {
+        return treeService.save(treeDTO);
     }
 
 
     @GetMapping("/autocomplete")
-    public List<String> autoComplete(@RequestParam(name = "title") String title) {
-        return this.treeService.autoCompleteTitle(title);
+    public List<String> autoComplete(@RequestParam(name = "name") String name) {
+        return this.treeService.autoCompleteName(name);
     }
+
 }
