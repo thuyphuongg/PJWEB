@@ -1,16 +1,17 @@
 package com.cdweb.Treestore.services.implement;
 
 import com.cdweb.Treestore.config.SystemConstant;
+import com.cdweb.Treestore.entity.UserEntity;
 import com.cdweb.Treestore.repository.RoleRepository;
 import com.cdweb.Treestore.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import com.cdweb.Treestore.domain.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,14 +27,14 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-		User user = this.userRepository.findByEmailIgnoreCaseAndIsEnabled(email, SystemConstant.ACTIVE_USER);
-		if (user == null) {
+		UserEntity userEntity = this.userRepository.findByEmailIgnoreCaseAndIsEnabled(email,SystemConstant.ACTIVE_USER);
+		if (userEntity == null) {
 			System.out.println("User not found! " + email);
 			throw new UsernameNotFoundException("email " +email + " was not found in the database or not active");
 		}
 
 
-		List<String> roleNames = this.roleRepository.getRoleNames(user.getId());
+		List<String> roleNames = this.roleRepository.getRoleNames(userEntity.getId());
 
 		List<GrantedAuthority> grantList = new ArrayList<GrantedAuthority>();
 		if (roleNames != null) {
@@ -42,8 +43,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 				grantList.add(authority);
 			}
 		}
-		UserDetails userDetails = (UserDetails)new org.springframework.security.core.userdetails.User(user.getEmail(), //
-				user.getPassword(), grantList);
+		UserDetails userDetails = (UserDetails) new User(userEntity.getEmail(), //
+				userEntity.getPassword(), grantList);
 
 		return userDetails;
 	}

@@ -1,5 +1,6 @@
 package com.cdweb.Treestore.services;
 
+import com.cdweb.Treestore.dto.TreeDto;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
@@ -12,20 +13,21 @@ public interface ITreeService {
 
     void delete(long[] ids);
 
-     List<TreeDto> findAll(Pageable pageable);
+    public List<TreeDto> findAll(Pageable pageable);
 
-     List<TreeDto> findByCategoryId(Long id, Pageable pageable);
+    public List<TreeDto> findByCategory(String category_code, Pageable pageable);
 
-     TreeDto findById(Long id);
 
-     List<TreeDto> findByHot(Pageable pageable);
+    public TreeDto findById(Long id);
 
-     List<TreeDto> findByNew(Pageable pageable);
+    public List<TreeDto> findByHot(Pageable pageable);
+
+    public List<TreeDto> findByNew(Pageable pageable);
 
     public List<TreeDto> findByDiscount(Pageable pageable);
 
 
-    public int countByCategory(Long id);
+    public int countByCategory(String category);
 
     public int countByHot();
 
@@ -35,9 +37,9 @@ public interface ITreeService {
 
     public int countByDiscount();
 
-    List<TreeDto> findByTitle(String title, Pageable pageable);
+    List<TreeDto> findByName(String name, Pageable pageable);
 
-    int countByTitle(String title);
+    int countByName(String name);
 
-    List<String> autoCompleteTitle(String title);
+    List<String> autoCompleteName(String name);
 }

@@ -5,7 +5,7 @@ import java.text.DecimalFormat;
 public class OrderedItemDto {
     private Long id;
     private OrderedDto ordered;
-    private TreeDto book;
+    private TreeDto tree;
     private Long quantity;
     private double totalPrice;
 
@@ -28,12 +28,12 @@ public class OrderedItemDto {
         this.ordered = ordered;
     }
 
-    public TreeDto getBook() {
-        return book;
+    public TreeDto getTree() {
+        return tree;
     }
 
-    public void setBook(TreeDto book) {
-        this.book = book;
+    public void setTree(TreeDto tree) {
+        this.tree = tree;
     }
 
     public Long getQuantity() {

@@ -49,4 +49,5 @@ public class ShoppingCartDto {
     public void setTree(TreeDto tree) {
         this.tree = tree;
     }
+
 }

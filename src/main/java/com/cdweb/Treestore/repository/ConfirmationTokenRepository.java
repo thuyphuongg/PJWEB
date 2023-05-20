@@ -1,7 +1,6 @@
 package com.cdweb.Treestore.repository;
 
-import com.cdweb.Treestore.domain.ConfirmationToken;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import com.cdweb.Treestore.entity.ConfirmationToken;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

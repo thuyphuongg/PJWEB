@@ -1,9 +1,8 @@
 package com.cdweb.Treestore.services;
 
-import com.cdweb.Treestore.domain.User;
+import com.cdweb.Treestore.dto.UserDto;
 
 import javax.servlet.http.HttpServletRequest;
-
 import java.util.List;
 
 public interface IUserService {

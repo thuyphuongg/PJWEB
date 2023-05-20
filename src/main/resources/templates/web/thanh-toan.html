@@ -138,15 +138,15 @@
                                                            name="carts"
                                                            field="carts" th:value="${cart.id}">
                                                     <span class="image pull-left" style="  margin-right:10px;">
-                                                        <a th:href="@{/chi-tiet-san-pham(id=${cart.book.id})}">
-                                                            <img th:src="${cart.book.mediaList[0].path}"
+                                                        <a th:href="@{/chi-tiet-san-pham(id=${cart.tree.id})}">
+                                                            <img th:src="${cart.tree.mediaList[0].path}"
                                                                  class="img-responsive"/>
                                                         </a>
                                                     </span>
                                                     <div class="product-info pull-left">
                                                             <span class="product-name">
-                                                                    <a th:href="@{/chi-tiet-san-pham(id=${cart.book.id})}"
-                                                                       th:utext="${cart.book.title}">
+                                                                    <a th:href="@{/chi-tiet-san-pham(id=${cart.id})}"
+                                                                       th:utext="${cart.tree.name}">
                                                                     </a> x <span th:utext="${cart.quantity}"></span>
                                                              </span>
                                                     </div>

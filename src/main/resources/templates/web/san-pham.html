@@ -71,7 +71,7 @@
                         <div class="col-sm-7"></div>
                         <div class="col-sm-5">
                             <form class="search" th:action="@{/san-pham}" method="get">
-                                <input type="text" placeholder="Tìm kiếm..." name="title" id="search"
+                                <input type="text" placeholder="Tìm kiếm..." name="name" id="search"
                                        onkeyup="search_title_product()">
                                 <button type="submit"><i class="fa fa-search"></i></button>
                             </form>
@@ -97,8 +97,8 @@
                                     <option selected="selected" value="">Mặc định</option>
                                     <option value="?sort=price&amp;order=asc">Gi&#225; tăng dần</option>
                                     <option value="?sort=price&amp;order=desc">Gi&#225; giảm dần</option>
-                                    <option value="?sort=title&amp;order=asc">T&#234;n sản phẩm: A to Z</option>
-                                    <option value="?sort=title&amp;order=desc">T&#234;n sản phẩm: Z to A</option>
+                                    <option value="?sort=name&amp;order=asc">T&#234;n sản phẩm: A to Z</option>
+                                    <option value="?sort=name&amp;order=desc">T&#234;n sản phẩm: Z to A</option>
                                 </select>
                             </div>
                         </nav>
