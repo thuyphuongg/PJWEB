@@ -1,7 +1,7 @@
 package com.cdweb.Treestore.config;
 
 import com.cdweb.Treestore.services.implement.UserDetailsServiceImpl;
-import com.cdweb.Treestore.services.implement.UserServiceImpl;
+import com.cdweb.Treestore.services.implement.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,7 +17,7 @@ public class AppConfig {
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
     }
-//    @Bean
+    //    @Bean
 //    public PasswordEncoder passwordEncoder() {
 //        return new BCryptPasswordEncoder();
 //    }
