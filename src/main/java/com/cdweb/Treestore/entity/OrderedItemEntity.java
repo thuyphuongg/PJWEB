@@ -54,11 +54,11 @@ public class OrderedItemEntity {
         this.totalPrice = totalPrice;
     }
 
-    public TreeEntity getBook() {
+    public TreeEntity getTree() {
         return tree;
     }
 
-    public void setBook(TreeEntity book) {
+    public void setTree(TreeEntity tree) {
         this.tree = tree;
     }
 
