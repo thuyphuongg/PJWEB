@@ -1,22 +1,15 @@
 package com.cdweb.Treestore.dto;
 
-import lombok.*;
 
-import java.io.Serializable;
+
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.List;
 
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@Setter
-@Data
-public class ShoppingCartDto implements Serializable {
+public class ShoppingCartDto {
     private Long id;
     private long quantity;
-    private  UserDto user;
-    private  TreeDto tree;
+    private UserDto user;
+    private TreeDto tree;
+
 
     public String getTotal() {
         DecimalFormat formatter = new DecimalFormat("###,###,###");
@@ -25,6 +18,37 @@ public class ShoppingCartDto implements Serializable {
     public String getTotal(double p) {
         DecimalFormat formatter = new DecimalFormat("###,###,###");
         return formatter.format(p) + " VND";
+    }
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public long getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(long quantity) {
+        this.quantity = quantity;
+    }
+
+    public UserDto getUser() {
+        return user;
+    }
+
+    public void setUser(UserDto user) {
+        this.user = user;
+    }
+
+    public TreeDto getTree() {
+        return tree;
+    }
+
+    public void setTree(TreeDto tree) {
+        this.tree = tree;
     }
 
 }

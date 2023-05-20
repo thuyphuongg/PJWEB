@@ -1,13 +1,12 @@
 package com.cdweb.Treestore.services.implement;
 
-import com.cdweb.Treestore.controller.web.ShoppingCartController;
 import com.cdweb.Treestore.convert.ShoppingCartConvert;
 import com.cdweb.Treestore.convert.TreeConvert;
 import com.cdweb.Treestore.convert.UserConvert;
-import com.cdweb.Treestore.domain.ShoppingCart;
 import com.cdweb.Treestore.dto.ShoppingCartDto;
 import com.cdweb.Treestore.dto.TreeDto;
 import com.cdweb.Treestore.dto.UserDto;
+import com.cdweb.Treestore.entity.ShoppingCartEntity;
 import com.cdweb.Treestore.repository.ShoppingCartRepository;
 import com.cdweb.Treestore.services.IShoppingCartService;
 import com.cdweb.Treestore.services.ITreeService;
@@ -21,24 +20,25 @@ import java.util.List;
 @Service
 public class ShoppingCartServiceImpl implements IShoppingCartService {
     @Autowired
-    private TreeConvert  treeConvert;
+    private TreeConvert treeConvert;
     @Autowired
     private UserConvert userConvert;
     @Autowired
     private ShoppingCartRepository shoppingCartRepository;
     @Autowired
-    private ITreeService  treeService;
+    private ITreeService treeService;
     @Autowired
     private IUserService userService;
     @Autowired
     private ShoppingCartConvert shoppingCartConvert;
 
     @Override
-    public ShoppingCartDto addProduct(long id_tree, String email) {
+    public ShoppingCartDto addProduct(long tree_id, String email) {
         UserDto user = this.userService.findByEmail(email);
-        if (id_tree != 0) {
-            TreeDto tree = this.treeService.findById(id_tree);
-            ShoppingCart entity = this.shoppingCartRepository.findCart(tree.getIdTree(), user.getId());
+        if (tree_id != 0) {
+            TreeDto tree = this.treeService.findById(tree_id);
+            ShoppingCartEntity entity = this.shoppingCartRepository.findCart(tree.getId(), user.getId());
+
             ShoppingCartDto cart = new ShoppingCartDto();
             if (entity == null) {
                 cart.setTree(tree);
@@ -50,8 +50,9 @@ public class ShoppingCartServiceImpl implements IShoppingCartService {
                 cart.setUser(user);
                 cart.setQuantity(entity.getQuantity() + 1);
             }
-            ShoppingCart test = this.shoppingCartConvert.toEntity(cart);
-            ShoppingCart entity1 = this.shoppingCartRepository.save(test);
+            ShoppingCartEntity test = this.shoppingCartConvert.toEntity(cart);
+            ShoppingCartEntity entity1 = this.shoppingCartRepository.save(test);
+
             return this.shoppingCartConvert.toDTO(entity1);
         }
         return null;
@@ -60,9 +61,10 @@ public class ShoppingCartServiceImpl implements IShoppingCartService {
     @Override
     public List<ShoppingCartDto> getProduct(String email) {
         UserDto user = this.userService.findByEmail(email);
-        List<ShoppingCart> cartEntities = this.shoppingCartRepository.findAllByUser(user.getId());
+        List<ShoppingCartEntity> cartEntities = this.shoppingCartRepository.findAllByUser(user.getId());
         List<ShoppingCartDto> cartList = new ArrayList<>();
-        for (ShoppingCart s : cartEntities) {
+        for (ShoppingCartEntity s : cartEntities) {
+
             cartList.add(this.shoppingCartConvert.toDTO(s));
         }
         return cartList;
@@ -71,7 +73,8 @@ public class ShoppingCartServiceImpl implements IShoppingCartService {
     @Override
     public List<ShoppingCartDto> updateQuantity(long id, int quantity, String name) {
         UserDto user = this.userService.findByEmail(name);
-        ShoppingCart cartEntity = this.shoppingCartRepository.findCart(id, user.getId());
+        ShoppingCartEntity cartEntity = this.shoppingCartRepository.findCart(id, user.getId());
+
 
         if (quantity == 0) {
             this.shoppingCartRepository.delete(cartEntity);
@@ -85,11 +88,12 @@ public class ShoppingCartServiceImpl implements IShoppingCartService {
 
     @Override
     public ShoppingCartDto getId(long id) {
-        return this.shoppingCartConvert.toDTO(this.shoppingCartRepository.getOne(id));
+        return this.shoppingCartConvert.toDTO(this.shoppingCartRepository.findById(id));
     }
 
     @Override
-    public void delete(ShoppingCartDto shoppingCartDTO) {
-        this.shoppingCartRepository.delete(this.shoppingCartConvert.toEntity(shoppingCartDTO));
+    public void delete(ShoppingCartDto shoppingCartDto) {
+        this.shoppingCartRepository.delete(this.shoppingCartConvert.toEntity(shoppingCartDto));
     }
 }
+

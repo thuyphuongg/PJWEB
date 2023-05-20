@@ -5,7 +5,7 @@ import com.cdweb.Treestore.dto.ShoppingCartDto;
 import java.util.List;
 
 public interface IShoppingCartService {
-    public ShoppingCartDto addProduct(long book_id, String email);
+    public ShoppingCartDto addProduct(long tree_id, String email);
 
     public List<ShoppingCartDto> getProduct(String email);
 

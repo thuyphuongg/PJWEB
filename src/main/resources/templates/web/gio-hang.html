@@ -154,33 +154,33 @@
         var str = "";
         for (let item of result.list) {
             str += " <tr>";
-            str += "      <td><input type='checkbox' id='check" + item.book.id + "' name='carts' field='carts' value='" + item.id + "' onclick='setTotalPrice(" + item.book.id + "," + item.book.price + "," + item.book.discount + "," + item.quantity + ")' checked></td>"
+            str += "      <td><input type='checkbox' id='check" + item.tree.id + "' name='carts' field='carts' value='" + item.id + "' onclick='setTotalPrice(" + item.tree.id + "," + item.tree.price + "," + item.tree.discount + "," + item.quantity + ")' checked></td>"
             str += "     <td class='image'>";
-            str += "       <a href='/chi-tiet-san-pham?id=" + item.book.id + "'> ";
-            str += "  <img   src='" + item.book.mediaList[0].path + "' class='img-responsive'/></a>";
+            str += "       <a href='/chi-tiet-san-pham?id=" + item.tree.id + "'> ";
+            str += "  <img   src='" + item.tree.mediaList[0].path + "' class='img-responsive'/></a>";
             str += "   </td>";
             str += "   <td class='des'>";
             str += "     <h2>";
-            str += "       <a href='/chi-tiet-san-pham?id=" + item.book.id + "'>";
-            str += "    </a>" + item.book.title;
+            str += "       <a href='/chi-tiet-san-pham?id=" + item.tree.id + "'>";
+            str += "    </a>" + item.tree.name;
             str += "  </h2>";
             str += "  </td>";
             str += "  <td class='price'>";
             str += "   <div><span class='price-old' style='text-decoration-line: line-through'>"
-            str += item.book.discount ? formatPrice(item.book.price) : "" + "</span>";
+            str += item.tree.discount ? formatPrice(item.tree.price) : "" + "</span>";
             str += " </div>";
             str += " <div><span class='price-new'>";
-            str += item.book.priceDiscount + "</span>";
+            str += item.tree.priceDiscount + "</span>";
             str += "     </div>";
             str += "  </td>";
             str += "  <td class='quantity'>";
-            str += "  <input style='margin-bottom: 0px' type='number' class='text' id='quantity" + item.book.id + "' onchange='quantityChange(" + item.book.id + ")' value='" + item.quantity + "'/>";
+            str += "  <input style='margin-bottom: 0px' type='number' class='text' id='quantity" + item.tree.id + "' onchange='quantityChange(" + item.tree.id + ")' value='" + item.quantity + "'/>";
             str += "</td>";
             str += " <td class='amount'>" + item.total;
             str += "  </td>";
             str += "   <td class='remove'>";
             str += "    <a>";
-            str += "      <i class='glyphicon glyphicon-trash' onclick='deleteItem(" + item.book.id + ")'></i>";
+            str += "      <i class='glyphicon glyphicon-trash' onclick='deleteItem(" + item.tree.id + ")'></i>";
             str += "    </a>";
             str += "   </td>";
             str += " </tr>";

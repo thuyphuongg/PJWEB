@@ -1,9 +1,8 @@
 package com.cdweb.Treestore.controller.web;
 
-import com.cdweb.Treestore.domain.output.CartOutput;
+import com.cdweb.Treestore.api.output.CartOutput;
 import com.cdweb.Treestore.dto.ShoppingCartDto;
 import com.cdweb.Treestore.services.IShoppingCartService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,12 +24,14 @@ public class ShoppingCartController {
     }
 
     @GetMapping("/them-san-pham")
-    public ShoppingCartDto addProduct(@RequestParam(name = "id_tree", required = false, defaultValue = "0") long id_tree, Principal principal) {
+    public ShoppingCartDto addProduct(@RequestParam(name = "tree_id", required = false, defaultValue = "0") long tree_id, Principal principal) {
+
         if (principal == null) {
             return null;
         }
         String email = principal.getName();
-        return this.shoppingCartService.addProduct(id_tree, email);
+        return this.shoppingCartService.addProduct(tree_id, email);
+
     }
 
 
@@ -41,7 +42,8 @@ public class ShoppingCartController {
         List<ShoppingCartDto> cartList = this.shoppingCartService.getProduct(email);
         double total = 0;
         for (ShoppingCartDto cart : cartList) {
-            total += cart.getTree().getPrice() *  (1 - cart.getTree().getDiscount() / 100) * cart.getQuantity();
+            total += cart.getTree().getPrice() * (1 - cart.getTree().getDiscount() / 100) * cart.getQuantity();
+
         }
         output.setTotal(total);
         output.setList(cartList);
@@ -56,7 +58,8 @@ public class ShoppingCartController {
         List<ShoppingCartDto> cartList = this.shoppingCartService.updateQuantity(id, quantity, email);
         double total = 0;
         for (ShoppingCartDto cart : cartList) {
-            total += cart.getTree().getPrice()* cart.getQuantity();
+            total += cart.getTree().getPrice() * (1 - cart.getTree().getDiscount() / 100) * cart.getQuantity();
+
         }
         output.setTotal(total);
         output.setList(cartList);
