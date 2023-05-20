@@ -3,14 +3,9 @@ package com.cdweb.Treestore.controller.admin;
 import com.cdweb.Treestore.api.input.AddTreeInput;
 import com.cdweb.Treestore.api.input.UserInput;
 import com.cdweb.Treestore.convert.RoleConvert;
-<<<<<<< Updated upstream
-import com.cdweb.Treestore.domain.input.UserInput;
 import com.cdweb.Treestore.dto.CategoryDto;
 import com.cdweb.Treestore.dto.RoleDto;
 import com.cdweb.Treestore.dto.UserDto;
-=======
-import com.cdweb.Treestore.dto.*;
->>>>>>> Stashed changes
 import com.cdweb.Treestore.repository.RoleRepository;
 import com.cdweb.Treestore.services.ICategoryService;
 import com.cdweb.Treestore.services.IOrderedService;
@@ -22,15 +17,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.io.IOException;
-import java.io.OutputStream;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.StringTokenizer;
 
 @RestController
 public class AdminController {

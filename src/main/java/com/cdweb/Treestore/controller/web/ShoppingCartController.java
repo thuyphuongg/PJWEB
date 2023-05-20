@@ -1,7 +1,6 @@
 package com.cdweb.Treestore.controller.web;
 
 import com.cdweb.Treestore.api.output.CartOutput;
-import com.cdweb.Treestore.dto.ShoppingCartDto;
 import com.cdweb.Treestore.services.IShoppingCartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;

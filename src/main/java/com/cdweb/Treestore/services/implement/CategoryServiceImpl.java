@@ -2,7 +2,6 @@ package com.cdweb.Treestore.services.implement;
 
 import com.cdweb.Treestore.convert.CategoryConvert;
 import com.cdweb.Treestore.domain.Category;
-import com.cdweb.Treestore.dto.CategoryDto;
 import com.cdweb.Treestore.repository.CategoryRepository;
 import com.cdweb.Treestore.services.ICategoryService;
 import org.springframework.beans.factory.annotation.Autowired;

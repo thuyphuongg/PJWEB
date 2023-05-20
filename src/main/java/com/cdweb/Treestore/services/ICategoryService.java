@@ -1,7 +1,6 @@
 package com.cdweb.Treestore.services;
 
 import com.cdweb.Treestore.domain.Category;
-import com.cdweb.Treestore.dto.CategoryDto;
 
 import java.util.List;
 

@@ -1,7 +1,6 @@
 package com.cdweb.Treestore.dto;
 
 
-
 import java.text.DecimalFormat;
 
 public class ShoppingCartDto {
@@ -9,7 +8,6 @@ public class ShoppingCartDto {
     private long quantity;
     private UserDto user;
     private TreeDto tree;
-
 
     public String getTotal() {
         DecimalFormat formatter = new DecimalFormat("###,###,###");
@@ -19,6 +17,7 @@ public class ShoppingCartDto {
         DecimalFormat formatter = new DecimalFormat("###,###,###");
         return formatter.format(p) + " VND";
     }
+
     public Long getId() {
         return id;
     }
@@ -50,5 +49,4 @@ public class ShoppingCartDto {
     public void setTree(TreeDto tree) {
         this.tree = tree;
     }
-
 }

@@ -29,8 +29,8 @@ public class TreeConvert {
         tree.setDateCreated(treeDto.getDateCreated());
         tree.setView(treeDto.getView());
         tree.setActive(treeDto.getActive());
-        tree.setDiscount(treeDto.getDiscount());
-        tree.setQuantity(treeDto.getQuantity());
+//        tree.setDiscount(treeDto.get());
+//        tree.setQuantity(treeDto.getQ());
         return tree;
     }
 }

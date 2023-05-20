@@ -1,12 +1,6 @@
 package com.cdweb.Treestore.controller.web;
 
-<<<<<<< Updated upstream
-import com.cdweb.Treestore.domain.output.ListTreeOutput;
-=======
 import com.cdweb.Treestore.api.output.TreeOutput;
->>>>>>> Stashed changes
-import com.cdweb.Treestore.dto.TreeDto;
-import com.cdweb.Treestore.dto.UserDto;
 import com.cdweb.Treestore.services.ITreeService;
 import com.cdweb.Treestore.services.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
