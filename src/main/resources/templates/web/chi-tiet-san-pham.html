@@ -163,19 +163,26 @@
             cache: 'false'
         }).done(function (rs) {
             var str = "";
-            for (let tree of rs.listResult) {
+            for (let tree
+                of rs.listResult) {
                 str += " <div class='product-item-box  '>";
                 str += "     <div class='product-item'>";
                 str += "      <div class='image image-resize'>";
-                str += "        <a href='/chi-tiet-san-pham?id=" + tree.idTree + "'>";
-                str += "    <img class='img-responsive' style='height: 152px' src='" + tree.imageLink + "'/>";
+                str += "        <a href='/chi-tiet-san-pham?id=" + tree
+                    .id + "'>";
+                str += "    <img class='img-responsive' style='height: 152px' src='" + tree
+                    .mediaList[0].path + "'/>";
                 str += "  </a>";
                 str += "<span class='hot'>";
-                str += tree.discount ? tree.discountFormat : "Hot" + "</span>";
+                str += tree
+                    .discount ? tree
+                    .discountFormat : "Hot" + "</span>";
                 str += "   </div>";
                 str += " <div class='right-block'>";
                 str += "  <h2 class='name'>";
-                str += "     <a href='/chi-tiet-san-pham?id=" + tree.idTree + "'>" + tree.nameTree + "</a>";
+                str += "     <a href='/chi-tiet-san-pham?id=" + tree
+                    .id + "'>" + tree
+                    .name + "</a>";
                 str += "  </h2>";
                 str += " <div class='rating'>";
                 str += "   <div class='rating-1'>";
@@ -183,19 +190,25 @@
                 str += "   </span>";
                 str += " </div>";
                 str += "  </div>";
-                if (tree.quantity) {
+                if (tree
+                    .quantity) {
                     str += " <div class='price'>";
                     str += "   <div><span class='price-old'>";
-                    str += tree.discount ? tree.priceFormat : "" + "</span>";
+                    str += tree
+                        .discount ? tree
+                        .priceFormat : "" + "</span>";
                     str += "   </div>";
-                    str += " <div><span class='price-new'>" + tree.priceDiscount;
+                    str += " <div><span class='price-new'>" + tree
+                        .priceDiscount;
                     str += " </span>";
                     str += "</div>";
                     str += "</div>";
                     str += "  <div class='button'>";
-                    str += " <a class='btn btn-default' href='/thanh-toan?id=" + tree.idTree + "'>Mua ngay</a>";
+                    str += " <a class='btn btn-default' href='/thanh-toan?id=" + tree
+                        .id + "'>Mua ngay</a>";
                     str += "  <a class='btn btn-default'";
-                    str += "onclick=' addCart(" + tree.idTree + ")' >Thêm giỏ hàng</a>";
+                    str += "onclick=' addCart(" + tree
+                        .id + ")' >Thêm giỏ hàng</a>";
                     str += "</div>";
                 } else {
                     str += "   <div class='price'>";
@@ -206,7 +219,8 @@
                     str += " </div>";
                     str += "  <div class='button'>";
                     str += "<a></a>";
-                    str += " <a class='btn btn-default' href='/chi-tiet-san-pham?id=" + tree.idTree + "'>Chi tiết sản phẩm</a>";
+                    str += " <a class='btn btn-default' href='/chi-tiet-san-pham?id=" + tree
+                        .id + "'>Chi tiết sản phẩm</a>";
                     str += " </div>";
                 }
                 str += " </div>";
@@ -245,7 +259,8 @@
             url: "thong-tin-san-pham" + window.location.search,
             dataType: 'json',
             cache: 'false'
-        }).done(function (tree) {
+        }).done(function (tree
+        ) {
             var str = "";
 
             str += "<div class='breadcrumb clearfix'>";
@@ -254,7 +269,8 @@
             str += "       <a href='/'><span>Trang chủ</span></a>";
             str += " </li>";
             str += "  <li class='icon-li'><strong>Sản phẩm</strong></li>";
-            str += "  <li class='icon-li'><strong>" + tree.nameTree + "</strong></li>";
+            str += "  <li class='icon-li'><strong>" + tree
+                .name + "</strong></li>";
             str += " </ul>";
             str += "  </div>";
             str += " <div class='product-detail clearfix relative'>";
@@ -262,24 +278,32 @@
             str += "     <div class='row'>";
             str += "       <div class='col-md-7 col-sm-6 col-xs-12 product-image clearfix'>";
             str += "       <div class='sp-wrap'>";
-            str += "      <a href='#' ><img src='" + tree.imageLink + "' style='width: 455px'></a>";
+            str += "      <a href='#' ><img src='" + tree
+                .mediaList[0].path + "' style='width: 455px'></a>";
             str += "  </div>";
             str += "  </div>";
             str += " <div class='col-md-5 col-sm-6 col-xs-12 clearfix'>";
-            str += "    <h2>" + tree.nameTree + "</h2>";
+            str += "    <h2>" + tree
+                .name + "</h2>";
 
 
-            if (tree.quantity) {
+            if (tree
+                .quantity) {
                 str += " <div class='price'>";
                 str += "  <div>";
                 str += "<span class='price-old' style='color: #aaaaaa;text-decoration: line-through;padding: 0px 5px'>";
-                str += tree.discount ? tree.priceFormat : "" + "</span>"
+                str += tree
+                    .discount ? tree
+                    .priceFormat : "" + "</span>"
                 str += "</div>";
-                str += "   <div><span class='price-new'>" + tree.priceDiscount + "</span></div> ";
+                str += "   <div><span class='price-new'>" + tree
+                    .priceDiscount + "</span></div> ";
                 str += "  </div>";
                 str += "  <div class='button'>";
-                str += "  <a class='btn btn-primary btn-lg' style='width: 345px;font-size: 17px' href='/thanh-toan?id=" + tree.idTree + "'><i class='glyphicon glyphicon-ok'></i>Mua ngay</a>";
-                str += "  <a class='btn btn-default btn-lg' style='width: 345px;font-size: 17px' onclick=' addCart(" + tree.idTree + ")'><i class='glyphicon glyphicon-shopping-cart'></i>Thêm giỏ hàng</a>";
+                str += "  <a class='btn btn-primary btn-lg' style='width: 345px;font-size: 17px' href='/thanh-toan?id=" + tree
+                    .id + "'><i class='glyphicon glyphicon-ok'></i>Mua ngay</a>";
+                str += "  <a class='btn btn-default btn-lg' style='width: 345px;font-size: 17px' onclick=' addCart(" + tree
+                    .id + ")'><i class='glyphicon glyphicon-shopping-cart'></i>Thêm giỏ hàng</a>";
                 str += "   </div>";
             } else {
                 str += " <div class='price'>";
@@ -305,12 +329,14 @@
             str1 += "  <table class='table'>";
             str1 += " <tbody>";
             str1 += "  <tr>";
-            str1 += "    <th scope='row'>Danh mục sản phẩm</th>";
-            str1 += "    <td>" + tree.category.name + "</td>";
+            str1 += "    <th scope='row'>Tên sản phẩm</th>";
+            str1 += "    <td>" + tree
+                .name + "</td>";
             str1 += "  </tr>";
             str1 += "  <tr>";
-            str1 += "    <th scope='row'>Tác giả</th>";
-            str1 += "    <td></td>";
+            str1 += "    <th scope='row'>Danh mục sản phẩm</th>";
+            str1 += "    <td>" + tree
+                .category.name + "</td>";
             str1 += "  </tr>";
             str1 += "  <tr>";
             str1 += "    <th scope='row'></th>";

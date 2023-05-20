@@ -116,6 +116,7 @@
             cache: "false"
         }).done(function (list) {
             var str = "";
+            console.log(list)
             for (let ordered of list) {
                 str += " <div class='table-responsive' style='font-size: 17px; font-weight: bold'>";
                 str += "    <table class='table product-list'>";
@@ -145,21 +146,21 @@
                 for (let item of ordered.orderedItemList) {
                     str += " <tr>";
                     str += "     <td class='image'>";
-                    str += "       <a href='/chi-tiet-san-pham?id=" + item.book.id + "'> ";
-                    str += "  <img   src='" + item.book.mediaList[0].path + "' class='img-responsive'/></a>";
+                    str += "       <a href='/chi-tiet-san-pham?id=" + item.tree.id + "'> ";
+                    str += "  <img   src='" + item.tree.mediaList[0].path + "' class='img-responsive'/></a>";
                     str += "   </td>";
                     str += "   <td class='des'>";
                     str += "     <h2>";
-                    str += "       <a href='/chi-tiet-san-pham?id=" + item.book.id + "'>";
-                    str += "    </a>" + item.book.title;
+                    str += "       <a href='/chi-tiet-san-pham?id=" + item.tree.id + "'>";
+                    str += "    </a>" + item.tree.name;
                     str += "  </h2>";
                     str += "  </td>";
                     str += "  <td class='price'>";
                     str += "   <div><span class='price-old' style='text-decoration-line: line-through'>"
-                    str += item.book.discount ? formatPrice(item.book.price) : "" + "</span>";
+                    str += item.tree.discount ? formatPrice(item.tree.price) : "" + "</span>";
                     str += " </div>";
                     str += " <div><span class='price-new'>";
-                    str += item.book.priceDiscount + "</span>";
+                    str += item.tree.priceDiscount + "</span>";
                     str += "     </div>";
                     str += "  </td>";
                     str += "  <td class='quantity'>" + item.quantity + "</td>";
