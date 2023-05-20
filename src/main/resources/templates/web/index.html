@@ -107,21 +107,21 @@
                             <div class="product-slide">
                                 <div class="product-block product-grid clearfix" id="product-slide">
 
-                                    <th:block th:each="book:${discountlist}">
+                                    <th:block th:each="tree:${discountlist}">
                                         <div class="product-item-box  ">
                                             <div class="product-item">
                                                 <div class="image image-resize">
-                                                    <a th:href="@{/chi-tiet-san-pham(id=${book.id})}">
+                                                    <a th:href="@{/chi-tiet-san-pham(id=${tree.idTree})}">
                                                         <img class="img-responsive" style="height: 152px"
-                                                             th:src="${book.mediaList[0].path}"/>
+                                                             th:src="${tree.imageLink}"/>
                                                     </a>
                                                     <span class="hot"
-                                                          th:utext=" ${book.discount} ? ${book.getDiscountFormat()}"></span>
+                                                          th:utext=" ${tree.discount} ? ${tree.getDiscountFormat()}"></span>
                                                 </div>
                                                 <div class="right-block">
                                                     <h2 class="name">
-                                                        <a th:href="@{/chi-tiet-san-pham(id=${book.id})}"
-                                                           th:utext="${book.title}"></a>
+                                                        <a th:href="@{/chi-tiet-san-pham(id=${tree.idTree})}"
+                                                           th:utext="${tree.nameTree}"></a>
                                                     </h2>
                                                     <div class="rating">
                                                         <div class="rating-1">
@@ -129,22 +129,22 @@
                                                         </span>
                                                         </div>
                                                     </div>
-                                                    <th:block th:if="${book.quantity}">
+                                                    <th:block th:if="${tree.quantity}">
                                                         <div class="price">
                                                             <div><span class="price-old"
-                                                                       th:utext="${book.discount}?${book.getPriceFormat()}"></span>
+                                                                       th:utext="${tree.discount}?${tree.getPriceFormat()}"></span>
                                                             </div>
                                                             <div><span class="price-new"
-                                                                       th:utext="${book.getPriceDiscount()}">
+                                                                       th:utext="${tree.getPriceDiscount()}">
                                                         </span>
                                                             </div>
                                                         </div>
                                                         <div class="button">
                                                             <a class="btn btn-default "
-                                                               th:href="@{/thanh-toan(id=${book.id})}">Mua ngay</a>
+                                                               th:href="@{/thanh-toan(id=${tree.idTree})}">Mua ngay</a>
                                                         </div>
                                                     </th:block>
-                                                    <th:block th:unless="${book.quantity}">
+                                                    <th:block th:unless="${tree.quantity}">
                                                         <div class="price">
                                                             <div><span class="price-old"></span>
                                                             </div>
@@ -153,7 +153,7 @@
                                                         </div>
                                                         <div class="button">
                                                             <a class="btn btn-default "
-                                                               th:href="@{/chi-tiet-san-pham(id=${book.id})}">Chi tiết
+                                                               th:href="@{/chi-tiet-san-pham(id=${tree.idTree})}">Chi tiết
                                                                 sản
                                                                 phẩm</a>
                                                         </div>
@@ -199,21 +199,21 @@
                     <section class="product-content clearfix">
                         <h1 class="title clearfix"><span>Sản phẩm HOT</span></h1>
                         <div class="product-block product-grid clearfix" id="product-hot">
-                            <th:block th:each="book : ${hotlist}">
+                            <th:block th:each="tree : ${hotlist}">
                                 <div class="col-md-3 col-sm-3 col-xs-6 product-resize product-item-box">
                                     <div class="product-item">
                                         <div class="image image-resize">
-                                            <a th:href="@{/chi-tiet-san-pham(id=${book.id})}">
-                                                <img th:src="${book.mediaList[0].path}"
+                                            <a th:href="@{/chi-tiet-san-pham(id=${tree.idTree})}">
+                                                <img th:src="${tree.imageLink}"
                                                      style="display: inline-block;height: 252px ">
                                             </a>
                                             <span class="hot"
-                                                  th:utext=" ${book.discount} ? ${book.getDiscountFormat()}:  Hot"></span>
+                                                  th:utext=" ${tree.discount} ? ${tree.getDiscountFormat()}:  Hot"></span>
                                         </div>
                                         <div class="right-block">
                                             <h2 class="name">
-                                                <a th:href="@{/chi-tiet-san-pham(id=${book.id})}"
-                                                   th:utext="${book.title}"></a>
+                                                <a th:href="@{/chi-tiet-san-pham(id=${tree.idTree})}"
+                                                   th:utext="${tree.nameTree}"></a>
                                             </h2>
                                             <div class="rating">
                                                 <div class="rating-1">
@@ -221,24 +221,24 @@
                                 </span>
                                                 </div>
                                             </div>
-                                            <th:block th:if="${book.quantity}">
+                                            <th:block th:if="${tree.quantity}">
                                                 <div class="price">
                                                     <div><span class="price-old"
-                                                               th:utext="${book.discount}?${book.getPriceFormat()}"></span>
+                                                               th:utext="${tree.discount}?${tree.getPriceFormat()}"></span>
                                                     </div>
                                                     <div><span class="price-new"
-                                                               th:utext="${book.getPriceDiscount()}">
+                                                               th:utext="${tree.getPriceDiscount()}">
                                                         </span>
                                                     </div>
                                                 </div>
                                                 <div class="button">
                                                     <a class="btn btn-default "
-                                                       th:href="@{/thanh-toan(id=${book.id})}">Mua ngay</a>
+                                                       th:href="@{/thanh-toan(id=${tree.idTree})}">Mua ngay</a>
                                                     <a class="btn btn-default "
-                                                       th:onclick=" 'addCart('+${book.id}+')' ">Thêm giỏ hàng</a>
+                                                       th:onclick=" 'addCart('+${tree.idTree}+')' ">Thêm giỏ hàng</a>
                                                 </div>
                                             </th:block>
-                                            <th:block th:unless="${book.quantity}">
+                                            <th:block th:unless="${tree.quantity}">
                                                 <div class="price">
                                                     <div><span class="price-old"></span>
                                                     </div>
@@ -247,7 +247,7 @@
                                                 </div>
                                                 <div class="button">
                                                     <a class="btn btn-default "
-                                                       th:href="@{/chi-tiet-san-pham(id=${book.id})}">Chi tiết sản
+                                                       th:href="@{/chi-tiet-san-pham(id=${tree.idTree})}">Chi tiết sản
                                                         phẩm</a>
                                                 </div>
                                             </th:block>
@@ -258,27 +258,27 @@
                             </th:block>
                         </div>
                         <div class="text-center ">
-                            <a class="btn btn-default button-see-more" th:href="@{/san-pham(hot=true)}">Xem thêm</a>
+                            <a class="btn btn-default button-see-more" th:href="@{/san-pham(hotTree=true)}">Xem thêm</a>
                         </div>
                     </section>
                     <section class="product-content clearfix">
                         <h1 class="title clearfix"><span>Sản phẩm MỚI</span></h1>
                         <div class="product-block product-grid clearfix" id="product-new">
-                            <th:block th:each="book : ${newlist}">
+                            <th:block th:each="tree : ${newlist}">
                                 <div class="col-md-3 col-sm-3 col-xs-6 product-resize product-item-box">
                                     <div class="product-item">
                                         <div class="image image-resize">
-                                            <a th:href="@{/chi-tiet-san-pham(id=${book.id})}">
-                                                <img th:src="${book.mediaList[0].path}"
+                                            <a th:href="@{/chi-tiet-san-pham(id=${tree.idTree})}">
+                                                <img th:src="${tree.imageLink}"
                                                      style="display: inline-block;height: 252px ">
                                             </a>
                                             <span class="hot"
-                                                  th:utext=" ${book.discount}? ${book.getDiscountFormat()}:Mới "></span>
+                                                  th:utext=" ${tree.discount}? ${tree.getDiscountFormat()}:Mới "></span>
                                         </div>
                                         <div class="right-block">
                                             <h2 class="name">
-                                                <a th:href="@{/chi-tiet-san-pham(id=${book.id})}"
-                                                   th:utext="${book.title}"></a>
+                                                <a th:href="@{/chi-tiet-san-pham(id=${tree.idTree})}"
+                                                   th:utext="${tree.nameTree}"></a>
                                             </h2>
                                             <div class="rating">
                                                 <div class="rating-1">
@@ -286,24 +286,24 @@
                                 </span>
                                                 </div>
                                             </div>
-                                            <th:block th:if="${book.quantity}">
+                                            <th:block th:if="${tree.quantity}">
                                                 <div class="price">
                                                     <div><span class="price-old"
-                                                               th:utext="${book.discount}?${book.getPriceFormat()}"></span>
+                                                               th:utext="${tree.discount}?${tree.getPriceFormat()}"></span>
                                                     </div>
                                                     <div><span class="price-new"
-                                                               th:utext="${book.getPriceDiscount()}">
+                                                               th:utext="${tree.getPriceDiscount()}">
                                                         </span>
                                                     </div>
                                                 </div>
                                                 <div class="button">
                                                     <a class="btn btn-default "
-                                                       th:href="@{/thanh-toan(id=${book.id})}">Mua ngay</a>
+                                                       th:href="@{/thanh-toan(id=${tree.idTree})}">Mua ngay</a>
                                                     <a class="btn btn-default "
-                                                       th:onclick=" 'addCart('+${book.id}+')' ">Thêm giỏ hàng</a>
+                                                       th:onclick=" 'addCart('+${tree.idTree}+')' ">Thêm giỏ hàng</a>
                                                 </div>
                                             </th:block>
-                                            <th:block th:unless="${book.quantity}">
+                                            <th:block th:unless="${tree.quantity}">
                                                 <div class="price">
                                                     <div><span class="price-old"></span>
                                                     </div>
@@ -312,7 +312,7 @@
                                                 </div>
                                                 <div class="button">
                                                     <a class="btn btn-default "
-                                                       th:href="@{/chi-tiet-san-pham(id=${book.id})}">Chi tiết sản
+                                                       th:href="@{/chi-tiet-san-pham(id=${tree.idTree})}">Chi tiết sản
                                                         phẩm</a>
                                                 </div>
                                             </th:block>
@@ -323,7 +323,7 @@
                             </th:block>
                         </div>
                         <div class="text-center ">
-                            <a class="btn btn-default button-see-more" th:href="@{/san-pham(new=true)}">Xem thêm</a>
+                            <a class="btn btn-default button-see-more" th:href="@{/san-pham(newTree=true)}">Xem thêm</a>
                         </div>
                     </section>
 

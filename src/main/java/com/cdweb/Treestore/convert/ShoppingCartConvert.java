@@ -17,5 +17,6 @@ public class ShoppingCartConvert {
 
     public ShoppingCartEntity toEntity(ShoppingCartDto shoppingCartDTO) {
         return modelMapper.map(shoppingCartDTO, ShoppingCartEntity.class);
+
     }
 }

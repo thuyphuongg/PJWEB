@@ -20,20 +20,20 @@ function show(result) {
 
 function showProduct(list) {
     var str = "";
-    for (let book of list) {
+    for (let tree of list) {
         str += "  <div class='col-md-3 col-sm-3 col-xs-6 product-resize product-item-box'>";
         str += "    <div class='product-item'>"
         str += "       <div class='image image-resize'>"
-        str += "      <a href='/chi-tiet-san-pham?id=" + book.id + "'>";
-        str += "       <img src='" + book.mediaList[0].path + "'style='display: inline-block;height: 252px '>";
+        str += "      <a href='/chi-tiet-san-pham?id=" + tree.idTree + "'>";
+        str += "       <img src='" + tree.imageLink + "'style='display: inline-block;height: 252px '>";
         str += "      </a>";
         str += "   <span class='hot'>";
-        str += book.discount ? book.discountFormat : "Mới" + "</span>";
+        str += tree.discount ? tree.discountFormat : "Mới" + "</span>";
         str += "    </div>";
         str += "   <div class='right-block'>";
         str += "    <h2 class='name'>";
-        str += "       <a href='/chi-tiet-san-pham?id=" + book.id + "'>";
-        str += book.title + "</a>";
+        str += "       <a href='/chi-tiet-san-pham?id=" + tree.idTree + "'>";
+        str += tree.nameTree + "</a>";
         str += " </h2>";
         str += " <div class='rating'>";
         str += " <div class='rating-1'>";
@@ -41,19 +41,19 @@ function showProduct(list) {
         str += "  </span>";
         str += "</div>";
         str += " </div>";
-        if (book.quantity) {
+        if (tree.quantity) {
             str += " <div class='price'>";
             str += "   <div><span class='price-old'>";
-            str += book.discount ? book.priceFormat : "" + "</span>";
+            str += tree.discount ? tree.priceFormat : "" + "</span>";
             str += "   </div>";
-            str += " <div><span class='price-new'>" + book.priceDiscount;
+            str += " <div><span class='price-new'>" + tree.priceDiscount;
             str += " </span>";
             str += "</div>";
             str += "</div>";
             str += "  <div class='button'>";
-            str += " <a class='btn btn-default' href='/thanh-toan?id=" + book.id + "'>Mua ngay</a>";
+            str += " <a class='btn btn-default' href='/thanh-toan?id=" + tree.id + "'>Mua ngay</a>";
             str += "  <a class='btn btn-default'";
-            str += "onclick=' addCart(" + book.id + ")' >Thêm giỏ hàng</a>";
+            str += "onclick=' addCart(" + tree.id + ")' >Thêm giỏ hàng</a>";
             str += "</div>";
         } else {
 
@@ -65,7 +65,7 @@ function showProduct(list) {
             str += " </div>";
             str += " </div>";
             str += "  <div class='button'>";
-            str += " <a class='btn btn-default' href='/chi-tiet-san-pham?id=" + book.id + "'>Chi tiết sản phẩm</a>";
+            str += " <a class='btn btn-default' href='/chi-tiet-san-pham?id=" + tree.id + "'>Chi tiết sản phẩm</a>";
             str += " </div>";
         }
         str += " </div>";
@@ -133,21 +133,23 @@ function pagination(total, page) {
     return str;
 }
 
-function addCart(book_id) {
+function addCart(idTree) {
     $.ajax({
         method: 'get',
         url: 'them-san-pham',
         dataType: 'json',
         cache: 'false',
         data: {
-            book_id: book_id
+            idTree: idTree
         }
-    }).done(function (list) {
-        if (list == null) {
-            window.location = "/dang-nhap";
+    }).done(function (response) {
+        if (response == null) {
+            window.location.href = "/dang-nhap";
         } else {
             alert("Sản phẩm đã được thêm vào giỏ hàng!");
         }
+    }).fail(function (xhr, textStatus, errorThrown) {
+        console.log(xhr.responseText);
     });
 }
 

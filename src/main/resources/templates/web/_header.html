@@ -5,6 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
     <title>Document</title>
 </head>
 <body>
@@ -16,13 +17,12 @@
             <div class="row">
                 <div class="col-md-12">
                     <ul class="nav navbar-nav topmenu-contact pull-left hidden-xs hidden-sm">
-                       <a th:href="@{/}"><img th:src="@{web/shop292/images/memo_logo1.png}" class="img-responsive" style="height: 23px;margin-top: 10px"></a>
+                       <a th:href="@{/}"><img th:src="@{web/shop292/images/logo.jpg}" class="img-responsive" style="height: 23px;margin-top: 10px"></a>
                     </ul>
                     <ul class="nav navbar-nav topmenu-contact pull-left hidden-xs hidden-sm">
                         <li><i class=""></i> <span>Số điện thoại: 12 345 6789</span></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right topmenu " id="header">
-
                     </ul>
                 </div>
             </div>
@@ -139,7 +139,7 @@
         });
 
         $(document).ready(function () {
-            //dòng này minh dùng để load data
+            //dòng này mình dùng để load data
             loadData();
         });
 
@@ -151,7 +151,7 @@
                     var str = "";
                     $.each(rs, function (index, category) {
                         str += " <li>";
-                        str += "  <a href='/san-pham?category=" + category.code + "'>";
+                        str += "  <a href='/san-pham?category=" + category.id + "'>";
                         str += "<i class='icon-menu fa fa-book' >  " + category.name + "</i>";
                         str += "</a>";
                         str += "</li>";
