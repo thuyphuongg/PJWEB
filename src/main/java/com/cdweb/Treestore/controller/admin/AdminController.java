@@ -1,12 +1,19 @@
 package com.cdweb.Treestore.controller.admin;
 
+import com.cdweb.Treestore.api.input.AddTreeInput;
+import com.cdweb.Treestore.api.input.UserInput;
 import com.cdweb.Treestore.convert.RoleConvert;
+<<<<<<< Updated upstream
 import com.cdweb.Treestore.domain.input.UserInput;
 import com.cdweb.Treestore.dto.CategoryDto;
 import com.cdweb.Treestore.dto.RoleDto;
 import com.cdweb.Treestore.dto.UserDto;
+=======
+import com.cdweb.Treestore.dto.*;
+>>>>>>> Stashed changes
 import com.cdweb.Treestore.repository.RoleRepository;
 import com.cdweb.Treestore.services.ICategoryService;
+import com.cdweb.Treestore.services.IOrderedService;
 import com.cdweb.Treestore.services.ITreeService;
 import com.cdweb.Treestore.services.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,8 +43,8 @@ public class AdminController {
     private IUserService userService;
     @Autowired
     private ICategoryService categoryService;
-//    @Autowired
-//    private IOrderedService orderedService;
+    @Autowired
+    private IOrderedService orderedService;
     @Autowired
     private RoleRepository roleRepository;
     @Autowired
@@ -50,7 +57,7 @@ public class AdminController {
     @GetMapping("/admin")
     public ModelAndView listProduct(Principal principal) {
         ModelAndView mav = new ModelAndView("admin/index.html");
-        mav.addObject("listbook", treeService.findAll());
+        mav.addObject("listtree", treeService.findAll());
         mav.addObject("username", principal.getName());
         return mav;
     }
@@ -63,58 +70,55 @@ public class AdminController {
         return mav;
     }
 
-//    @PostMapping("/admin-productAdd")
-//    public ModelAndView addProduct(@ModelAttribute("AddBookInput") AddBookInput bookInput, Principal principal) {
-//        Path staticPath = Paths.get("src/main/resources/static");
-//        Path imagePath = Paths.get("admin/img/bookupload");
-//        if (!Files.exists(CURRENT_FOLDER.resolve(staticPath).resolve(imagePath))) {
-//            try {
-//                Files.createDirectories(CURRENT_FOLDER.resolve(staticPath).resolve(imagePath));
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//        Path file = CURRENT_FOLDER.resolve(staticPath)
-//                .resolve(imagePath).resolve(bookInput.getImages().getOriginalFilename());
-//        try (OutputStream os = Files.newOutputStream(file)) {
-//            os.write(bookInput.getImages().getBytes());
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//
-//        BookDTO bookDTO = new BookDTO();
-//        bookDTO.setId(bookInput.getId());
-//        bookDTO.setTitle(bookInput.getTitle());
-//        bookDTO.setShortDescription(bookInput.getShortDescription());
-//        bookDTO.setDescription(bookInput.getDescription());
-//        bookDTO.setDiscount(bookInput.getDiscount());
-//        bookDTO.setPrice(bookInput.getPrice());
-//        bookDTO.setQuantity(bookInput.getQuantity());
-//        bookDTO.setPage(bookInput.getPage());
-//        bookDTO.setNewBook(bookInput.isNewBook());
-//        bookDTO.setHotBook(bookInput.isHotBook());
-//        bookDTO.setPublisher(bookInput.getPublisher());
-//        bookDTO.setActive(true);
-//        bookDTO.setCategory(this.categoryService.findCategory(bookInput.getCategory()));
-//
-//        List<MediaDTO> medias = new ArrayList<>();
-//        MediaDTO media = new MediaDTO();
-//        StringTokenizer stringTokenizer = new StringTokenizer(imagePath.resolve(bookInput.getImages().getOriginalFilename()).toString(), "\\");
-//        String s = "";
-//        while (stringTokenizer.hasMoreTokens()) {
-//            s += stringTokenizer.nextToken() + "/";
-//        }
-//        media.setPath(s.substring(0, s.length() - 1));
-//        medias.add(media);
-//        bookDTO.setMediaList(medias);
-//
-//        BookDTO book = bookService.save(bookDTO);
-//
-//        ModelAndView mav = new ModelAndView("admin/index.html");
-//        mav.addObject("listbook", bookService.findAll());
-//        mav.addObject("username", principal.getName());
-//        return mav;
-//    }
+    @PostMapping("/admin-productAdd")
+    public ModelAndView addProduct(@ModelAttribute("AddTreeInput") AddTreeInput treeInput, Principal principal) {
+        Path staticPath = Paths.get("src/main/resources/static");
+        Path imagePath = Paths.get("admin/img/treeupload");
+        if (!Files.exists(CURRENT_FOLDER.resolve(staticPath).resolve(imagePath))) {
+            try {
+                Files.createDirectories(CURRENT_FOLDER.resolve(staticPath).resolve(imagePath));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        Path file = CURRENT_FOLDER.resolve(staticPath)
+                .resolve(imagePath).resolve(treeInput.getImages().getOriginalFilename());
+        try (OutputStream os = Files.newOutputStream(file)) {
+            os.write(treeInput.getImages().getBytes());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        TreeDto treeDto = new TreeDto();
+        treeDto.setId(treeInput.getId());
+        treeDto.setName(treeInput.getName());
+        treeDto.setDescription(treeInput.getDescription());
+        treeDto.setDiscount(treeInput.getDiscount());
+        treeDto.setPrice(treeInput.getPrice());
+        treeDto.setQuantity(treeInput.getQuantity());
+        treeDto.setNewTree(treeInput.isNewTree());
+        treeDto.setHotTree(treeInput.isHotTree());
+        treeDto.setActive(true);
+        treeDto.setCategory(this.categoryService.findCategory(treeInput.getCategory()));
+
+        List<MediaDto> medias = new ArrayList<>();
+        MediaDto media = new MediaDto();
+        StringTokenizer stringTokenizer = new StringTokenizer(imagePath.resolve(treeInput.getImages().getOriginalFilename()).toString(), "\\");
+        String s = "";
+        while (stringTokenizer.hasMoreTokens()) {
+            s += stringTokenizer.nextToken() + "/";
+        }
+        media.setPath(s.substring(0, s.length() - 1));
+        medias.add(media);
+        treeDto.setMediaList(medias);
+
+        TreeDto tree = treeService.save(treeDto);
+
+        ModelAndView mav = new ModelAndView("admin/index.html");
+        mav.addObject("listtree", treeService.findAll());
+        mav.addObject("username", principal.getName());
+        return mav;
+    }
 
 
     @GetMapping("/admin-productEdit")
@@ -132,7 +136,7 @@ public class AdminController {
         mav.addObject("listcategory", categoryService.findAll());
         long[] ids = {id};
         treeService.delete(ids);
-        mav.addObject("listbook", treeService.findAll());
+        mav.addObject("listtree", treeService.findAll());
         mav.addObject("username", principal.getName());
         return mav;
     }
@@ -163,7 +167,7 @@ public class AdminController {
         categoryService.edit(category);
 
         ModelAndView mav = new ModelAndView("admin/productType.html");
-        mav.addObject("listcategory", categoryService.findCategory(String.valueOf(category.getId())));
+        mav.addObject("listcategory", categoryService.findCategory(category.getCode()));
         mav.addObject("username", principal.getName());
         return mav;
     }
@@ -198,38 +202,38 @@ public class AdminController {
 
     //    ORDER  //
 
-//    @GetMapping("/admin-listOrder")
-//    public ModelAndView listOrder(Principal principal) {
-//        ModelAndView mav = new ModelAndView("admin/cart.html");
-//        mav.addObject("listOrders", orderedService.findAll());
-//        mav.addObject("username", principal.getName());
-//        return mav;
-//    }
-//
-//    @GetMapping("/admin-orderDetail")
-//    public ModelAndView orderDetail(@Param("id") long id, Principal principal) {
-//        ModelAndView mav = new ModelAndView("admin/cart-detail.html");
-//        mav.addObject("order", orderedService.findOrder(id));
-//        mav.addObject("username", principal.getName());
-//        return mav;
-//    }
+    @GetMapping("/admin-listOrder")
+    public ModelAndView listOrder(Principal principal) {
+        ModelAndView mav = new ModelAndView("admin/cart.html");
+        mav.addObject("listOrders", orderedService.findAll());
+        mav.addObject("username", principal.getName());
+        return mav;
+    }
 
-//    @GetMapping("/admin-editOrder")
-//    public ModelAndView orderEditPage(@Param("id") long id, Principal principal) {
-//        ModelAndView mav = new ModelAndView("admin/cart-edit.html");
-//        mav.addObject("order", orderedService.findOrder(id));
-//        mav.addObject("username", principal.getName());
-//        return mav;
-//    }
+    @GetMapping("/admin-orderDetail")
+    public ModelAndView orderDetail(@Param("id") long id, Principal principal) {
+        ModelAndView mav = new ModelAndView("admin/cart-detail.html");
+        mav.addObject("order", orderedService.findOrder(id));
+        mav.addObject("username", principal.getName());
+        return mav;
+    }
 
-//    @PostMapping("/admin-editOrder")
-//    public ModelAndView orderEdit(@ModelAttribute("order") OrderedDTO ordered, Principal principal) {
-//        this.orderedService.edit(ordered);
-//        ModelAndView mav = new ModelAndView("admin/cart.html");
-//        mav.addObject("listOrders", orderedService.findAll());
-//        mav.addObject("username", principal.getName());
-//        return mav;
-//    }
+    @GetMapping("/admin-editOrder")
+    public ModelAndView orderEditPage(@Param("id") long id, Principal principal) {
+        ModelAndView mav = new ModelAndView("admin/cart-edit.html");
+        mav.addObject("order", orderedService.findOrder(id));
+        mav.addObject("username", principal.getName());
+        return mav;
+    }
+
+    @PostMapping("/admin-editOrder")
+    public ModelAndView orderEdit(@ModelAttribute("order") OrderedDto ordered, Principal principal) {
+        this.orderedService.edit(ordered);
+        ModelAndView mav = new ModelAndView("admin/cart.html");
+        mav.addObject("listOrders", orderedService.findAll());
+        mav.addObject("username", principal.getName());
+        return mav;
+    }
 
     // CUSTOMER//
 
@@ -244,11 +248,10 @@ public class AdminController {
     @GetMapping(value = "/admin-addUser")
     public ModelAndView getAddUserPage(Principal principal) {
         ModelAndView mav = new ModelAndView("admin/customer-add.html");
-        mav.addObject("userinput", new UserDto());
+        mav.addObject("userinput", new UserInput());
         mav.addObject("username", principal.getName());
         return mav;
     }
-
 
 
     @RequestMapping(value = "/admin-addUser", method = RequestMethod.POST)
@@ -273,7 +276,6 @@ public class AdminController {
         mav.addObject("username", principal.getName());
         return mav;
     }
-
 
     @GetMapping(value = "/admin-editUser")
     public ModelAndView editUserPage(@Param("email") String email, Principal principal) {
@@ -307,7 +309,7 @@ public class AdminController {
         user.setFullName(userinput.getFullName());
         user.setPhone(userinput.getPhone());
         user.setAddress(userinput.getAddress());
-        if (userinput.getIsEnabled().equals("true"))  {
+        if (userinput.getIsEnabled().equals("true")) {
             user.setEnabled(true);
         }
         user.setRoleList(roleDTO);
