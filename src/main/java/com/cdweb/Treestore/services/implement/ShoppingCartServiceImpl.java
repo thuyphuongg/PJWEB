@@ -1,8 +1,12 @@
 package com.cdweb.Treestore.services.implement;
 
+
 import com.cdweb.Treestore.convert.ShoppingCartConvert;
 import com.cdweb.Treestore.convert.TreeConvert;
 import com.cdweb.Treestore.convert.UserConvert;
+import com.cdweb.Treestore.dto.ShoppingCartDto;
+import com.cdweb.Treestore.dto.TreeDto;
+import com.cdweb.Treestore.dto.UserDto;
 import com.cdweb.Treestore.entity.ShoppingCartEntity;
 import com.cdweb.Treestore.repository.ShoppingCartRepository;
 import com.cdweb.Treestore.services.IShoppingCartService;
@@ -35,7 +39,6 @@ public class ShoppingCartServiceImpl implements IShoppingCartService {
         if (tree_id != 0) {
             TreeDto tree = this.treeService.findById(tree_id);
             ShoppingCartEntity entity = this.shoppingCartRepository.findCart(tree.getId(), user.getId());
-
             ShoppingCartDto cart = new ShoppingCartDto();
             if (entity == null) {
                 cart.setTree(tree);
@@ -49,7 +52,6 @@ public class ShoppingCartServiceImpl implements IShoppingCartService {
             }
             ShoppingCartEntity test = this.shoppingCartConvert.toEntity(cart);
             ShoppingCartEntity entity1 = this.shoppingCartRepository.save(test);
-
             return this.shoppingCartConvert.toDTO(entity1);
         }
         return null;
@@ -61,7 +63,6 @@ public class ShoppingCartServiceImpl implements IShoppingCartService {
         List<ShoppingCartEntity> cartEntities = this.shoppingCartRepository.findAllByUser(user.getId());
         List<ShoppingCartDto> cartList = new ArrayList<>();
         for (ShoppingCartEntity s : cartEntities) {
-
             cartList.add(this.shoppingCartConvert.toDTO(s));
         }
         return cartList;
@@ -71,7 +72,6 @@ public class ShoppingCartServiceImpl implements IShoppingCartService {
     public List<ShoppingCartDto> updateQuantity(long id, int quantity, String name) {
         UserDto user = this.userService.findByEmail(name);
         ShoppingCartEntity cartEntity = this.shoppingCartRepository.findCart(id, user.getId());
-
 
         if (quantity == 0) {
             this.shoppingCartRepository.delete(cartEntity);
@@ -93,4 +93,3 @@ public class ShoppingCartServiceImpl implements IShoppingCartService {
         this.shoppingCartRepository.delete(this.shoppingCartConvert.toEntity(shoppingCartDto));
     }
 }
-

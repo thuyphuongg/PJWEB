@@ -1,5 +1,7 @@
 package com.cdweb.Treestore.services;
 
+import com.cdweb.Treestore.dto.ShoppingCartDto;
+
 import java.util.List;
 
 public interface IShoppingCartService {

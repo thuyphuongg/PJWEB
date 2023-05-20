@@ -1,9 +1,10 @@
-package com.cdweb.Treestore.services.implement;
-
 import com.cdweb.Treestore.convert.TreeConvert;
-import com.cdweb.Treestore.domain.Category;
-import com.cdweb.Treestore.domain.Tree;
+import com.cdweb.Treestore.dto.TreeDto;
+import com.cdweb.Treestore.entity.CategoryEntity;
+import com.cdweb.Treestore.entity.MediaEntity;
+import com.cdweb.Treestore.entity.TreeEntity;
 import com.cdweb.Treestore.repository.CategoryRepository;
+import com.cdweb.Treestore.repository.MediaRepository;
 import com.cdweb.Treestore.repository.TreeRepository;
 import com.cdweb.Treestore.services.ITreeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,118 +23,129 @@ public class TreeServiceImpl implements ITreeService {
     private CategoryRepository categoryRepository;
     @Autowired
     private TreeConvert treeConvert;
+    @Autowired
+    private MediaRepository mediaRepository;
 
     @Override
     public List<TreeDto> findAll() {
         Sort sort = null;
         sort = Sort.by("id").descending();
         List<TreeDto> results = new ArrayList<>();
-        List<Tree> list = treeRepository.findAll(sort);
+        List<TreeEntity> list = treeRepository.findAll(sort);
 
-        for (Tree book : list) {
-            results.add(this.treeConvert.toDTO(book));
+        for (TreeEntity tree : list) {
+            results.add(this.treeConvert.toDTO(tree));
         }
         return results;
     }
 
     @Override
     public TreeDto save(TreeDto treeDto) {
-        Tree tree = new Tree();
+        TreeEntity treeEntity = new TreeEntity();
 
 
-        if (treeDto.getIdTree() != 0) {
-            Tree oldTree = treeRepository.findOneByIdTree(treeDto.getIdTree());
-            tree = treeConvert.toEntity(treeDto, oldTree);
+        if (treeDto.getId() != 0) {
+            TreeEntity oldTreeEntity = treeRepository.findOneById(treeDto.getId());
+            treeEntity = treeConvert.toEntity(treeDto, oldTreeEntity);
         } else {
-            tree = treeConvert.toEntity(treeDto);
+            treeEntity = treeConvert.toEntity(treeDto);
         }
-        Category category = this.categoryRepository.findCategoryById(treeDto.getCategory().getId());
-        tree.setCategory(category);
-        tree = treeRepository.save(tree);
-        return treeConvert.toDTO(this.treeRepository.findOneByIdTree(tree.getIdTree()));
+//        if (bookDTO.getAuthor() != null) {
+//            AuthorEntity author = this.authorRepository.findAuthorById(bookDTO.getAuthor().getId());
+//            bookEntity.setAuthor(author);
+//        }
+        CategoryEntity category = this.categoryRepository.findCategoryById(treeDto.getCategory().getId());
+        treeEntity.setCategory(category);
+        treeEntity = treeRepository.save(treeEntity);
+        MediaEntity mediaEntity = new MediaEntity();
+        mediaEntity.setPath(treeEntity.getMediaList().get(0).getPath());
+        mediaEntity.setTree(treeEntity);
+        mediaRepository.save(mediaEntity);
+        return treeConvert.toDTO(this.treeRepository.findOneById(treeEntity.getId()));
     }
+
 
     @Override
     public void delete(long[] ids) {
+
         for (long item : ids) {
             treeRepository.deleteById(item);
         }
     }
 
+
     @Override
     public List<TreeDto> findAll(Pageable pageable) {
-
-        List<TreeDto> treeDtoList = new ArrayList<>();
-        List<Tree> treeList = this.treeRepository.findAllByActive(true, pageable).getContent();
-        for (Tree tree : treeList) {
-            treeDtoList.add(this.treeConvert.toDTO(tree));
+        List<TreeDto> treeList = new ArrayList<>();
+        List<TreeEntity> treeEntityList = this.treeRepository.findAllByActive(true, pageable).getContent();
+        for (TreeEntity tree : treeEntityList) {
+            treeList.add(this.treeConvert.toDTO(tree));
         }
-        return treeDtoList;
+        return treeList;
     }
 
     @Override
-    public List<TreeDto> findByCategoryId(Long id, Pageable pageable) {
-
-        List<Tree> treelist = treeRepository.findAllByActiveAndCategoryId(true, id, pageable).getContent();
-        List<TreeDto> treeResult = new ArrayList<>();
-        for (Tree tree : treelist) {
-            treeResult.add(this.treeConvert.toDTO(tree));
+    public List<TreeDto> findByCategory(String category_code, Pageable pageable) {
+        List<TreeEntity> booklist = treeRepository.findAllByActiveAndCategoryCode(true, category_code, pageable).getContent();
+        List<TreeDto> bookResult = new ArrayList<>();
+        for (TreeEntity book : booklist) {
+            bookResult.add(this.treeConvert.toDTO(book));
         }
-        return treeResult;
+        return bookResult;
+    }
+
+    @Override
+    public int countByCategory(String category_code) {
+        if ("null".equalsIgnoreCase(category_code)) {
+            return this.treeRepository.countAllByActive(true);
+        } else {
+            return this.treeRepository.countAllByActiveAndCategoryCode(true, category_code);
+        }
     }
 
     @Override
     public TreeDto findById(Long id) {
-        return this.treeConvert.toDTO(this.treeRepository.findOneByIdTree(id));
+        return this.treeConvert.toDTO(this.treeRepository.findOneById(id));
     }
 
     @Override
     public List<TreeDto> findByHot(Pageable pageable) {
-        List<TreeDto> treeDtoList = new ArrayList<>();
-        List<Tree> treeList = this.treeRepository.findAllByActiveAndHotTree(true, true, pageable).getContent();
-        for (Tree tree : treeList) {
-            treeDtoList.add(this.treeConvert.toDTO(tree));
+        List<TreeDto> treeList = new ArrayList<>();
+        List<TreeEntity> treeEntityList = this.treeRepository.findAllByActiveAndHotTree(true, true, pageable).getContent();
+        for (TreeEntity tree : treeEntityList) {
+            treeList.add(this.treeConvert.toDTO(tree));
         }
-        return treeDtoList;
+        return treeList;
     }
 
     @Override
     public List<TreeDto> findByNew(Pageable pageable) {
-        List<TreeDto> treeDtoList = new ArrayList<>();
-        List<Tree> treeList = this.treeRepository.findAllByActiveAndNewTree(true, true, pageable).getContent();
-        for (Tree tree : treeList) {
-            treeDtoList.add(this.treeConvert.toDTO(tree));
+        List<TreeDto> treeList = new ArrayList<>();
+        List<TreeEntity> treeEntityList = this.treeRepository.findAllByActiveAndNewTree(true, true, pageable).getContent();
+        for (TreeEntity tree : treeEntityList) {
+            treeList.add(this.treeConvert.toDTO(tree));
         }
-        return treeDtoList;
+        return treeList;
     }
 
     @Override
     public List<TreeDto> findByDiscount(Pageable pageable) {
-        List<TreeDto> treeDtoList = new ArrayList<>();
-
-        List<Tree> treeList = this.treeRepository.findByActiveAndDiscountGreaterThan(true, 0.0, pageable).getContent();
-        for (Tree tree : treeList) {
-            treeDtoList.add(this.treeConvert.toDTO(tree));
+        List<TreeDto> treeList = new ArrayList<>();
+        List<TreeEntity> treeEntityList = this.treeRepository.findByActiveAndDiscountGreaterThan(true, 0, pageable).getContent();
+        for (TreeEntity tree : treeEntityList) {
+            treeList.add(this.treeConvert.toDTO(tree));
         }
-        return treeDtoList;
+        return treeList;
     }
 
     @Override
-    public int countByCategory(Long id) {
-        if (id==null) {
-            return this.treeRepository.countAllByActive(true);
-        } else {
-            return this.treeRepository.countAllByActiveAndCategoryId(true, id);
-        }   }
-
-    @Override
     public int countByHot() {
-        return this.treeRepository.countAllByActiveAndHotTree(true,true);
+        return this.treeRepository.countAllByActiveAndHotTree(true, true);
     }
 
     @Override
     public int countByNew() {
-        return this.treeRepository.countAllByActiveAndNewTree(true,true);
+        return this.treeRepository.countAllByActiveAndNewTree(true, true);
     }
 
     @Override
@@ -143,31 +155,30 @@ public class TreeServiceImpl implements ITreeService {
 
     @Override
     public int countByDiscount() {
-        return this.treeRepository.countAllByActiveAndDiscountGreaterThan(true,0.0);
+        return this.treeRepository.countAllByActiveAndDiscountGreaterThan(true, 0);
     }
 
     @Override
-    public List<TreeDto> findByTitle(String title, Pageable pageable) {
-        List<TreeDto> treeDtoList = new ArrayList<>();
-        List<Tree> treeList = this.treeRepository.findByActiveAndNameTreeContains(true, title, pageable).getContent();
-        for (Tree tree : treeList) {
-            treeDtoList.add(this.treeConvert.toDTO(tree));
+    public List<TreeDto> findByName(String name, Pageable pageable) {
+        List<TreeDto> treeList = new ArrayList<>();
+        List<TreeEntity> treeEntityList = this.treeRepository.findByActiveAndNameContains(true, name, pageable).getContent();
+        for (TreeEntity tree : treeEntityList) {
+            treeList.add(this.treeConvert.toDTO(tree));
         }
-        return treeDtoList;
+        return treeList;
     }
 
     @Override
-    public int countByTitle(String title) {
-        return this.treeRepository.countAllByActiveAndNameTreeContains(true, title);
-
+    public int countByName(String name) {
+        return this.treeRepository.countAllByActiveAndNameContains(true, name);
     }
 
     @Override
-    public List<String> autoCompleteTitle(String title) {
-        List<Tree> treeList = new ArrayList<>();
+    public List<String> autoCompleteName(String name) {
+        List<TreeEntity> treeEntityList = this.treeRepository.findByActiveAndNameContains(true, name);
         List<String> list = new ArrayList<>();
-        for (Tree tree : treeList) {
-            list.add(tree.getNameTree());
+        for (TreeEntity tree : treeEntityList) {
+            list.add(tree.getName());
         }
         return list;
     }
