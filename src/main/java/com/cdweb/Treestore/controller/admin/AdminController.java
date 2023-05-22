@@ -24,7 +24,6 @@ import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
-
 @RestController
 public class AdminController {
     private static final Path CURRENT_FOLDER = Paths.get(System.getProperty("user.dir"));
@@ -89,6 +88,7 @@ public class AdminController {
         treeDto.setDiscount(treeInput.getDiscount());
         treeDto.setPrice(treeInput.getPrice());
         treeDto.setQuantity(treeInput.getQuantity());
+        treeDto.setQuantitySold(treeInput.getQuantitySold());
         treeDto.setNewTree(treeInput.isNewTree());
         treeDto.setHotTree(treeInput.isHotTree());
         treeDto.setActive(true);
@@ -105,11 +105,9 @@ public class AdminController {
         medias.add(media);
         treeDto.setMediaList(medias);
 
-        TreeDto tree = treeService.save(treeDto);
+        treeService.save(treeDto);
 
-        ModelAndView mav = new ModelAndView("admin/index.html");
-        mav.addObject("listtree", treeService.findAll());
-        mav.addObject("username", principal.getName());
+        ModelAndView mav = new ModelAndView("redirect:/admin");
         return mav;
     }
 
@@ -125,12 +123,10 @@ public class AdminController {
 
     @GetMapping("/admin-productDelete")
     public ModelAndView deleteProductPage(@Param("id") long id, Principal principal) {
-        ModelAndView mav = new ModelAndView("admin/index.html");
-        mav.addObject("listcategory", categoryService.findAll());
+        ModelAndView mav = new ModelAndView("redirect:/admin");
+//        mav.addObject("listcategory", categoryService.findAll());
         long[] ids = {id};
         treeService.delete(ids);
-        mav.addObject("listtree", treeService.findAll());
-        mav.addObject("username", principal.getName());
         return mav;
     }
 
@@ -159,9 +155,7 @@ public class AdminController {
 
         categoryService.edit(category);
 
-        ModelAndView mav = new ModelAndView("admin/productType.html");
-        mav.addObject("listcategory", categoryService.findCategory(category.getCode()));
-        mav.addObject("username", principal.getName());
+        ModelAndView mav = new ModelAndView("redirect:/admin-listCategory");
         return mav;
     }
 
@@ -176,9 +170,7 @@ public class AdminController {
     @RequestMapping(value = "/admin-addType", method = RequestMethod.POST)
     public ModelAndView addType(@ModelAttribute("category") CategoryDto category, Principal principal) {
         categoryService.save(category);
-        ModelAndView mav = new ModelAndView("admin/productType.html");
-        mav.addObject("listcategory", categoryService.findAll());
-        mav.addObject("username", principal.getName());
+        ModelAndView mav = new ModelAndView("redirect:/admin-listCategory");
         return mav;
     }
 
@@ -222,9 +214,7 @@ public class AdminController {
     @PostMapping("/admin-editOrder")
     public ModelAndView orderEdit(@ModelAttribute("order") OrderedDto ordered, Principal principal) {
         this.orderedService.edit(ordered);
-        ModelAndView mav = new ModelAndView("admin/cart.html");
-        mav.addObject("listOrders", orderedService.findAll());
-        mav.addObject("username", principal.getName());
+        ModelAndView mav = new ModelAndView("redirect:/admin-listOrder");
         return mav;
     }
 
@@ -259,14 +249,11 @@ public class AdminController {
         user.setFullName(userinput.getFullName());
         user.setPhone(userinput.getPhone());
         user.setAddress(userinput.getAddress());
-        if (userinput.getIsEnabled().equals("true")) {
-            user.setEnabled(true);
-        }
+        user.setEnabled(userinput.isEnabled());
         user.setRoleList(roleDTO);
         userService.save(user);
-        ModelAndView mav = new ModelAndView("admin/customer.html");
-        mav.addObject("listAllUser", userService.findAll());
-        mav.addObject("username", principal.getName());
+        ModelAndView mav = new ModelAndView("redirect:/admin-listCustomer");
+
         return mav;
     }
 
@@ -298,19 +285,15 @@ public class AdminController {
         }
         user.setId(userinput.getId());
         user.setEmail(userinput.getEmail());
-        user.setPassword(userinput.getPassword());
+        if (userinput.getPassword() != null) user.setPassword(userinput.getPassword());
         user.setFullName(userinput.getFullName());
         user.setPhone(userinput.getPhone());
         user.setAddress(userinput.getAddress());
-        if (userinput.getIsEnabled().equals("true")) {
-            user.setEnabled(true);
-        }
+        user.setEnabled(userinput.isEnabled());
         user.setRoleList(roleDTO);
 
         this.userService.changePassword(user);
-        ModelAndView mav = new ModelAndView("admin/customer.html");
-        mav.addObject("listAllUser", userService.findAll());
-        mav.addObject("username", principal.getName());
+        ModelAndView mav = new ModelAndView("redirect:/admin-listCustomer");
         return mav;
     }
 }

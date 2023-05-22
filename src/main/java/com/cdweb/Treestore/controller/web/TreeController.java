@@ -27,7 +27,7 @@ public class TreeController {
     public TreeOutput listCustomer(
             @RequestParam(name = "category", required = false, defaultValue = "null") String category,
             @RequestParam(name = "page", required = false, defaultValue = "1") Integer page,
-            @RequestParam(name = "limit", required = false, defaultValue = "12") Integer limit,
+            @RequestParam(name = "limit", required = false, defaultValue = "9") Integer limit,
             @RequestParam(name = "sort", required = false, defaultValue = "id") String sortName,
             @RequestParam(name = "order", required = false, defaultValue = "ASC") String sortBy,
             @RequestParam(name = "hot", required = false, defaultValue = "false") boolean hot,
@@ -88,15 +88,19 @@ public class TreeController {
     }
 
     @GetMapping("/chi-tiet-san-pham")
-    public ModelAndView treeDetailPage(Principal principal) {
+    public ModelAndView treeDetailPage(@RequestParam("id") long id, Principal principal) {
         ModelAndView mav = new ModelAndView("web/chi-tiet-san-pham.html");
         UserDto userDto;
+        TreeDto treeFromDb = treeService.findById(id);
+        long categoryId = treeFromDb.getCategory().getId();
         if (principal != null) {
             userDto = this.userService.findByEmail(principal.getName());
+
         } else {
             userDto = null;
         }
         mav.addObject("user", userDto);
+        mav.addObject("treeRelate", treeService.findTreeRelate(categoryId, 50));
         return mav;
     }
 
@@ -108,8 +112,8 @@ public class TreeController {
 
 
     @PostMapping(value = "/save-tree")
-    public TreeDto createTree(@RequestBody TreeDto treeDTO) {
-        return treeService.save(treeDTO);
+    public void createTree(@RequestBody TreeDto treeDTO) {
+        treeService.save(treeDTO);
     }
 
 
