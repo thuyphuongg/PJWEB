@@ -25,7 +25,8 @@ function checkMail() {
                     email: email
                 }
             }).done(function (user) {
-                if (user != null && user.email == email) {
+                console.log(user)
+                if (user.email != null) {
                     document.getElementById("emailError").innerHTML = "Email này đã có người đăng ký. Thử lại";
                     document.getElementById("emailError").style.display = "block";
                 } else {
@@ -97,4 +98,27 @@ function checkName() {
         return true;
     }
 
+}
+    function checkOldPass() {
+        var oldPass = document.getElementById("oldPass").value;
+        if (oldPass == "true") return true;
+        var password = document.getElementById("oldPassword").value;
+        $.ajax({
+            method: 'GET',
+            url: 'check-password',
+            dataType: 'json',
+            cache: 'false',
+            data: {
+                password: password
+            }
+        }).done(function (rs) {
+            console.log(rs);
+            if (rs) {
+                $('#oldPasswordError').html("");
+                return true;
+            } else {
+                $('#oldPasswordError').html("Mật khẩu không chính xác!");
+                return false;
+            }
+        });
 }

@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title> Admin</title>
+    <title> Chi tiết đơn hàng</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- favicon
@@ -70,8 +70,8 @@
         <div th:each="item : ${order.orderedItemList}">
             <tr>
                 <td class="text-center"><img alt=""
-                                             th:src="@{${item.book.mediaList[0].path}}" width="70" height="60"/></td>
-                <td><p th:text="${item.book.title }"></p></td>
+                                             th:src="@{${item.tree.mediaList[0].path}}" width="70" height="60"/></td>
+                <td><p th:text="${item.tree.title }"></p></td>
                 <td><p th:text="${item.quantity }"></p></td>
                 <td><p th:text="${item.priceFormat }"></p></td>
             </tr>

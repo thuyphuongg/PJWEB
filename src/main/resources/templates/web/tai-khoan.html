@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>TreeStore</title>
+    <th:block th:insert="~{web/fragment::head/link}"></th:block>
+</head>
+<body>
+<!-- Start Main Top -->
+<div th:replace="~{web/fragment::mainTop}"></div>
+
+<!-- Start Main Header -->
+<header th:replace="~{web/fragment::mainHeader}"></header>
+
+<!-- Start Top Search -->
+<div th:replace="~{web/fragment::topSearch}"></div>
+
+<!-- Start All Title Box -->
+<div class="all-title-box">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h2>My Account</h2>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Shop</a></li>
+                    <li class="breadcrumb-item active">My Account</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End All Title Box -->
+
+<!-- Start My Account  -->
+<div class="my-account-box-main">
+    <div class="container">
+        <table class="my-account-page" style="width: 50%; margin: 10px auto">
+
+        </table>
+    </div>
+</div>
+<!-- End My Account -->
+
+<!-- Start Instagram Feed  -->
+<div th:replace="~{web/fragment::instagramBox}"></div>
+
+<!--Footer-->
+<footer th:replace="~{web/fragment::footer}"></footer>
+
+<!--Copyright-->
+<div th:replace="~{web/fragment::copyRight}"></div>
+
+<!--Back to top-->
+<a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
+
+<th:block th:insert="~{web/fragment::body/script}"></th:block>
+
+<script>
+    $(function () {
+        $.ajax({
+                method: 'get',
+                url: 'user',
+                dataType: 'json',
+                cache: 'false'
+            }
+        ).done(function (user) {
+            var str = "";
+
+            str += " <tr>";
+            str += "    <td class='control-label'>Email:</td>";
+            str += "   <td>" + user.email;
+            str += "<input type='hidden' name='email' value='" + user.email + "'>";
+            str += "</td>";
+            str += "  </tr>";
+            str += "   <tr>";
+            str += "      <td class='control-label'>Họ và tên:</td>";
+            str += "    <td>";
+            str += "<input class='form-control mb-3' type='text' name='fullName' value=' " + user.fullName + "'>";
+            str += "</td>";
+            str += "  </tr>";
+            str += "   <tr>";
+            str += "    <td class='control-label'>Địa chỉ:</td>";
+            str += "    <td>";
+            str += "<input type='text' class='form-control mb-3' name='address' value=' " + user.address + "'>";
+            str += "</td>";
+            str += " </tr>";
+            str += "  <tr>";
+            str += "     <td class='control-label'>Số điện thoại:</td>";
+            str += "    <td>";
+            str += "<input type='text' class='form-control mb-3' name='phone' value=' " + user.phone + "'>";
+            str += "</td>";
+            str += " </tr>";
+            str += "<tr>";
+            str += "<td></td>";
+            str += "<td>";
+            str += "<a style='margin-right: 10px'><button type='submit' class='btn btn-default'>Lưu thông tin</button></a>"
+            str += "<a style='margin-right: 10px' class='btn btn-default' href='/thong-tin-ca-nhan'>Hủy</a>";
+            str += "<a href='/doi-mat-khau' style='color: #eb5858'>Đổi mật khẩu</a>";
+            str += "</td>"
+            str += "</tr>"
+            $('.my-account-page').html(str);
+        });
+    });
+</script>
+</body>
+</html>

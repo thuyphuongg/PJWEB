@@ -1,161 +1,127 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<meta http-equiv="content-type" content="text/html;charset=utf-8"/><!-- /Added by HTTrack -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
-    <meta charset="UTF-8"/>
-    <title>Li&#234;n hệ</title>
-    <meta name="description"/>
-    <meta name="keywords"/>
-    <<link th:href="@{web/shop292/files/icon.png}" rel="shortcut icon" type="image/x-icon"/>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="fb:app_id" content="227481454296289"/>
-
-    <meta content="vi_VN" property="og:locale"/>
-    <meta content="website" property="og:type"/>
-    <meta content="Tree Store" property="og:title"/>
-    <meta property="og:description"/>
-    <meta content="http://runecom50.runtime.vn" property="og:image"/>
-    <meta content="http://runecom50.runtime.vn/trang-chu.html" property="og:url"/>
-    <meta property="og:site_name"/>
-
-    <link th:href="@{web/Scripts/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
-    <link th:href="@{web/App_Themes/font-awesome.min.css}" rel="stylesheet"/>
-    <link th:href="@{web/App_Themes/common.css}" rel="stylesheet" type="text/css"/>
-    <link th:href="@{web/App_Themes/animate.css}" rel="stylesheet" type="text/css"/>
-    <link th:href="@{web/Scripts/jQuery-ui/jquery-ui.min.css}" rel="stylesheet" type="text/css"/>
-
-    <script th:src="@{web/Scripts/jQuery/jquery-2.1.4.min.js}" type="text/javascript"></script>
-    <script th:src="@{web/Scripts/jQuery/jquery-migrate-1.2.1.min.js}" type="text/javascript"></script>
-    <script th:src="@{web/Scripts/bootstrap/js/bootstrap.min.js}"></script>
-    <script th:src="@{web/Scripts/jQuery-ui/jquery-ui.min.js}" type="text/javascript"></script>
-
-    <script th:src="@{web/Scripts/lazyLoad/jquery.lazyload.min.js}" type="text/javascript"></script>
-
-    <link th:href="@{web/App_Themes/RUN003C4/style.css}" rel="stylesheet" type="text/css"/>
-    <link th:href="@{web/App_Themes/RUN003/responsive.css}" rel="stylesheet" type="text/css"/>
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>TreeStore</title>
+    <th:block th:insert="~{web/fragment::head/link}"></th:block>
 </head>
-<body ng-app="appMain" style="">
+<body>
+<!-- Start Main Top -->
+<div th:replace="~{web/fragment::mainTop}"></div>
 
+<!-- Start Main Header -->
+<header th:replace="~{web/fragment::mainHeader}"></header>
 
-<div class="wrapper">
+<!-- Start Top Search -->
+<div th:replace="~{web/fragment::topSearch}"></div>
 
-     <div th:insert="~{web/_header :: header}"></div>
+<!-- Start All Title Box -->
+<div class="all-title-box">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h2>Contact Us</h2>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active"> Contact Us</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End All Title Box -->
 
-
-
-    <div class="main">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-9">
-
-                    <div class="breadcrumb clearfix">
-                        <ul>
-                            <li itemtype="http://shema.org/Breadcrumb" itemscope="" class="home">
-                                <a title="Đến trang chủ" href="index.html" itemprop="url"><span itemprop="title">Trang chủ</span></a>
-                            </li>
-                            <li class="icon-li"><strong>Liên hệ</strong></li>
-                        </ul>
-                    </div>
-                    <script type="text/javascript">
-                        $(".link-site-more").hover(function () {
-                            $(this).find(".s-c-n").show();
-                        }, function () {
-                            $(this).find(".s-c-n").hide();
-                        });
-                    </script>
-
-                    <!--Begin-->
-                    <div class="contact-content clearfix" ng-controller="contactController"
-                         ng-init="initController('Shop','Maps')">
-                        <h1 class="title">
-            <span>
-                Thông tin liên hệ
-            </span>
-                        </h1>
-                        <div class="contact-block clearfix">
-                            <div class="row">
-                                <div class="col-md-3">
-
+<!-- Start Contact Us  -->
+<div class="contact-box-main">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-sm-12">
+                <div class="contact-form-right">
+                    <h2>GET IN TOUCH</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed odio justo, ultrices ac nisl sed,
+                        lobortis porta elit. Fusce in metus ac ex venenatis ultricies at cursus mauris.</p>
+                    <form id="contactForm">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="name" name="name"
+                                           placeholder="Your Name" required data-error="Please enter your name">
+                                    <div class="help-block with-errors"></div>
                                 </div>
-                                <div class="col-md-9">
-                                    <div class="contact-info">
-                                        <div class="docs"><b class="name">WebCayCanh</b></div>
-                                        <div class="docs">
-                                            <i class="fa fa-map-marker"></i>
-                                            <b>Địa chỉ: </b>  Phường Linh Trung, tp Thủ Đức, TP.HCM
-                                        </div>
-                                        <div class="docs">
-                                            <i class="fa fa-mobile"></i>
-                                            <b>Hotline: </b> 12 345 6789
-                                        </div>
-                                        <div class="docs">
-                                            <i class="fa fa-envelope"></i>
-                                            <a href="#">mailto: webcaycanh@gmail.com</a>
-                                        </div>
-                                    </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <input type="text" placeholder="Your Email" id="email" class="form-control"
+                                           name="name" required data-error="Please enter your email">
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="subject" name="name"
+                                           placeholder="Subject" required data-error="Please enter your Subject">
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <textarea class="form-control" id="message" placeholder="Your Message" rows="4"
+                                              data-error="Write your message" required></textarea>
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                                <div class="submit-button text-center">
+                                    <button class="btn hvr-hover" id="submit" type="submit">Send Message</button>
+                                    <div id="msgSubmit" class="h3 text-center hidden"></div>
+                                    <div class="clearfix"></div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <!--End-->
+                    </form>
                 </div>
-                <div class="col-md-3">
-                    <!--Begin-->
-                    <div class="box-support-online">
-                        <h3><span>Hỗ trợ trực tuyến</span></h3>
-                        <div class="support-online-block">
-                            <div class="support-hotline">
-                                HOTLINE<br><span>12 345 6789</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!--End-->
+            </div>
+            <div class="col-lg-4 col-sm-12">
+                <div class="contact-info-left">
+                    <h2>CONTACT INFO</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent urna diam, maximus ut
+                        ullamcorper quis, placerat id eros. Duis semper justo sed condimentum rutrum. Nunc tristique
+                        purus turpis. Maecenas vulputate. </p>
+                    <ul>
+                        <li>
+                            <p><i class="fas fa-map-marker-alt"></i>Address: Michael I. Days 9000 <br>Preston Street
+                                Wichita,<br> KS 87213 </p>
+                        </li>
+                        <li>
+                            <p><i class="fas fa-phone-square"></i>Phone: <a href="tel:+1-888705770">+1-888 705 770</a>
+                            </p>
+                        </li>
+                        <li>
+                            <p><i class="fas fa-envelope"></i>Email: <a href="mailto:contactinfo@gmail.com">contactinfo@gmail.com</a>
+                            </p>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
-
-
-    <div th:insert="~{web/_footer :: footer}"></div>
-
-
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $(".menu-quick-select ul").hide();
-            $(".menu-quick-select").hover(function () {
-                $(".menu-quick-select ul").show();
-            }, function () {
-                $(".menu-quick-select ul").hide();
-            });
-        });
-    </script>
 </div>
+<!-- End Cart -->
 
-</div>
-<a class="back-to-top" href="#" style="display: inline;">
-    <i class="fa fa-angle-up">
-    </i>
-</a>
+<!-- Start Instagram Feed  -->
+<div th:replace="~{web/fragment::instagramBox}"></div>
 
+<!--Footer-->
+<footer th:replace="~{web/fragment::footer}"></footer>
 
+<!--Copyright-->
+<div th:replace="~{web/fragment::copyRight}"></div>
+
+<!--Back to top-->
+<a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
+
+<th:block th:insert="~{web/fragment::body/script}"></th:block>
 </body>
-
-<!-- Mirrored from runecom50.runtime.vn/lien-he.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 05 Apr 2021 10:12:12 GMT -->
 </html>
-<script type="text/javascript">
-    $(".header-content").css({"background": 'url(web/shop292/images/DLF.jpg)  top center'});
-    $("html").addClass('');
-    $(document).ready(function () {
-        $("img.lazy-img").each(function () {
-            //$(this).attr("data-original", $(this).attr("src"));
-            //$(this).attr("src", "/Images/blank.gif");
-        });
-        $("img.lazy-img").lazyload({
-            effect: "fadeIn",
-            threshold: 200
-        });
-    });
-</script>
-

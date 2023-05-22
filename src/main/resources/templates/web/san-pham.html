@@ -1,174 +1,136 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<meta http-equiv="content-type" content="text/html;charset=utf-8"/><!-- /Added by HTTrack -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
-    <meta charset="UTF-8"/>
-    <title>Sản phẩm</title>
-    <meta name="description"/>
-    <meta name="keywords"/>
-    <link th:href="@{web/shop292/files/icon.png}" rel="shortcut icon" type="image/x-icon"/>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="fb:app_id" content="227481454296289"/>
-
-    <meta content="vi_VN" property="og:locale"/>
-    <meta content="website" property="og:type"/>
-    <meta content="Tree Store" property="og:title"/>
-    <meta property="og:description"/>
-    <meta content="http://runecom50.runtime.vn" property="og:image"/>
-    <meta content="http://runecom50.runtime.vn/trang-chu.html" property="og:url"/>
-    <meta property="og:site_name"/>
-
-    <link th:href="@{web/Scripts/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
-    <link th:href="@{web/App_Themes/font-awesome.min.css}" rel="stylesheet"/>
-    <link th:href="@{web/App_Themes/common.css}" rel="stylesheet" type="text/css"/>
-    <link th:href="@{web/App_Themes/animate.css}" rel="stylesheet" type="text/css"/>
-    <link th:href="@{web/Scripts/jQuery-ui/jquery-ui.min.css}" rel="stylesheet" type="text/css"/>
-
-    <script th:src="@{web/Scripts/jQuery/jquery-2.1.4.min.js}" type="text/javascript"></script>
-    <script th:src="@{web/Scripts/jQuery/jquery-migrate-1.2.1.min.js}" type="text/javascript"></script>
-    <script th:src="@{web/Scripts/bootstrap/js/bootstrap.min.js}"></script>
-    <script th:src="@{web/Scripts/jQuery-ui/jquery-ui.min.js}" type="text/javascript"></script>
-
-    <script th:src="@{web/Scripts/lazyLoad/jquery.lazyload.min.js}" type="text/javascript"></script>
-
-    <link th:href="@{web/App_Themes/RUN003C4/style.css}" rel="stylesheet" type="text/css"/>
-    <link th:href="@{web/App_Themes/RUN003/responsive.css}" rel="stylesheet" type="text/css"/>
-    <script th:src="@{web/Scripts/myJS/ajax-san-pham.js}"></script>
-
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>TreeStore</title>
+    <th:block th:insert="~{web/fragment::head/link}"></th:block>
 </head>
-<body ng-app="appMain" style="">
+<body>
+<!-- Start Main Top -->
+<div th:replace="~{web/fragment::mainTop}"></div>
 
+<!-- Start Main Header -->
+<header th:replace="~{web/fragment::mainHeader}"></header>
 
-<div class="wrapper">
-    <div th:insert="~{web/_header :: header}"></div>
+<!-- Start Top Search -->
+<div th:replace="~{web/fragment::topSearch}"></div>
+<!-- Start All Title Box -->
+<div class="all-title-box">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h2>Shop</h2>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Shop</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End All Title Box -->
 
+<!-- Start Shop Page  -->
+<div class="shop-box-inner">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-9 col-lg-9 col-sm-12 col-xs-12 shop-content-right">
+                <div class="right-product-box">
+                    <div class="product-item-filter row">
+                        <div class="col-6 col-sm-6 text-center text-sm-left">
+                            <div class="toolbar-sorter-right">
+                                <span>Sắp xếp </span>
+                                <select id="basic" class="selectpicker show-tick form-control" onchange="sortWith()">
+                                    <option selected="selected" value="">Mặc định</option>
+                                    <option value="?sort=price&amp;order=asc">Gi&#225; tăng dần</option>
+                                    <option value="?sort=price&amp;order=desc">Gi&#225; giảm dần</option>
+                                    <option value="?sort=name&amp;order=asc">T&#234;n: A to Z</option>
+                                    <option value="?sort=name&amp;order=desc">T&#234;n: Z to A</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-6 col-sm-6 text-center text-sm-left">
+                            <div class="toolbar-sorter-right">
+                                <span>Sản phẩm/trang</span>
+                                <select onchange="sortWith()" id="lblimit" name="lblimit" class="selectpicker show-tick form-control">
+                                    <option selected="selected" value="?limit=9">9</option>
+                                    <option value="?limit=12">12</option>
+                                    <option value="?limit=15">15</option>
+                                    <option value="?limit=18">18</option>
+                                </select>
+                            </div>
+                        </div>
 
-    <div class="adv">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="breadcrumb clearfix">
-                        <ul>
-                            <li class="home">
-                                <a th:href="@{/}"><span>Trang chủ</span></a>
-                            </li>
-                            <li class="icon-li"><strong>Sản phẩm</strong></li>
-                        </ul>
+                        <div class="product-categorie-box">
+                            <div class="row" id="grid-view">
+                                <!--load ajax-->
+                            </div>
+                            <div class="row d-flex justify-content-center">
+                                <div class="navigation" id="navigation"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-sm-12 col-xs-12 sidebar-shop-left">
+                <div class="product-categori">
+                    <div class="search-product">
+                        <form th:action="@{/san-pham}" method="get">
+                            <input class="form-control" placeholder="Tìm kiếm..." type="text" id="searchName"
+                                   onkeyup="search_title_product()" name="name">
+                            <button type="submit"><i class="fa fa-search"></i></button>
+                        </form>
+                    </div>
+                    <div class="filter-sidebar-left">
+                        <div class="title-left">
+                            <h3>Danh mục</h3>
+                        </div>
+                        <div class="list-group list-group-collapse list-group-sm list-group-tree"
+                             id="list-group-men">
+                            <!--                        load ajax-->
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-
-    <div class="main">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <section class="product-content" style="margin-top: 20px">
-                        <div class="col-sm-7"></div>
-                        <div class="col-sm-5">
-                            <form class="search" th:action="@{/san-pham}" method="get">
-                                <input type="text" placeholder="Tìm kiếm..." name="name" id="search"
-                                       onkeyup="search_title_product()">
-                                <button type="submit"><i class="fa fa-search"></i></button>
-                            </form>
-                        </div>
-                    </section>
-                    <section class="product-content clearfix">
-                        <h1 class="title clearfix"><span>Sản phẩm</span></h1>
-                        <nav class="navbar navbar-default product-filter">
-                            <div class="limit">
-                                <span>Sản phẩm/trang</span>
-                                <select onchange="sortWith()" id="lblimit" name="lblimit" class="nb_item">
-                                    <option value="?limit=8">8</option>
-                                    <option selected="selected" value="?limit=12">12</option>
-                                    <option value="?limit=16">16</option>
-                                    <option value="?limit=20">20</option>
-                                    <option value="?limit=40">40</option>
-                                    <option value="?limit=100">100</option>
-                                </select>
-                            </div>
-                            <div class="sort">
-                                <span>Sắp xếp</span>
-                                <select class="selectProductSort" id="lbsort" onchange="sortWith()">
-                                    <option selected="selected" value="">Mặc định</option>
-                                    <option value="?sort=price&amp;order=asc">Gi&#225; tăng dần</option>
-                                    <option value="?sort=price&amp;order=desc">Gi&#225; giảm dần</option>
-                                    <option value="?sort=name&amp;order=asc">T&#234;n sản phẩm: A to Z</option>
-                                    <option value="?sort=name&amp;order=desc">T&#234;n sản phẩm: Z to A</option>
-                                </select>
-                            </div>
-                        </nav>
-                        <div class="product-block product-grid clearfix " id="products"></div>
-                        <div class="navigation" id="navigation"></div>
-                    </section>
-                    <!--Template--
-                    --End-->
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <div th:insert="~{web/_footer :: footer}"></div>
-
 </div>
+<!-- End Shop Page -->
 
+<!-- Start Instagram Feed  -->
+<div th:replace="~{web/fragment::instagramBox}"></div>
 
-<script type="text/javascript">
-    $(document).ready(function () {
-        $(".menu-quick-select ul").hide();
-        $(".menu-quick-select").hover(function () {
-            $(".menu-quick-select ul").show();
-        }, function () {
-            $(".menu-quick-select ul").hide();
+<!--Footer-->
+<footer th:replace="~{web/fragment::footer}"></footer>
+
+<!--Copyright-->
+<div th:replace="~{web/fragment::copyRight}"></div>
+
+<!--Back to top-->
+<a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
+
+<th:block th:insert="~{web/fragment::body/script}"></th:block>
+<script>
+    $(function () {
+        $.ajax({
+            url: 'categories/getCategory',
+            type: 'get',
+            dataType: "json",
+            success: function (rs) {
+                var str = "";
+                for (let category of rs) {
+                    str += "<a href='/san-pham?category=" + category.code + "' class='list-group-item list-group-item-action'>" + category.name + "</a>";
+                }
+
+                $('#list-group-men').html(str);
+            }
         });
-    });
-</script>
 
-<a class="back-to-top" href="#" style="display: inline;">
-    <i class="fa fa-angle-up">
-    </i>
-</a>
-
-
-</body>
-<script type="text/javascript">
-    $(".header-content").css({"background": 'url(web/shop292/images/DLF.jpg)  top center'});
-    $("html").addClass('');
-    $(document).ready(function () {
-        $("img.lazy-img").each(function () {
-            //$(this).attr("data-original", $(this).attr("src"));
-            //$(this).attr("src", "/Images/blank.gif");
-        });
-        $("img.lazy-img").lazyload({
-            effect: "fadeIn",
-            threshold: 200
-        });
-    });
-</script>
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('#list').click(function (event) {
-            event.preventDefault();
-            $('#products .item').addClass('list-group-item');
-        });
-        $('#grid').click(function (event) {
-            event.preventDefault();
-            $('#products .item').removeClass('list-group-item');
-            $('#products .item').addClass('grid-group-item');
-        });
-    });
-</script>
-
-<script type="text/javascript">
-    $(document).ready(function () {
         var currentLocation = window.location;
-        console.log(currentLocation);
-        console.log(currentLocation.search)
         $.ajax({
             method: 'GET',
             url: "danh-sach-san-pham" + currentLocation.search,
@@ -177,11 +139,10 @@
         }).done(function (result) {
             show(result);
         });
-    });
-
+    })
 
     function sortWith() {
-        var sortValue = document.getElementById("lbsort").value;
+        var sortValue = document.getElementById("basic").value;
         var searchValue = window.location.search;
 
         var limit = document.getElementById("lblimit").value;
@@ -189,7 +150,6 @@
         var search = searchValue != "" ? "&" + searchValue.substring(1) : "";
         var query = limit + sort + search;
 
-        console.log(query);
         $.ajax({
             method: 'GET',
             url: "danh-sach-san-pham" + query,
@@ -199,10 +159,7 @@
             show(result);
         });
     }
-
 </script>
-
+</body>
 
 </html>
-
-

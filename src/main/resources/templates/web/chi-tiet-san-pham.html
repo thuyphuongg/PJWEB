@@ -1,360 +1,145 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-
-
-<meta http-equiv="content-type" content="text/html;charset=utf-8"/><!-- /Added by HTTrack -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
-    <meta charset="UTF-8"/>
-    <title>Chi tiết sản phẩm</title>
-    <meta name="description"/>
-    <meta name="keywords"/>
-    <link th:href="@{web/shop292/files/icon.png}" rel="shortcut icon" type="image/x-icon"/>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="fb:app_id" content="227481454296289"/>
-
-    <meta content="vi_VN" property="og:locale"/>
-    <meta content="website" property="og:type"/>
-    <meta content="Tree Store" property="og:title"/>
-    <meta property="og:description"/>
-    <meta content="http://runecom50.runtime.vn" property="og:image"/>
-    <meta content="http://runecom50.runtime.vn/trang-chu.html" property="og:url"/>
-    <meta property="og:site_name"/>
-
-    <link th:href="@{web/Scripts/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
-    <link th:href="@{web/App_Themes/font-awesome.min.css}" rel="stylesheet"/>
-    <link th:href="@{web/App_Themes/common.css}" rel="stylesheet" type="text/css"/>
-    <link th:href="@{web/App_Themes/animate.css}" rel="stylesheet" type="text/css"/>
-    <link th:href="@{web/Scripts/jQuery-ui/jquery-ui.min.css}" rel="stylesheet" type="text/css"/>
-
-    <script th:src="@{web/Scripts/jQuery/jquery-2.1.4.min.js}" type="text/javascript"></script>
-    <script th:src="@{web/Scripts/jQuery/jquery-migrate-1.2.1.min.js}" type="text/javascript"></script>
-    <script th:src="@{web/Scripts/bootstrap/js/bootstrap.min.js}"></script>
-    <script th:src="@{web/Scripts/jQuery-ui/jquery-ui.min.js}" type="text/javascript"></script>
-
-    <script th:src="@{web/Scripts/lazyLoad/jquery.lazyload.min.js}" type="text/javascript"></script>
-
-    <link th:href="@{web/App_Themes/RUN003C4/style.css}" rel="stylesheet" type="text/css"/>
-    <link th:href="@{web/App_Themes/RUN003/responsive.css}" rel="stylesheet" type="text/css"/>
-    <script th:src="@{web/Scripts/myJS/ajax-san-pham.js}"></script>
-
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>TreeStore</title>
+    <th:block th:insert="~{web/fragment::head/link}"></th:block>
 </head>
-<body ng-app="appMain" style="">
+<body>
+<!-- Start Main Top -->
+<div th:replace="~{web/fragment::mainTop}"></div>
 
+<!-- Start Main Header -->
+<header th:replace="~{web/fragment::mainHeader}"></header>
 
-<div class="wrapper">
+<!-- Start Top Search -->
+<div th:replace="~{web/fragment::topSearch}"></div>
 
-    <div th:insert="~{web/_header :: header}"></div>
-
-    <div class="main">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3">
-
-                    <!--Begin-->
-                    <div class="box-sale-policy">
-                        <h3><span>Chính sách bán hàng</span></h3>
-                        <div class="sale-policy-block">
-                            <ul>
-                                <li>Giao hàng TOÀN QUỐC</li>
-                                <li>Thanh toán khi nhận hàng</li>
-                                <li>Đổi trả trong <span>15 ngày</span></li>
-                                <li>Hoàn ngay tiền mặt</li>
-                                <li>Chất lượng đảm bảo</li>
-                                <li>Miễn phí vận chuyển:<span>Đơn hàng từ 3 món trở lên</span></li>
-                            </ul>
-                        </div>
-                        <div class="buy-guide">
-                            <h3>Hướng Dẫn Mua Hàng</h3>
-                            <ul>
-                                <li>
-                                    Mua hàng trực tiếp tại website
-                                    <b>http://www.webcaycanh.vn</b>
-                                </li>
-                                <li>
-                                    Gọi điện thoại <strong>
-                                    12 345 6789
-                                </strong> để mua hàng
-                                </li>
-                                <li>
-                                    Mua tại Trung tâm CSKH:<br/>
-                                    <strong>Phường Linh Trung, tp Thủ Đức, TP.HCM</strong>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-9" id="product-detail">
-                </div>
-            </div>
-            <div id="information"></div>
-            <div>
-                <link th:href="@{web/Scripts/owl-carousel/owl.carousel.css}" rel="stylesheet"/>
-                <link th:href="@{web/Scripts/owl-carousel/owl.theme.css}" rel="stylesheet"/>
-                <script th:src="@{web/Scripts/owl-carousel/owl.carousel.min.js}"></script>
-                <section class="product-content">
-                    <h1 class="title clearfix"><span>Sản phẩm HOT</span></h1>
-                    <div class=" owl-carousel">
-                        <div class="product-slide">
-                            <div class="product-block product-grid clearfix" id="product-slide">
-
-                            </div>
-                            <div class="controls boxprevnext">
-                                <a class="prev prevlogo"><i class="fa fa-angle-left"></i></a>
-                                <a class="next nextlogo"><i class="fa fa-angle-right"></i></a>
-                            </div>
-                            <div class="text-center ">
-                                <a class="btn btn-default button-see-more" th:href="@{/san-pham(hot=true)}">Xem
-                                    thêm</a>
-                            </div>
-                        </div>
-                    </div>
-
-                </section>
+<!-- Start All Title Box -->
+<div class="all-title-box">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h2>Shop Detail</h2>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Shop</a></li>
+                    <li class="breadcrumb-item active">Shop Detail</li>
+                </ul>
             </div>
         </div>
     </div>
-
-    <div th:insert="~{web/_footer :: footer}"></div>
-
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $(".menu-quick-select ul").hide();
-            $(".menu-quick-select").hover(function () {
-                $(".menu-quick-select ul").show();
-            }, function () {
-                $(".menu-quick-select ul").hide();
-            });
-        });
-    </script>
 </div>
+<!-- End All Title Box -->
 
+<!-- Start Shop Detail  -->
+<div class="shop-detail-box-main">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-5 col-lg-5 col-md-6">
+                <div id="product-image">
+                    <!--load ajax-->
+                </div>
+            </div>
+            <div class="col-xl-7 col-lg-7 col-md-6">
+                <div class="single-product-details">
+                    <!--                    load ajax-->
+                </div>
+            </div>
+        </div>
 
-<a class="back-to-top" href="#" style="display: inline;">
-    <i class="fa fa-angle-up">
-    </i>
-</a>
+        <div class="row my-5">
+            <div class="col-lg-12">
+                <div class="title-all text-center">
+                    <h1>Có thể bạn sẽ thích</h1>
+                    <p>Những sản phẩm cùng danh mục được mua sắm nhiều.</p>
+                </div>
+                <div class="featured-products-box owl-carousel owl-theme">
+                    <th:block th:each="tree: ${treeRelate}">
+                        <div class="item">
+                            <div class="products-single fix">
+                                <div class="box-img-hover">
+                                    <img th:src="${tree.mediaList[0].path}" class="img-fluid" alt="Image">
+                                    <div class="mask-icon">
+                                        <ul>
+                                            <li><a th:href="@{/chi-tiet-san-pham(id=${tree.id})}" data-toggle="tooltip"
+                                                   data-placement="right" title="Chi tiết"><i
+                                                    class="fas fa-eye"></i></a></li>
+                                            <li><a href="#" data-toggle="tooltip" data-placement="right"
+                                                   title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
+                                        </ul>
+                                        <a class="btn cart" th:onclick=" 'addCart('+${tree.id}+')' ">Thêm vào giỏ
+                                            hàng</a>
+                                    </div>
+                                </div>
+                                <div class="why-text">
+                                    <h4 th:utext="${tree.name}"></h4>
+                                    <h5 th:utext="${tree.getPriceDiscount()}"></h5>
+                                </div>
+                            </div>
+                        </div>
+                    </th:block>
+                </div>
+            </div>
+        </div>
 
+    </div>
+</div>
+<!-- End Cart -->
 
-</body>
+<!-- Start Instagram Feed  -->
+<div th:replace="~{web/fragment::instagramBox}"></div>
 
-</html>
-<script type="text/javascript">
-    $(".header-content").css({"background": 'url(web/shop292/images/DLF.jpg)  top center'});
-    $("html").addClass('');
-    $(document).ready(function () {
-        $("img.lazy-img").each(function () {
-            //$(this).attr("data-original", $(this).attr("src"));
-            //$(this).attr("src", "/Images/blank.gif");
-        });
-        $("img.lazy-img").lazyload({
-            effect: "fadeIn",
-            threshold: 200
-        });
-    });
+<!--Footer-->
+<footer th:replace="~{web/fragment::footer}"></footer>
 
+<!--Copyright-->
+<div th:replace="~{web/fragment::copyRight}"></div>
 
-    $(document).ready(function () {
-        $.ajax({
-            method: "get",
-            url: "danh-sach-san-pham?hot=true&limit=12",
-            dataType: 'json',
-            cache: 'false'
-        }).done(function (rs) {
-            var str = "";
-            for (let tree
-                of rs.listResult) {
-                str += " <div class='product-item-box  '>";
-                str += "     <div class='product-item'>";
-                str += "      <div class='image image-resize'>";
-                str += "        <a href='/chi-tiet-san-pham?id=" + tree
-                    .id + "'>";
-                str += "    <img class='img-responsive' style='height: 152px' src='" + tree
-                    .mediaList[0].path + "'/>";
-                str += "  </a>";
-                str += "<span class='hot'>";
-                str += tree
-                    .discount ? tree
-                    .discountFormat : "Hot" + "</span>";
-                str += "   </div>";
-                str += " <div class='right-block'>";
-                str += "  <h2 class='name'>";
-                str += "     <a href='/chi-tiet-san-pham?id=" + tree
-                    .id + "'>" + tree
-                    .name + "</a>";
-                str += "  </h2>";
-                str += " <div class='rating'>";
-                str += "   <div class='rating-1'>";
-                str += "     <span class='rating-img'>";
-                str += "   </span>";
-                str += " </div>";
-                str += "  </div>";
-                if (tree
-                    .quantity) {
-                    str += " <div class='price'>";
-                    str += "   <div><span class='price-old'>";
-                    str += tree
-                        .discount ? tree
-                        .priceFormat : "" + "</span>";
-                    str += "   </div>";
-                    str += " <div><span class='price-new'>" + tree
-                        .priceDiscount;
-                    str += " </span>";
-                    str += "</div>";
-                    str += "</div>";
-                    str += "  <div class='button'>";
-                    str += " <a class='btn btn-default' href='/thanh-toan?id=" + tree
-                        .id + "'>Mua ngay</a>";
-                    str += "  <a class='btn btn-default'";
-                    str += "onclick=' addCart(" + tree
-                        .id + ")' >Thêm giỏ hàng</a>";
-                    str += "</div>";
-                } else {
-                    str += "   <div class='price'>";
-                    str += "   <div><span class='price-old'></span>";
-                    str += "   </div>";
-                    str += " <div> <span class='price-new'>Hết hàng</span>";
-                    str += " </div>";
-                    str += " </div>";
-                    str += "  <div class='button'>";
-                    str += "<a></a>";
-                    str += " <a class='btn btn-default' href='/chi-tiet-san-pham?id=" + tree
-                        .id + "'>Chi tiết sản phẩm</a>";
-                    str += " </div>";
-                }
-                str += " </div>";
-                str += " </div>";
-                str += " </div>";
-            }
-            $('#product-slide').html(str);
+<!--Back to top-->
+<a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
 
-
-            var owlproductslide2 = $("#product-slide");
-            owlproductslide2.owlCarousel({
-                autoPlay: true,
-                autoPlay: 5000,
-                items: 6,
-                slideSpeed: 1000,
-                pagination: false,
-                itemsDesktop: [1200, 6],
-                itemsDesktopSmall: [980, 3],
-                itemsTablet: [767, 2],
-                itemsMobile: [480, 1]
-            });
-            $(".product-slide .nextlogo").click(function () {
-                owlproductslide2.trigger('owl.next');
-            })
-            $(".product-slide .prevlogo").click(function () {
-                owlproductslide2.trigger('owl.prev');
-            })
-
-
-        });
-    });
-
-    $(document).ready(function () {
+<th:block th:insert="~{web/fragment::body/script}"></th:block>
+<script th:inline="javascript">
+    $(function () {
         $.ajax({
             method: "get",
             url: "thong-tin-san-pham" + window.location.search,
             dataType: 'json',
             cache: 'false'
-        }).done(function (tree
-        ) {
+        }).done(function (tree) {
             var str = "";
+            var image = "";
+            //image
+            image += "<img class='d-block w-100' src='" + tree.mediaList[0].path + "' alt='tree image'>";
 
-            str += "<div class='breadcrumb clearfix'>";
-            str += "   <ul>";
-            str += "    <li class='home'>";
-            str += "       <a href='/'><span>Trang chủ</span></a>";
-            str += " </li>";
-            str += "  <li class='icon-li'><strong>Sản phẩm</strong></li>";
-            str += "  <li class='icon-li'><strong>" + tree
-                .name + "</strong></li>";
-            str += " </ul>";
-            str += "  </div>";
-            str += " <div class='product-detail clearfix relative'>";
-            str += "  <div class='product-block clearfix'>";
-            str += "     <div class='row'>";
-            str += "       <div class='col-md-7 col-sm-6 col-xs-12 product-image clearfix'>";
-            str += "       <div class='sp-wrap'>";
-            str += "      <a href='#' ><img src='" + tree
-                .mediaList[0].path + "' style='width: 455px'></a>";
-            str += "  </div>";
-            str += "  </div>";
-            str += " <div class='col-md-5 col-sm-6 col-xs-12 clearfix'>";
-            str += "    <h2>" + tree
-                .name + "</h2>";
-
-
-            if (tree
-                .quantity) {
-                str += " <div class='price'>";
-                str += "  <div>";
-                str += "<span class='price-old' style='color: #aaaaaa;text-decoration: line-through;padding: 0px 5px'>";
-                str += tree
-                    .discount ? tree
-                    .priceFormat : "" + "</span>"
-                str += "</div>";
-                str += "   <div><span class='price-new'>" + tree
-                    .priceDiscount + "</span></div> ";
-                str += "  </div>";
-                str += "  <div class='button'>";
-                str += "  <a class='btn btn-primary btn-lg' style='width: 345px;font-size: 17px' href='/thanh-toan?id=" + tree
-                    .id + "'><i class='glyphicon glyphicon-ok'></i>Mua ngay</a>";
-                str += "  <a class='btn btn-default btn-lg' style='width: 345px;font-size: 17px' onclick=' addCart(" + tree
-                    .id + ")'><i class='glyphicon glyphicon-shopping-cart'></i>Thêm giỏ hàng</a>";
-                str += "   </div>";
-            } else {
-                str += " <div class='price'>";
-                str += "   <div><span class='price-new'>Hết hàng</span></div> ";
-                str += "  </div>";
-            }
-
-            str += "   </div>";
-            str += "  </div>";
-            str += "  </div>";
-            str += " </div>";
-
-            var str1 = "";
-            str1 += "<div class='product-tabs' style='margin-top: 30px'>";
-            str1 += "   <ul class='nav nav-tabs'>";
-            str1 += "  <li class='ng-scope active'>";
-            str1 += "   <a class='ng-binding'>Chi tiết sản phẩm</a>";
-            str1 += "   </li>";
-            str1 += "  </ul>";
-            str1 += "  <div class='tab-content'>";
-            str1 += " <div class='tab-pane fade in ng-scope active' style='font-size: 17px'>";
-            str1 += "<div>";
-            str1 += "  <table class='table'>";
-            str1 += " <tbody>";
-            str1 += "  <tr>";
-            str1 += "    <th scope='row'>Tên sản phẩm</th>";
-            str1 += "    <td>" + tree
-                .name + "</td>";
-            str1 += "  </tr>";
-            str1 += "  <tr>";
-            str1 += "    <th scope='row'>Danh mục sản phẩm</th>";
-            str1 += "    <td>" + tree
-                .category.name + "</td>";
-            str1 += "  </tr>";
-            str1 += "  <tr>";
-            str1 += "    <th scope='row'></th>";
-            str1 += "    <td></td>";
-            str1 += "  </tr>";
-            str1 += "  </tbody>";
-            str1 += "</table>";
-            str1 += "</div>";
-            str1 += "  <div class='ng-binding'>" + tree.description + "</div>";
-            str1 += " </div>";
-            str1 += "  </div>";
-            str1 += "  </div>";
-
-
-            $('#product-detail').html(str);
-            $('#information').html(str1);
-        });
+            str += "<h2>" + tree.name + "</h2>";
+            str += "<del>";
+            str += tree.discount ? tree.priceFormat : "";
+            str += "</del>";
+            str += "<h4>";
+            str += tree.priceDiscount;
+            str += "</h4>";
+            str += "<p><span> Danh mục: <a href='/san-pham?category=" + tree.category.code + "'>" + tree.category.name + "</a></span></p>";
+            str += "<p><span> Có sẵn ";
+            str += tree.quantity ? tree.quantity : 'Hết hàng' + "</span></p>";
+            str += "<p>Đã bán: " + tree.quantitySold + "</p>"
+            str += "<h4>Chi tiết</h4>";
+            str += "<p>" + tree.description + "</p>";
+            str += "<div class='price-box-bar'>";
+            str += "    <div class='cart-and-bay-btn'>";
+            str += "        <a class='btn hvr-hover' href='/thanh-toan?id=" + tree.id + "'>Mua ngay</a>";
+            str += "        <a class='btn hvr-hover' onclick=' addCart(" + tree.id + ")'>Thêm vào giỏ</a>";
+            str += "    </div>";
+            str += "</div>";
+            $('.single-product-details').html(str);
+            $('#product-image').html(image);
+        })
     });
 
-
 </script>
+</body>
+</html>

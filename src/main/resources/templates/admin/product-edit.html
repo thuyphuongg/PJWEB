@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Product Edit | WRITER Admin</title>
+    <title>Chỉnh sửa thông tin sản phẩm</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -46,7 +46,7 @@
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
                                             <!-- <form action="" method="POST" modelAttribute="book> -->
-                                            <form method="POST" th:object="${AddBookInput}"
+                                            <form method="POST" th:object="${AddTreeInput}"
                                                   th:action="@{/admin-productAdd}" enctype="multipart/form-data">
                                                 <input type="hidden" name="id" th:value="${product.id}">
                                                 <label class="col-sm-2 control-label"> Hình ảnh:</label>
@@ -131,14 +131,6 @@
                                                         type="datetime" class="form-control"
                                                         required/>%
                                                 </div>
-                                                <label class="col-sm-2 control-label"> Nhà sản xuất:</label>
-                                                <div class="col-sm-10" style="margin-bottom: 10px"><input
-                                                        name="publisher" th:value="${product.publisher}"
-                                                        class="form-control" required/></div>
-                                                <label class="col-sm-2 control-label">Số trang:</label>
-                                                <div class="col-sm-10" style="margin-bottom: 10px"><input
-                                                        name="page" th:value="${product.page}"
-                                                        class="form-control" required/></div>
                                                 <label class="col-sm-2 control-label"> Số lượng: </label>
                                                 <div class="col-sm-10" style="margin-bottom: 10px"><input
                                                         name="quantity" th:value="${product.quantity}"
