@@ -24,16 +24,16 @@ function showProduct(list) {
         str += "  <div class='col-md-3 col-sm-3 col-xs-6 product-resize product-item-box'>";
         str += "    <div class='product-item'>"
         str += "       <div class='image image-resize'>"
-        str += "      <a href='/chi-tiet-san-pham?id=" + tree.idTree + "'>";
-        str += "       <img src='" + tree.imageLink + "'style='display: inline-block;height: 252px '>";
+        str += "      <a href='/chi-tiet-san-pham?id=" + tree.id + "'>";
+        str += "       <img src='" + tree.mediaList[0].path + "'style='display: inline-block;height: 252px '>";
         str += "      </a>";
         str += "   <span class='hot'>";
         str += tree.discount ? tree.discountFormat : "Mới" + "</span>";
         str += "    </div>";
         str += "   <div class='right-block'>";
         str += "    <h2 class='name'>";
-        str += "       <a href='/chi-tiet-san-pham?id=" + tree.idTree + "'>";
-        str += tree.nameTree + "</a>";
+        str += "       <a href='/chi-tiet-san-pham?id=" + tree.id + "'>";
+        str += tree.name + "</a>";
         str += " </h2>";
         str += " <div class='rating'>";
         str += " <div class='rating-1'>";
@@ -133,23 +133,21 @@ function pagination(total, page) {
     return str;
 }
 
-function addCart(idTree) {
+function addCart(tree_id) {
     $.ajax({
         method: 'get',
         url: 'them-san-pham',
         dataType: 'json',
         cache: 'false',
         data: {
-            idTree: idTree
+            tree_id: tree_id
         }
-    }).done(function (response) {
-        if (response == null) {
-            window.location.href = "/dang-nhap";
+    }).done(function (list) {
+        if (list == null) {
+            window.location = "/dang-nhap";
         } else {
             alert("Sản phẩm đã được thêm vào giỏ hàng!");
         }
-    }).fail(function (xhr, textStatus, errorThrown) {
-        console.log(xhr.responseText);
     });
 }
 
@@ -158,7 +156,7 @@ function search_title() {
     var keySearch = document.getElementById("search").value;
     $.ajax({
         method: 'get',
-        url: '/autocomplete?title=' + keySearch,
+        url: '/autocomplete?name=' + keySearch,
         dataType: 'json',
         cache: 'false',
     }).done(function (list) {
@@ -172,7 +170,7 @@ function search_title_product() {
     var keySearch = document.getElementById("search").value;
     $.ajax({
         method: 'get',
-        url: '/danh-sach-san-pham?title=' + keySearch,
+        url: '/danh-sach-san-pham?name=' + keySearch,
         dataType: 'json',
         cache: 'false',
     }).done(function (list) {

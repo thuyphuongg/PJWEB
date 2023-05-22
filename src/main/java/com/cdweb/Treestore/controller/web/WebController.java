@@ -17,7 +17,6 @@ import java.security.Principal;
 import java.util.List;
 
 @RestController
-@RequestMapping("/")
 public class WebController {
     @Autowired
     private ICategoryService categoryService;

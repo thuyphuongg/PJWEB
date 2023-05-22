@@ -5,18 +5,18 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <!-- Dashboard V.1 | Nalika - Material Admin Template -->
-    <title>WRITER Admin</title>
+    <title>Admin</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 </head>
 
-<body>
+<body onload="time()" class="app sidebar-mini rtl">
 <!-- NƠI GẮN LINK VÀO -->
 <div th:insert="~{admin/linkAdm :: links_admin}"></div>
+<div th:insert="~{admin/header :: header}"></div>
 
-
-<div th:insert="~{admin/header :: header_admin}"></div>
+<div th:insert="~{admin/navbar :: header_admin}"></div>
 
 
 <!-- Mobile Menu start -->
@@ -35,8 +35,10 @@
                     <tr>
                         <th>Id</th>
                         <th>Hình ảnh</th>
-                        <th>Tên sản phẩm</th>
-                        <th>Danh mục</th>
+                        <th>Tên</th>
+                        <th>Tác giả</th>
+                        <th>Thể loại</th>
+                        <th>Nhà xuất bản</th>
                         <th>Giá giảm</th>
                         <th>Giá gốc</th>
                         <th>Số lượng</th>
