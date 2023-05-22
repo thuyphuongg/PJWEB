@@ -10,7 +10,7 @@ public class UserInput {
     private String fullName;
     private String phone;
     private String address;
-    private String isEnabled;
+    private boolean isEnabled;
     private List<String> role = new ArrayList<>();
 
     public Long getId() {
@@ -61,12 +61,12 @@ public class UserInput {
         this.address = address;
     }
 
-    public String getIsEnabled() {
+    public boolean isEnabled() {
         return isEnabled;
     }
 
-    public void setIsEnabled(String isEnabled) {
-        this.isEnabled = isEnabled;
+    public void setEnabled(boolean enabled) {
+        isEnabled = enabled;
     }
 
     public List<String> getRole() {

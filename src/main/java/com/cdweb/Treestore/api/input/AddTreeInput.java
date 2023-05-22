@@ -9,6 +9,7 @@ public class AddTreeInput {
     private double discount;
     private Long price;
     private Long quantity;
+    private Long quantitySold;
     private boolean newTree;
     private boolean hotTree;
     private String category;
@@ -95,5 +96,13 @@ public class AddTreeInput {
 
     public void setImages(MultipartFile images) {
         this.images = images;
+    }
+
+    public Long getQuantitySold() {
+        return quantitySold;
+    }
+
+    public void setQuantitySold(Long quantitySold) {
+        this.quantitySold = quantitySold;
     }
 }

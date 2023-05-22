@@ -2,6 +2,7 @@ package com.cdweb.Treestore.controller.web;
 
 import com.cdweb.Treestore.api.output.CartOutput;
 import com.cdweb.Treestore.dto.ShoppingCartDto;
+import com.cdweb.Treestore.dto.TreeDto;
 import com.cdweb.Treestore.services.IShoppingCartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
@@ -20,16 +21,15 @@ public class ShoppingCartController {
 
     @GetMapping("/gio-hang")
     public ModelAndView shoppingCart(Principal principal) {
-        return principal == null ? new ModelAndView("web/dang-nhap.html") : new ModelAndView("web/gio-hang.html");
+        return principal == null ? new ModelAndView("web/login.html") : new ModelAndView("web/gio-hang.html");
     }
 
     @GetMapping("/them-san-pham")
-    public ShoppingCartDto addProduct(@RequestParam(name = "tree_id", required = false, defaultValue = "0") long tree_id, Principal principal) {
+    public ShoppingCartDto addProduct(@RequestParam(name = "id", required = false) long tree_id, Principal principal) {
         if (principal == null) {
             return null;
         }
-        String email = principal.getName();
-        return this.shoppingCartService.addProduct(tree_id, email);
+        return shoppingCartService.addProduct(tree_id, principal.getName());
     }
 
 

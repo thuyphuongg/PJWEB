@@ -22,17 +22,18 @@ public class TreeEntity {
     private Long price;
     @Column
     private Long quantity;
+    @Column(name = "quantity_sold")
+    private Long quantitySold;
     @Column(columnDefinition = "bit default 0")
     private boolean newTree;
     @Column(columnDefinition = "bit default 0")
     private boolean hotTree;
 
-
     @ManyToOne
     @JoinColumn(name = "category_id")
     private CategoryEntity category;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "tree")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "tree", cascade = CascadeType.REMOVE)
     private List<MediaEntity> mediaList = new ArrayList<>();
 
     public Long getId() {
@@ -89,6 +90,14 @@ public class TreeEntity {
 
     public void setQuantity(Long quantity) {
         this.quantity = quantity;
+    }
+
+    public Long getQuantitySold() {
+        return quantitySold;
+    }
+
+    public void setQuantitySold(Long quantitySold) {
+        this.quantitySold = quantitySold;
     }
 
     public boolean isNewTree() {

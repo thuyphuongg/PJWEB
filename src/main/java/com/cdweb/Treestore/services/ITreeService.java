@@ -9,7 +9,7 @@ public interface ITreeService {
 
     List<TreeDto> findAll();
 
-    TreeDto save(TreeDto treeDto);
+    void save(TreeDto treeDto);
 
     void delete(long[] ids);
 
@@ -42,4 +42,8 @@ public interface ITreeService {
     int countByName(String name);
 
     List<String> autoCompleteName(String name);
+
+    List<TreeDto> findTreeRelate(long categoryId, long quantitySold);
+    List<TreeDto> findIndexHotTree();
+    List<TreeDto> findIndexNewTree();
 }
