@@ -108,6 +108,7 @@ function pagination(total, page) {
     str += "</ul>";
     return str;
 }
+
 function addCart(tree_id) {
     $.ajax({
         method: 'get',
@@ -126,7 +127,6 @@ function addCart(tree_id) {
     });
 }
 
-
 function search_title() {
     var keySearch = document.getElementById("search").value;
     $.ajax({
@@ -140,7 +140,6 @@ function search_title() {
         });
     });
 }
-
 
 function search_title_product() {
     var keySearch = document.getElementById("searchName").value;
