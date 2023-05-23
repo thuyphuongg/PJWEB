@@ -21,26 +21,6 @@ function show(result) {
 function showProduct(list) {
     var str = "";
     for (let tree of list) {
-<<<<<<< Updated upstream:src/main/resources/static/web/Scripts/myJS/ajax-san-pham.js
-        str += "  <div class='col-md-3 col-sm-3 col-xs-6 product-resize product-item-box'>";
-        str += "    <div class='product-item'>"
-        str += "       <div class='image image-resize'>"
-        str += "      <a href='/chi-tiet-san-pham?id=" + tree.idTree + "'>";
-        str += "       <img src='" + tree.imageLink + "'style='display: inline-block;height: 252px '>";
-        str += "      </a>";
-        str += "   <span class='hot'>";
-        str += tree.discount ? tree.discountFormat : "Mới" + "</span>";
-        str += "    </div>";
-        str += "   <div class='right-block'>";
-        str += "    <h2 class='name'>";
-        str += "       <a href='/chi-tiet-san-pham?id=" + tree.idTree + "'>";
-        str += tree.nameTree + "</a>";
-        str += " </h2>";
-        str += " <div class='rating'>";
-        str += " <div class='rating-1'>";
-        str += "   <span class='rating-img'>";
-        str += "  </span>";
-=======
         str += "<div class='col-sm-6 col-md-6 col-lg-4 col-xl-4'>";
         str += "<div class='products-single fix'>";
         str += "<div class='box-img-hover'>";
@@ -49,7 +29,6 @@ function showProduct(list) {
         str += tree.hotTree ? 'Hot' : '' + "</p>";
         str += "<p class='sale'>";
         str += tree.newTree ? 'New' : '' + "</p>";
->>>>>>> Stashed changes:src/main/resources/static/web/js/ajax-san-pham.js
         str += "</div>";
         str += "<img src='" + tree.mediaList[0].path + "' class='img-fluid' alt='Image'>";
         str += "<div class='mask-icon'>";
@@ -129,39 +108,30 @@ function pagination(total, page) {
     str += "</ul>";
     return str;
 }
-
-function addCart(idTree) {
+function addCart(tree_id) {
     $.ajax({
         method: 'get',
         url: 'them-san-pham',
         dataType: 'json',
         cache: 'false',
         data: {
-<<<<<<< Updated upstream:src/main/resources/static/web/Scripts/myJS/ajax-san-pham.js
-            idTree: idTree
-        }
-    }).done(function (response) {
-        if (response == null) {
-=======
             id: tree_id
         }
     }).done(function (cart) {
         if (cart.user == null) {
->>>>>>> Stashed changes:src/main/resources/static/web/js/ajax-san-pham.js
             window.location.href = "/dang-nhap";
         } else {
             alert("Sản phẩm đã được thêm vào giỏ hàng!");
         }
-    }).fail(function (xhr, textStatus, errorThrown) {
-        console.log(xhr.responseText);
     });
 }
+
 
 function search_title() {
     var keySearch = document.getElementById("search").value;
     $.ajax({
         method: 'get',
-        url: '/autocomplete?title=' + keySearch,
+        url: '/autocomplete?name=' + keySearch,
         dataType: 'json',
         cache: 'false',
     }).done(function (list) {
@@ -171,11 +141,12 @@ function search_title() {
     });
 }
 
+
 function search_title_product() {
     var keySearch = document.getElementById("searchName").value;
     $.ajax({
         method: 'get',
-        url: '/danh-sach-san-pham?title=' + keySearch,
+        url: '/danh-sach-san-pham?name=' + keySearch,
         dataType: 'json',
         cache: 'false',
     }).done(function (list) {

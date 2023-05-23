@@ -66,6 +66,7 @@ public class OrderedController {
             this.orderItemService.save(orderedItem);
             TreeDto tree = orderedItem.getTree();
             tree.setQuantity(tree.getQuantity() - orderedItem.getQuantity());
+            tree.setQuantitySold(tree.getQuantitySold() + orderedItem.getQuantity());
             this.treeService.save(tree);
         }
         return new ModelAndView("web/dat-hang-thanh-cong.html");
@@ -74,7 +75,7 @@ public class OrderedController {
     @PostMapping("/thanh-toan")
     public ModelAndView postPayment(@ModelAttribute("orderedInput") OrderedInput orderedInput, Principal principal) {
         if (principal == null) {
-            return new ModelAndView("web/dang-nhap.html");
+            return new ModelAndView("web/login.html");
         }
         CartOutput cartOutput = new CartOutput();
         double total = 0;
@@ -91,6 +92,7 @@ public class OrderedController {
         mav.addObject("user", user);
         return mav;
     }
+
     @GetMapping("/don-hang")
     public List<OrderedDto> getOrdered(Principal principal) {
         return this.orderedService.findAllOrder(principal.getName());
@@ -99,7 +101,7 @@ public class OrderedController {
     @GetMapping("/thanh-toan")
     public ModelAndView getPayment(@RequestParam(name = "id", required = false, defaultValue = "null") Long id, Principal principal) {
         if (principal == null) {
-            return new ModelAndView("web/dang-nhap.html");
+            return new ModelAndView("web/login.html");
         } else {
             ShoppingCartDto temp = this.shoppingCartService.addProduct(id, principal.getName());
             this.shoppingCartService.updateQuantity(temp.getTree().getId(), 1, principal.getName());

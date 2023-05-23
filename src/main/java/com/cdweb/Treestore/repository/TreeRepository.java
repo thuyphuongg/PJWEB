@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-
 @Repository
 public interface TreeRepository extends JpaRepository<TreeEntity, Long> {
     TreeEntity findOneById(Long id);
@@ -42,4 +41,12 @@ public interface TreeRepository extends JpaRepository<TreeEntity, Long> {
     public int countAllByActiveAndNameContains(boolean active, String Name);
 
     public List<TreeEntity> findByActiveAndNameContains(boolean active, String Name);
+
+    public List<TreeEntity> findFirst8ByCategoryIdAndQuantitySoldGreaterThan(long categoryId, long quantitySold);
+
+    public List<TreeEntity> findFirst8ByActiveAndHotTreeOrderByIdDesc(boolean active, boolean hot);
+
+    public List<TreeEntity> findFirst8ByActiveAndNewTreeOrderByIdDesc(boolean active, boolean newTree);
+
+    public TreeEntity findFirstByOrderByIdDesc();
 }

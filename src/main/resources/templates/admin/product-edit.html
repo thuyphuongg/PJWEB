@@ -4,14 +4,14 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Product Edit | WRITER Admin</title>
+    <title>Chỉnh sửa thông tin sản phẩm</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
 </head>
 
-<body>
+<body onload="time()" class="app sidebar-mini rtl">
 
 <!-- NƠI GẮN LINK VÀO -->
 <div th:insert="~{admin/linkAdm :: links_admin}"></div>
@@ -46,7 +46,7 @@
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
                                             <!-- <form action="" method="POST" modelAttribute="book> -->
-                                            <form method="POST" th:object="${AddBookInput}"
+                                            <form method="POST" th:object="${AddTreeInput}"
                                                   th:action="@{/admin-productAdd}" enctype="multipart/form-data">
                                                 <input type="hidden" name="id" th:value="${product.id}">
                                                 <label class="col-sm-2 control-label"> Hình ảnh:</label>
@@ -63,13 +63,13 @@
                                                         </li>
                                                     </ul>
                                                 </div>
-                                                <label class="col-sm-2 control-label"> Tên sản phẩm:</label>
+                                                <label class="col-sm-2 control-label"> Tên sách:</label>
                                                 <div class="col-sm-10" style="margin-bottom: 10px"><input
                                                         name="title" th:value="${product.title}"
                                                         class="form-control" required/></div>
 
 
-                                                <label class="col-sm-2 control-label"> Danh mục: </label>
+                                                <label class="col-sm-2 control-label"> Thể loại: </label>
 
                                                 <div class="col-sm-10" style="margin-bottom: 10px"><select
                                                         name="category"

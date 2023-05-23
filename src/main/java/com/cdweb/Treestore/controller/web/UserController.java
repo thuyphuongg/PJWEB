@@ -2,12 +2,15 @@ package com.cdweb.Treestore.controller.web;
 
 import com.cdweb.Treestore.dto.UserDto;
 import com.cdweb.Treestore.services.IUserService;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 
 @RestController
@@ -19,7 +22,7 @@ public class UserController {
     @PostMapping(value = "/dang-ki")
     public ModelAndView registerUser(@ModelAttribute("User") UserDto user, HttpServletRequest request) {
         UserDto userDto = userService.sendMail(user, request);
-        ModelAndView mav = new ModelAndView("web/dang-ki.html");
+        ModelAndView mav = new ModelAndView("web/login.html");
         if (userDto != null) {
             mav.addObject("message", "Mời bạn xác nhận tài khoản qua email: " + userDto.getEmail());
         } else {
@@ -30,23 +33,25 @@ public class UserController {
     }
 
 
-
     @RequestMapping(value = "/confirm-account", method = {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView confirmEmail(@RequestParam(name = "token") String confirmationToken, Model model) {
         UserDto user = userService.confirmEmail(confirmationToken);
-        return new ModelAndView("web/dang-nhap.html");
+        return new ModelAndView("web/login.html");
     }
 
     @GetMapping("/check-mail")
     public UserDto checkMail(@RequestParam(name = "email") String email) {
         UserDto user = userService.findByEmail(email);
-        if (user != null) user.setPassword("");
-        return user;
+        if (user != null) {
+            user.setPassword("");
+            return user;
+        }
+        return new UserDto();
     }
 
     @GetMapping("/dang-nhap")
     public ModelAndView loginPage(@RequestParam(name = "error", required = false, defaultValue = "false") boolean error) {
-        ModelAndView mav = new ModelAndView("web/dang-nhap.html");
+        ModelAndView mav = new ModelAndView("web/login.html");
         if (error) {
             mav.addObject("error", "Email hoặc mật khẩu không chính xác!");
             return mav;
@@ -57,21 +62,19 @@ public class UserController {
 
     @GetMapping("/dang-ki")
     public ModelAndView registerPage() {
-        ModelAndView mav = new ModelAndView("web/dang-ki.html");
+        ModelAndView mav = new ModelAndView("web/login.html");
         mav.addObject("message");
         return mav;
     }
 
     @GetMapping("/user")
     public UserDto user(Principal principal) {
-
         if (principal != null) {
             UserDto user = this.userService.findByEmail(principal.getName());
             user.setPassword("");
             return user;
-        } else {
-            return null;
         }
+        return new UserDto();
     }
 
     @GetMapping("/quen-mat-khau")
@@ -84,7 +87,6 @@ public class UserController {
 
     @GetMapping("/send-mail-forget-password")
     public ModelAndView newPassword(@RequestParam(name = "email", required = false, defaultValue = "false") String email, HttpServletRequest request) {
-        System.out.println(email);
         UserDto userDTO = userService.sendMailForgetPassword(email, request);
         ModelAndView mav = new ModelAndView("web/quen-mat-khau.html");
         if (userDTO == null) {
@@ -108,7 +110,7 @@ public class UserController {
     public ModelAndView changePassword(@ModelAttribute("user") UserDto user, Principal principal) {
         UserDto userDto = userService.changePassword(user);
         if (principal == null) {
-            return new ModelAndView("web/dang-nhap.html");
+            return new ModelAndView("web/login.html");
         } else {
             return new ModelAndView("web/thong-tin-ca-nhan.html");
         }

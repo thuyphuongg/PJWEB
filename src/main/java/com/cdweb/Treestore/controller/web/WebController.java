@@ -33,34 +33,26 @@ public class WebController {
 
         ModelAndView mav = new ModelAndView("web/index.html");
         Pageable pageable = PageRequest.of(0, 8);
-        List<TreeDto> hotList = treeService.findByHot(pageable);
-        List<TreeDto> newList = treeService.findByNew(pageable);
-        List<TreeDto> discountList = treeService.findByDiscount(pageable);
+        List<TreeDto> hotList = treeService.findIndexHotTree();
+        List<TreeDto> newList = treeService.findIndexNewTree();
         mav.addObject("bannerlist", this.bannerService.findAll());
-        mav.addObject("discountlist", discountList);
         mav.addObject("hotlist", hotList);
         mav.addObject("newlist", newList);
         return mav;
     }
 
-
-    @GetMapping("/tin-tuc")
-    public ModelAndView news() {
-        return new ModelAndView("web/tin-tuc.html");
+    @GetMapping("/lien-he")
+    public ModelAndView lienHe() {
+        return new ModelAndView("web/lien-he.html");
+    }
+    @GetMapping("/thu-vien")
+    public ModelAndView thuVienAnh() {
+        return new ModelAndView("web/gallery.html");
     }
 
     @GetMapping("/gioi-thieu")
-    public ModelAndView about() {
+    public ModelAndView gioiThieu() {
         return new ModelAndView("web/gioi-thieu.html");
-    }
-
-    @GetMapping("/dich-vu")
-    public ModelAndView dichvu() {
-        return new ModelAndView("web/dich-vu.html");
-    }
-    @GetMapping("/lien-he")
-    public ModelAndView lienhe() {
-        return new ModelAndView("web/lien-he.html");
     }
 
     @GetMapping("/kiem-tra-don-hang")
@@ -70,7 +62,7 @@ public class WebController {
 
     @GetMapping("/thong-tin-ca-nhan")
     public ModelAndView profile(Principal principal) {
-        return principal != null ? new ModelAndView("web/thong-tin-ca-nhan.html") : new ModelAndView("web/dang-nhap.html");
+        return principal != null ? new ModelAndView("web/tai-khoan.html") : new ModelAndView("web/dang-nhap.html");
     }
 
 }

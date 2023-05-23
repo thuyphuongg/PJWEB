@@ -12,11 +12,11 @@ public class TreeDto {
     private double discount;
     private Long price;
     private Long quantity;
+    private Long quantitySold;
     private boolean newTree;
     private boolean hotTree;
     private CategoryDto category;
     private List<MediaDto> mediaList = new ArrayList<>();
-
 
     public TreeDto() {
     }
@@ -77,6 +77,14 @@ public class TreeDto {
         this.quantity = quantity;
     }
 
+    public Long getQuantitySold() {
+        return quantitySold;
+    }
+
+    public void setQuantitySold(Long quantitySold) {
+        this.quantitySold = quantitySold;
+    }
+
     public boolean isNewTree() {
         return newTree;
     }
@@ -108,6 +116,7 @@ public class TreeDto {
     public void setMediaList(List<MediaDto> mediaList) {
         this.mediaList = mediaList;
     }
+
     public String getPriceFormat() {
         DecimalFormat formatter = new DecimalFormat("###,###,###");
         return formatter.format(this.price) + " VND";

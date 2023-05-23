@@ -4,19 +4,18 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <!-- Dashboard V.1 | Nalika - Material Admin Template -->
-    <title>WRITER Admin</title>
+    <title>Admin</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 </head>
 
-<body>
+<body onload="time()" class="app sidebar-mini rtl">
 <!-- NƠI GẮN LINK VÀO -->
 <div th:insert="~{admin/linkAdm :: links_admin}"></div>
+<div th:insert="~{admin/header :: header}"></div>
 
-
-<div th:insert="~{admin/header :: header_admin}"></div>
+<div th:insert="~{admin/navbar :: header_admin}"></div>
 
 
 <!-- Mobile Menu start -->
@@ -35,7 +34,7 @@
                     <tr>
                         <th>Id</th>
                         <th>Hình ảnh</th>
-                        <th>Tên sản phẩm</th>
+                        <th>Tên</th>
                         <th>Danh mục</th>
                         <th>Giá giảm</th>
                         <th>Giá gốc</th>
@@ -45,41 +44,39 @@
                         <th>Mô tả</th>
                         <th>Thao tác</th>
                     </tr>
-                    <div th:each="book : ${listbook}">
+                    <div th:each="tree : ${listtree}">
                         <tr>
-                            <td><p th:text="${book.id}"></p></td>
+                            <td><p th:text="${tree.id}"></p></td>
                             <td><a href="#"
-                                   class="single-banner-image-wrapper"> <img style="width: 1350px" alt=""
-                                                                             th:src="@{${book.mediaList[0].path}}"/>
+                                   class="single-banner-image-wrapper"> <img th:src="@{${tree.mediaList[0].path}}" style="width: 1350px" alt=""/>
                             </a></td>
-                            <td><p th:text="${book.title}"></p></td>
+                            <td><p th:text="${tree.name}"></p></td>
                             <td></td>
-                            <td><p th:text="${book.category.name}"></p></td>
-                            <td><p th:text="${book.publisher}"></p></td>
-                            <td><p th:text="${book.discountFormat}"></p></td>
-                            <td><p th:text="${book.priceFormat}"></p></td>
-                            <td><p th:text="${book.quantity}"></p></td>
-                            <th:block th:if="${book.hotBook}">
+                            <td><p th:text="${tree.category.name}"></p></td>
+                            <td><p th:text="${tree.discountFormat}"></p></td>
+                            <td><p th:text="${tree.priceFormat}"></p></td>
+                            <td><p th:text="${tree.quantity}"></p></td>
+                            <th:block th:if="${tree.hotTree}">
                                 <td><p>v</p></td>
                             </th:block>
-                            <th:block th:unless="${book.hotBook}">
+                            <th:block th:unless="${tree.hotTree}">
                                 <td><p></p></td>
                             </th:block>
-                            <th:block th:if="${book.newBook}">
+                            <th:block th:if="${tree.newTree}">
                                 <td><p>v</p></td>
                             </th:block>
-                            <th:block th:unless="${book.newBook}">
+                            <th:block th:unless="${tree.newTree}">
                                 <td><p></p></td>
                             </th:block>
-                            <td><p th:text="${book.description}"></p></td>
+                            <td><p th:text="${tree.description}"></p></td>
 
-                            <td><a th:href="@{/admin-productEdit(id=${book.id})}">
+                            <td><a th:href="@{/admin-productEdit(id=${tree.id})}">
                                 <button
                                         data-toggle="tooltip" title="Edit" class="pd-setting-ed">
                                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                 </button>
                             </a> <a onclick="return confirm('Bạn có chắc muốn xóa')"
-                                    th:href="@{/admin-productDelete(id=${book.id})}">
+                                    th:href="@{/admin-productDelete(id=${tree.id})}">
                                 <button
                                         data-toggle="tooltip" title="Trash" class="pd-setting-ed">
                                     <i class="fa fa-trash-o" aria-hidden="true"></i>

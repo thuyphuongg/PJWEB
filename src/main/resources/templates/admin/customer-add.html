@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Dashboard V.1 | Nalika - Material Admin Template</title>
+    <title>Thêm tài khoản</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- favicon
@@ -16,7 +16,7 @@
         color: white;
     }
 </style>
-<body>
+<body onload="time()" class="app sidebar-mini rtl">
 <!-- NƠI GẮN LINK VÀO -->
 <div th:insert="~{admin/linkAdm :: links_admin}"></div>
 <!--[if lt IE 8]>
@@ -25,7 +25,7 @@
 <![endif]-->
 
 
-<div th:insert="~{admin/header :: header_admin}"></div>
+<div th:insert="~{admin/navbar :: header_admin}"></div>
 <script type="text/javascript" th:src="@{web/Scripts/myJS/check.js}"></script>
 
 <div class="all-content-wrapper">
@@ -40,8 +40,7 @@
                         <div class="review-tab-pro-inner">
                             <ul id="myTab3" class="tab-review-design">
                                 <li class="active"><a href="#"><i
-                                        class="icon nalika-edit" aria-hidden="true"></i> Thêm người
-                                    dùng</a></li>
+                                        class="icon nalika-edit" aria-hidden="true"></i> Thêm tài khoản</a></li>
                             </ul>
                             <div id="myTabContent" class="tab-content custom-product-edit">
                                 <div class="product-tab-list tab-pane fade active in"

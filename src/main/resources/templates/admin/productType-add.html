@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>WRITER Admin</title>
+    <title>Thêm danh mục</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- favicon
@@ -16,7 +16,7 @@
         color: white;
     }
 </style>
-<body>
+<body onload="time()" class="app sidebar-mini rtl">
 <!-- NƠI GẮN LINK VÀO -->
 <div th:insert="~{admin/linkAdm :: links_admin}"></div>
 <!--[if lt IE 8]>
@@ -25,7 +25,7 @@
 <![endif]-->
 
 
-<div th:insert="~{admin/header :: header_admin}"></div>
+<div th:insert="~{admin/navbar :: header_admin}"></div>
 
 
 <div class="all-content-wrapper">
@@ -39,8 +39,7 @@
                         <div class="review-tab-pro-inner">
                             <ul id="myTab3" class="tab-review-design">
                                 <li class="active"><a href="#description"> <i
-                                        class="icon nalika-edit" aria-hidden="true"> </i> Thêm sản
-                                    loại phẩm
+                                        class="icon nalika-edit" aria-hidden="true"> </i> Thêm danh mục sản phẩm
                                 </a></li>
                             </ul>
                             <div id="myTabContent" class="tab-content custom-product-edit">
@@ -51,10 +50,10 @@
                                             <!-- 	<form action="addType" method="POST"
                                                 modelAttribute="category"> -->
                                             <form action="" method="POST" th:object="${category}" th:action="@{/admin-addType}">
-                                                <br/> Mã sách: <input th:field="*{code}"
+                                                <br/> Mã danh mục: <input th:field="*{code}"
                                                                       name="code" class="form-control" type="text"/>
                                                 <br/>
-                                                <br/> Tên loại sách: <input th:field="*{name}"
+                                                <br/> Tên danh mục: <input th:field="*{name}"
                                                                             name="name" class="form-control"
                                                                             type="text"/> <br/>
                                                 <!-- <form:errors path="tenTheLoai" cssClass="error" /> -->
