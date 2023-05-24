@@ -24,10 +24,10 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <h2>Cart</h2>
+                <h2>GIỎ HÀNG</h2>
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Shop</a></li>
-                    <li class="breadcrumb-item active">Cart</li>
+                    <li class="breadcrumb-item"><a href="/san-pham">Shop</a></li>
+                    <li class="breadcrumb-item active">Giỏ hàng</li>
                 </ul>
             </div>
         </div>
@@ -45,12 +45,12 @@
                         <table class="table">
                             <thead>
                             <tr>
-                                <th>Images</th>
-                                <th>Product Name</th>
-                                <th>Price</th>
-                                <th>Quantity</th>
-                                <th>Total</th>
-                                <th>Remove</th>
+                                <th>Hình ảnh</th>
+                                <th>Tên sản phẩm</th>
+                                <th>Giá</th>
+                                <th>Số lượng</th>
+                                <th>Tổng tiền</th>
+                                <th>Xóa</th>
                             </tr>
                             </thead>
                             <tbody id="cart-detail">
@@ -66,16 +66,16 @@
                 <div class="col-lg-8 col-sm-12"></div>
                 <div class="col-lg-4 col-sm-12">
                     <div class="order-box">
-                        <h3>Order summary</h3>
+                        <h3>Đơn hàng</h3>
                         <div class="d-flex">
-                            <h4>Sub Total</h4>
+                            <h4>Tổng thanh toán</h4>
                             <div class="ml-auto font-weight-bold" id="total-price"></div>
                         </div>
                         <input type="hidden" value="" id="total">
                     </div>
                 </div>
                 <div class="col-12 d-flex shopping-box">
-                    <button type="submit" class="ml-auto btn hvr-hover">Checkout</button>
+                    <button type="submit" class="ml-auto btn hvr-hover">Mua hàng</button>
                 </div>
                 <div class="col-12 d-flex justify-content-end">
                     <a class="btn btn-default" th:href="@{/san-pham}">Tiếp tục
