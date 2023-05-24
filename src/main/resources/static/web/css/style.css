@@ -184,7 +184,7 @@ p {
 
 /*------------------------------------------------------------------ HEADER -------------------------------------------------------------------*/
 .main-top {
-    background: #000000;
+    background: #82ae46;
     padding: 10px 0px;
 }
 
@@ -574,7 +574,7 @@ nav.navbar.bootsnav ul.nav > li > a {
     position: relative;
     font-weight: 700;
     font-size: 16px;
-    color: #000000;
+    /*color: #000000;*/
     text-transform: uppercase;
     padding-top: 10px;
     padding-bottom: 10px;
