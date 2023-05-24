@@ -28,7 +28,7 @@
 <div th:insert="~{admin/navbar :: header_admin}"></div>
 
 <div class="container marketing"
-     style="width: 80%; float: right; margin-right: 30px">
+     style="width: 80%; float: right; margin-right: -30px">
     <h1 style="color: red;">CHI TIẾT ĐƠN HÀNG</h1>
     <br/>
 
@@ -71,7 +71,7 @@
             <tr>
                 <td class="text-center"><img alt=""
                                              th:src="@{${item.tree.mediaList[0].path}}" width="70" height="60"/></td>
-                <td><p th:text="${item.tree.title }"></p></td>
+                <td><p th:text="${item.tree.name }"></p></td>
                 <td><p th:text="${item.quantity }"></p></td>
                 <td><p th:text="${item.priceFormat }"></p></td>
             </tr>
