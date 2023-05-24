@@ -28,7 +28,7 @@ function showProduct(list) {
         str += "<p class='sale'>";
         str += tree.hotTree ? 'Hot' : '' + "</p>";
         str += "<p class='sale'>";
-        str += tree.newTree ? 'New' : '' + "</p>";
+        str += tree.newTree ? 'Mới' : '' + "</p>";
         str += "</div>";
         str += "<img src='" + tree.mediaList[0].path + "' class='img-fluid' alt='Image'>";
         str += "<div class='mask-icon'>";
