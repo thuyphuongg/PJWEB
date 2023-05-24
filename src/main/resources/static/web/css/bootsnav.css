@@ -308,14 +308,14 @@ ul.cart-list > li.total > span{
 /* Top Search
 =================================*/
 .top-search{
-    background-color: #010101;
+    background-color: #8cc540;
     padding: 10px 0;
     display: none;
 }
 
 .top-search input.form-control{
     background-color: transparent;
-    border: none;
+    /*border: none;*/
     -moz-box-shadow: 0px 0px 0px;
     -webkit-box-shadow: 0px 0px 0px;
     -o-box-shadow: 0px 0px 0px;
@@ -538,7 +538,7 @@ nav.navbar.bootsnav ul.dropdown-menu.megamenu-content .content ul.menu-col li a:
         border-radius: 0px;
         padding: 0;
         width: 200px;
-        background: #000000;
+        /*background: #000000;*/
 		border: none;
 		padding: 30px 0;
     }

@@ -61,12 +61,12 @@ CREATE TABLE `category` (
 --
 
 INSERT INTO `category` (`id`, `code`, `name`) VALUES
-(1, 'cay-de-ban', 'Cây để bàn'),
-(2, 'cay-canh-phong-thuy', 'Cây cảnh phong thủy'),
-(3, 'cay-canh-sen-da', 'Cây cảnh sen đá'),
-(4, 'cay-canh-van-phong', 'Cây cảnh văn phòng'),
-(5, 'cay-day-leo', 'Cây dây leo'),
-(6, 'cay-thuy-sinh', 'Cây thủy sinh');
+(1, 'cay-de-ban', 'CÂY ĐỂ BÀN'),
+(2, 'cay-canh-phong-thuy', 'CÂY CẢNH PHONG THỦY'),
+(3, 'cay-canh-sen-da', 'CÂY CẢNH SEN ĐÁ'),
+(4, 'cay-canh-van-phong', 'CÂY CẢNH VĂN PHÒNG'),
+(5, 'cay-day-leo', 'CÂY DÂY LEO'),
+(6, 'cay-thuy-sinh', 'CÂY THỦY SINH');
 
 -- --------------------------------------------------------
 
