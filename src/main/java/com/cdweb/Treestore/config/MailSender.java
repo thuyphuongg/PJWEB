@@ -15,7 +15,7 @@ public class MailSender {
         mailSender.setHost("smtp.gmail.com");
         mailSender.setPort(587);
 
-        mailSender.setUsername("19130023@st.hcmuaf.edu.vn");
+        mailSender.setUsername("19130177@st.hcmuaf.edu.vn");
         mailSender.setPassword("ndrougeplnvpyooy");
 
         Properties props = mailSender.getJavaMailProperties();
