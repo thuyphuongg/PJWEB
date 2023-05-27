@@ -65,7 +65,7 @@
                                                 </div>
                                                 <label class="col-sm-2 control-label"> Tên cây:</label>
                                                 <div class="col-sm-10" style="margin-bottom: 10px"><input
-                                                        name="title" th:value="${product.name}"
+                                                        name="name" th:value="${product.name}"
                                                         class="form-control" required/></div>
 
 
@@ -98,32 +98,13 @@
                                                         class="form-control" required/>VND
                                                 </div>
                                                 <label class="col-sm-2 control-label">Sản phẩm Hot </label>
-
-                                                <th:block th:if="product.hotTree">
-                                                    <div checked="checked" class="col-sm-10"
-                                                         style="margin-bottom: 10px"><input
-                                                            type="checkbox" name="hotTree"
-                                                            class="form-control"/></div>
-                                                </th:block>
-                                                <th:block th:unless="product.hotTree">
-                                                    <div class="col-sm-10" style="margin-bottom: 10px"><input
-                                                            type="checkbox" name="hotTree"
-                                                            class="form-control"/></div>
-                                                </th:block>
-
-
+                                                <div class="col-sm-10" style="margin-bottom: 10px"><input
+                                                        type="checkbox" name="hotTree" th:checked="${product.hotTree}"
+                                                        class="form-control"/></div>
                                                 <label class="col-sm-2 control-label">Sản phẩm Mới </label>
-
-                                                <th:block th:if="product.newTree">
-                                                    <div class="col-sm-10" style="margin-bottom: 10px"><input
-                                                            checked="checked" type="checkbox" name="newTree"
-                                                            class="form-control"/></div>
-                                                </th:block>
-                                                <th:block th:unless="product.newTree">
-                                                    <div class="col-sm-10" style="margin-bottom: 10px"><input
-                                                            type="checkbox" name="newTree"
-                                                            class="form-control"/></div>
-                                                </th:block>
+                                                <div class="col-sm-10" style="margin-bottom: 10px"><input
+                                                        type="checkbox" name="newTree" th:checked="${product.newTree}"
+                                                        class="form-control"/></div>
 
                                                 <label class="col-sm-2 control-label"> Giảm giá: </label>
                                                 <div class="col-sm-10" style="margin-bottom: 10px"><input
