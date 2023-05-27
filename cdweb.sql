@@ -71,20 +71,6 @@ INSERT INTO `category` (`id`, `code`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `comment`
---
-
-CREATE TABLE `comment` (
-  `id` bigint(20) NOT NULL,
-  `date_created` datetime DEFAULT NULL,
-  `review` varchar(255) DEFAULT NULL,
-  `tree_id` bigint(20) DEFAULT NULL,
-  `user_id` bigint(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `confirmation_token`
 --
 
@@ -94,6 +80,13 @@ CREATE TABLE `confirmation_token` (
   `created_date` datetime DEFAULT NULL,
   `user_id` bigint(20) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `confirmation_token`
+--
+
+INSERT INTO `confirmation_token` (`token_id`, `confirmation_token`, `created_date`, `user_id`) VALUES
+(16, 'd817cfd5-b3f3-45ac-9dab-927a1f54f8d0', '2023-05-24 04:31:48', 4);
 
 -- --------------------------------------------------------
 
@@ -110,7 +103,7 @@ CREATE TABLE `hibernate_sequence` (
 --
 
 INSERT INTO `hibernate_sequence` (`next_val`) VALUES
-(16);
+(23);
 
 -- --------------------------------------------------------
 
@@ -248,7 +241,18 @@ INSERT INTO `media` (`id`, `path`, `tree_id`) VALUES
 (117, 'web/image-product/cay-thuy-sinh/cay-trau-ba.jpg', 117),
 (118, 'web/image-product/cay-thuy-sinh/cay-phat-tai.jpg', 118),
 (119, 'web/image-product/cay-thuy-sinh/cay-luoi-ho.jpg', 119),
-(120, 'web/image-product/cay-thuy-sinh/cay-ngu-gia-bi.jpg', 120);
+(120, 'web/image-product/cay-thuy-sinh/cay-ngu-gia-bi.jpg', 120),
+(128, 'admin/img/treeupload', 120),
+(129, 'web/image-product/cay-canh-de-ban/cay-nhat-mat-huong-255x255.jpg', 2),
+(130, 'web/image-product/cay-canh-de-ban/cay-phu-quy-de-ban-dep-255x255.jpg', 1),
+(131, 'web/image-product/cay-canh-de-ban/cay-phu-quy-de-ban-dep-255x255.jpg', 1),
+(132, 'web/image-product/cay-canh-de-ban/cay-dua-canh-nen.jpg', 3),
+(133, 'admin/img/treeupload', 120),
+(134, 'web/image-product/cay-canh-de-ban/cay-kim-ngan-3-than.jpg', 6),
+(135, 'web/image-product/cay-canh-de-ban/cay-dua-canh-nen.jpg', 3),
+(136, 'web/image-product/cay-canh-de-ban/cay-nhat-mat-huong-255x255.jpg', 2),
+(137, 'admin/img/treeupload', 48),
+(138, 'admin/img/treeupload', 19);
 
 -- --------------------------------------------------------
 
@@ -287,10 +291,16 @@ CREATE TABLE `ordered` (
 --
 
 INSERT INTO `ordered` (`id`, `address`, `name`, `ordered_date`, `phone`, `received_date`, `status`, `total_price`, `user_id`) VALUES
-(1, '', '', '2023-05-23 21:39:06', '', NULL, 'ĐANG XỬ LÝ', 160000, 2),
+(1, '', '', '2023-05-23 21:39:06', '', NULL, 'Đặt hàng thành công', 160000, 2),
 (2, '', '', '2023-05-23 21:39:29', '', NULL, 'ĐANG XỬ LÝ', 130600, 2),
 (3, '', '', '2023-05-23 23:34:55', '', NULL, 'ĐANG XỬ LÝ', 175000, 2),
-(4, '', '', '2023-05-23 23:35:15', '', NULL, 'ĐANG XỬ LÝ', 419000, 2);
+(4, '', '', '2023-05-23 23:35:15', '', NULL, 'ĐANG XỬ LÝ', 419000, 2),
+(5, '', '', '2023-05-24 14:30:22', '', NULL, 'ĐANG XỬ LÝ', 332500, 3),
+(6, '', '', '2023-05-24 14:59:48', '', NULL, 'ĐANG XỬ LÝ', 25000, 2),
+(7, '', '', '2023-05-24 15:05:00', '', NULL, 'ĐANG XỬ LÝ', 205000, 2),
+(8, 'TPHCM', 'chi', '2023-05-24 22:16:43', '0918282819', NULL, 'Đặt hàng thành công', 133000, 6),
+(9, 'TPHCM', 'user', '2023-05-24 23:27:23', '0', NULL, 'ĐANG XỬ LÝ', 220500, 2),
+(10, '', '', '2023-05-24 23:27:50', '', NULL, 'ĐANG XỬ LÝ', 368500, 2);
 
 -- --------------------------------------------------------
 
@@ -316,7 +326,14 @@ INSERT INTO `ordered_item` (`id`, `quantity`, `total_price`, `tree_id`, `ordered
 (3, 1, 150000, 106, 3),
 (4, 1, 135000, 103, 4),
 (5, 1, 133000, 102, 4),
-(6, 1, 126000, 72, 4);
+(6, 1, 126000, 72, 4),
+(7, 1, 127500, 2, 5),
+(8, 1, 180000, 1, 5),
+(9, 1, 180000, 1, 7),
+(10, 1, 108000, 3, 8),
+(11, 1, 195500, 6, 9),
+(12, 2, 216000, 3, 10),
+(13, 1, 127500, 2, 10);
 
 -- --------------------------------------------------------
 
@@ -330,6 +347,16 @@ CREATE TABLE `password_reset_token` (
   `token` varchar(255) DEFAULT NULL,
   `user_id` bigint(20) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `password_reset_token`
+--
+
+INSERT INTO `password_reset_token` (`token_id`, `created_date`, `token`, `user_id`) VALUES
+(17, '2023-05-24 16:14:28', '0ea72e9c-2f56-40b8-9c43-5e8e0449c8fe', 2),
+(18, '2023-05-24 16:14:36', '194422a9-0c8e-4773-972b-1e0188e5d3a1', 2),
+(19, '2023-05-24 16:14:38', '044c2d1e-8486-4ee3-9b92-fe5c76db2189', 2),
+(20, '2023-05-24 16:15:10', 'b62b3dd1-c6ff-4457-a4ad-7adb9d5a35b8', 2);
 
 -- --------------------------------------------------------
 
@@ -376,6 +403,13 @@ CREATE TABLE `shopping_cart` (
   `user_id` bigint(20) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dumping data for table `shopping_cart`
+--
+
+INSERT INTO `shopping_cart` (`id`, `quantity`, `tree_id`, `user_id`) VALUES
+(16, 1, 101, 2);
+
 -- --------------------------------------------------------
 
 --
@@ -401,12 +435,12 @@ CREATE TABLE `tree` (
 --
 
 INSERT INTO `tree` (`id`, `active`, `description`, `discount`, `hot_tree`, `new_tree`, `price`, `quantity`, `name`, `category_id`, `quantity_sold`) VALUES
-(1, b'1', 'Cây Phú Quý để bàn có kích thước nhỏ gọn, chiều cao cả chậu chỉ khoảng 30-35cm rất phù hợp để bàn làm việc, bàn uống nước, các không gian nhỏ như vách tủ, kệ sách, kệ tivi…', 10, b'0', b'1', 200000, 19, 'Cây Phú Quý\r\n', 1, 5),
-(2, b'1', 'Cây Nhất Mạt Hương hay còn có tên gọi khác là cây Sen Đá Lá Thơm. Sở dĩ cây có tên như vậy vì cây có chứa tinh dầu thơm trong lá và thân. Khi bạn chạm nhẹ vào cây sẽ tỏa ra mùi hương thơm dễ chịu giống mùi bạc hà. Trong phong thủy cây mang ý nghĩa giúp giữ tài chính, giúp gia chủ chi tiêu hợp lý. Ngoài ra cây còn tác dụng đuổi côn trùng và muỗi.\r\n', 15, b'1', b'0', 150000, 25, 'Cây Nhất Mạt Hương', 1, 5),
-(3, b'1', 'Cây Dứa Cảnh Nến hay còn có tên gọi khác như: Cây Phong Lộc Hoa, Cây Ngôi Sao, Cây Dứa Cánh Sen…Cây có tên khoa học là Tillandsia imperalis thuộc họ thực vật Dứa Bromeliaceae có nguồn gốc từ châu Mỹ, nhiều nhất là các nước Mehico và Equador. Cây được trồng rất phổ biến làm cây cảnh nội thất ở nước ta.', 10, b'1', b'0', 120000, 20, 'Cây Dứa Cảnh Nến', 1, 5),
+(1, b'1', 'Cây Phú Quý để bàn có kích thước nhỏ gọn, chiều cao cả chậu chỉ khoảng 30-35cm rất phù hợp để bàn làm việc, bàn uống nước, các không gian nhỏ như vách tủ, kệ sách, kệ tivi…', 10, b'0', b'1', 200000, 17, 'Cây Phú Quý\r\n', 1, 7),
+(2, b'1', 'Cây Nhất Mạt Hương hay còn có tên gọi khác là cây Sen Đá Lá Thơm. Sở dĩ cây có tên như vậy vì cây có chứa tinh dầu thơm trong lá và thân. Khi bạn chạm nhẹ vào cây sẽ tỏa ra mùi hương thơm dễ chịu giống mùi bạc hà. Trong phong thủy cây mang ý nghĩa giúp giữ tài chính, giúp gia chủ chi tiêu hợp lý. Ngoài ra cây còn tác dụng đuổi côn trùng và muỗi.\r\n', 15, b'1', b'0', 150000, 23, 'Cây Nhất Mạt Hương', 1, 6),
+(3, b'1', 'Cây Dứa Cảnh Nến hay còn có tên gọi khác như: Cây Phong Lộc Hoa, Cây Ngôi Sao, Cây Dứa Cánh Sen…Cây có tên khoa học là Tillandsia imperalis thuộc họ thực vật Dứa Bromeliaceae có nguồn gốc từ châu Mỹ, nhiều nhất là các nước Mehico và Equador. Cây được trồng rất phổ biến làm cây cảnh nội thất ở nước ta.', 10, b'1', b'0', 120000, 17, 'Cây Dứa Cảnh Nến', 1, 5),
 (4, b'1', 'Cây Hạnh Phúc được nhiều người chọn mua, để tặng sếp hoặc đặt ở những văn phòng lớn, phòng khách lớn, tặng khai trương, tân gia. Với ý nghĩa mang đến hạnh phúc và sự phát triển vững bền.', 15, b'1', b'0', 300000, 22, 'Cây Hạnh Phúc', 1, 5),
 (5, b'1', 'Cây Hương Thảo đang được rất nhiều người ưa thích trồng làm cây cảnh, cây gia vị. Cây có mùi thơm dễ chịu giúp tinh thần sảng khoái, đuổi côn trùng.', 12, b'0', b'1', 120000, 13, 'Cây Hương Thảo', 1, 6),
-(6, b'1', 'Cây Kim Ngân 3 thân rất gọn nhưng tán lá lại xum xuê. Số ba gọi là tam tài, tam giáo tượng trưng cho thiên, địa, nhân hay người ta có câu là thiên thời địa lợi nhân hòa, cũng có nơi thì quan niệm phong thủy của họ số 3 là tượng trưng cho phước, lộc và thọ. Cây phù hợp để bàn làm việc rộng, quầy thu ngân, tặng khai trương các shop nhỏ, để kệ tivi…', 15, b'1', b'0', 230000, 20, 'Cây Kim Ngân 3 Thân', 1, 5),
+(6, b'1', 'Cây Kim Ngân 3 thân rất gọn nhưng tán lá lại xum xuê. Số ba gọi là tam tài, tam giáo tượng trưng cho thiên, địa, nhân hay người ta có câu là thiên thời địa lợi nhân hòa, cũng có nơi thì quan niệm phong thủy của họ số 3 là tượng trưng cho phước, lộc và thọ. Cây phù hợp để bàn làm việc rộng, quầy thu ngân, tặng khai trương các shop nhỏ, để kệ tivi…', 15, b'0', b'0', 230000, 19, 'Cây Kim Ngân 3 Thân', 1, 5),
 (7, b'1', 'Cây Cung Điện Vàng hay còn được gọi là cây Huy Hoàng, Hoàng Mai mini, cây Cung Điện Hoàng Hậu. Cây thuộc họ ráy tương đồng với các loại cây như Cây Ngọc Ngân, Cây Vạn Lộc…Cây Cung Điện Vàng có màu sắc lá rất bắt mắt nên hay được chọn làm cây văn phòng, cây để bàn, cây nội thất, cây phong thủy và cây để trong nhà. Cây phù hợp phong thủy với người mệnh Kim và Mệnh Thủy.', 12, b'1', b'0', 250000, 30, 'Cây Cung Điện Vàng', 1, 5),
 (8, b'1', 'Nhờ đặc điểm dễ chăm sóc, không cần ánh nắng nhiều, tán lá nổi bật nên cây Sao Sáng phù hợp làm cây trang trí nội thất, cây phong thủy và làm quà tặng.', 15, b'0', b'0', 120000, 21, 'Cây Sao Sáng Thủy Sinh', 1, 5),
 (9, b'1', 'Cây Sen Đá Giva có cánh hơi bầu màu xanh, phù hợp làm cây phong thủy cho người mệnh mộc và hỏa. Cây phù hợp để ban công, cửa sổ, ngoài hiên, quán cà phê.\r\n', 10, b'0', b'0', 50000, 21, 'Cây Sen Đá Giva', 1, 5),
@@ -419,9 +453,9 @@ INSERT INTO `tree` (`id`, `active`, `description`, `discount`, `hot_tree`, `new_
 (16, b'1', 'Cây có chiều cao cả chậu 55cm phù hợp để làm cây quà tặng, cây khai trương, để kệ tivi, bàn uống uống, ban công, trang trí quán cà phê, cây trang trí nội thất...', 10, b'0', b'0', 190000, 20, 'Cây Đuôi Công Vân Vàng', 1, 4),
 (17, b'1', 'Sen Đá Liên Đài Hồng thuộc dòng sen đài tuy nhiên lại có sức sống rất mạnh, phù hợp cho các bạn mới chơi thích dòng sen đài chưa biết chăm sóc.\r\n', 10, b'1', b'0', 150000, 20, 'Sen Đá Liên Đài Hồng', 1, 4),
 (18, b'1', 'Cây Sen Đá Mặt Trăng phù hợp với người mệnh kim và thổ giúp mang đến tiền tài và danh vọng. Cây phù hợp làm cây để bàn, trang trí quán cà phê, cửa sổ...', 15, b'1', b'0', 100000, 19, 'Sen Đá Mặt Trăng', 1, 4),
-(19, b'1', 'Sen đá móng rồng viền trắng hay còn gọi là sen ngựa vằn, lá dài và nhọn ở đầu, mọc xung quanh trục, trên lá còn có các viền trắng nhỏ giống như chú ngựa vằn. Cây phù hợp để bàn làm viêc, bàn học, trang trí bàn cà phê...', 10, b'0', b'0', 100000, 10, 'Sen Đá Móng Rồng Viền Trắng', 1, 4),
+(19, b'1', 'Sen đá móng rồng viền trắng hay còn gọi là sen ngựa vằn, lá dài và nhọn ở đầu, mọc xung quanh trục, trên lá còn có các viền trắng nhỏ giống như chú ngựa vằn. Cây phù hợp để bàn làm viêc, bàn học, trang trí bàn cà phê...', 10, b'0', b'0', 100000, 20, NULL, 1, 1),
 (20, b'1', 'Cây sen đá Nuda có màu xanh, dạng đài, bông thường nhỏ và mọc theo bụi. Cây rất dễ sống và có sức phát triển khỏe, không cần yêu cầu nhiều ánh sáng, phù hợp nơi thoáng mát như ban công, cửa sổ, hiên nhà, quán cà phê…', 15, b'0', b'0', 90000, 20, 'Sen Đá Nuda', 1, 4),
-(21, b'1', 'Cây Kim Ngân tượng trưng cho sự vững trãi, hiên ngang. Cây có ý nghĩa phong thủy mang đến tiền bạc và sự may mắn cho gia chủ.\r\n\r\nCây có chiều cao khoảng 130cm – 150cm rất phù hợp để phòng sếp, đại sảnh, phòng khách, tặng sếp, tặng tân gia, trang trí các không gian sang trọng và cao cấp.', 10, b'1', b'0', 150000, 20, 'Cây Kim Ngân', 2, 13),
+(21, b'1', 'Cây Kim Ngân tượng trưng cho sự vững trãi, hiên ngang. Cây có ý nghĩa phong thủy mang đến tiền bạc và sự may mắn cho gia chủ.\r\n\r\nCây có chiều cao khoảng 130cm – 150cm rất phù hợp để phòng sếp, đại sảnh, phòng khách, tặng sếp, tặng tân gia, trang trí các không gian sang trọng và cao cấp.', 10, b'0', b'0', 150000, 20, 'Cây Kim Ngân', 2, 13),
 (22, b'1', 'Cây Hạnh Phúc được nhiều người chọn mua, để tặng sếp hoặc đặt ở những văn phòng lớn, phòng khách lớn, tặng khai trương, tân gia. Với ý nghĩa mang đến hạnh phúc và sự phát triển vững bền.', 10, b'0', b'0', 120000, 30, 'Cây Hạnh Phúc', 2, 10),
 (23, b'1', 'Cây có chiều cao 1m phù hợp để decor sân vườn, quán cà phê, ban công, hiên nhà. Cây ưa nơi nhiều ánh sáng, dễ sống và chăm sóc.', 20, b'0', b'0', 200000, 20, 'Cây Bàng Nhật', 2, 10),
 (24, b'1', 'Cây Phát Tài Núi có hình dáng hùng vĩ, đạt chiều cao lên tới 5m, khi nhìn vào sẽ thấy sự uy nghiêm và độc đáo. Loại cây này có phần thân gỗ với nhiều phân cành từ gốc, rễ phụ mọc từ thân cây.', 10, b'0', b'0', 20, 10, 'Cây Phát Tài Núi', 2, 10),
@@ -448,7 +482,7 @@ INSERT INTO `tree` (`id`, `active`, `description`, `discount`, `hot_tree`, `new_
 (45, b'1', 'Sen đá tứ phương mang ý nghĩa dù bạn có ở bốn phương trời, hay ở đi đâu cũng sẽ được may mắn, cây phù hợp để bàn làm việc, quán cà phê, bàn học...', 12, b'0', b'0', 180000, 25, 'Sen Đá Tứ Phương', 3, 10),
 (46, b'1', 'Sen Đá Phật Bà là một trong những loại sen đá có nhiều lá mọng nước mọc xoay tròn đều quanh trục thân rất đẹp như một đóa hoa sen.', 0, b'0', b'0', 140000, 50, 'Sen Đá Phật Bà', 3, 10),
 (47, b'1', 'Cây sen đá nâu hay còn gọi là sen chocolate, ý nghĩa cây sẽ mang lại một tình bạn sẽ mãi bền vững và không bao giờ phai nhòa theo thời gian. Cây phù hợp để bàn học, bàn làm việc, cửa sổ,...', 10, b'0', b'0', 90000, 20, 'Sen Đá Nâu', 3, 5),
-(48, b'1', 'Sen đá móng rồng viền trắng hay còn gọi là sen ngựa vằn, lá dài và nhọn ở đầu, mọc xung quanh trục, trên lá còn có các viền trắng nhỏ giống như chú ngựa vằn. Cây phù hợp để bàn làm viêc, bàn học, trang trí bàn cà phê...', 0, b'1', b'0', 100000, 50, 'Sen Đá Móng Rồng Viền Trắng', 3, 10),
+(48, b'1', 'Sen đá móng rồng viền trắng hay còn gọi là sen ngựa vằn, lá dài và nhọn ở đầu, mọc xung quanh trục, trên lá còn có các viền trắng nhỏ giống như chú ngựa vằn. Cây phù hợp để bàn làm viêc, bàn học, trang trí bàn cà phê...', 0, b'0', b'0', 100000, 50, NULL, 1, 10),
 (49, b'1', 'Cây Sen Đá Mặt Trăng phù hợp với người mệnh kim và thổ giúp mang đến tiền tài và danh vọng. Cây phù hợp làm cây để bàn, trang trí quán cà phê, cửa sổ...', 10, b'0', b'1', 150000, 40, 'Sen Đá Mặt Trăng', 3, 4),
 (50, b'1', 'Sen đá hoa cúc phù hợp để bàn làm việc, bàn cưới, quán cà phê,...Khiến cho chiếc bàn của bạn sẽ sang trọng hơn rất nhiều.', 10, b'0', b'1', 150000, 50, 'Sen Đá Hoa Cúc', 3, 10),
 (51, b'1', 'Sen đá đất mang ý nghĩa cho một tình yêu, tình bạn vĩnh cửu theo thời gian. Cây có 2 màu xanh lá và xanh dương, rất phù hợp để trang trí bàn lễ tân, khách sạn, quán cà phê, bàn làm việc, bàn học...', 10, b'0', b'1', 90000, 30, 'Sen Đá Đất', 3, 5),
@@ -520,7 +554,7 @@ INSERT INTO `tree` (`id`, `active`, `description`, `discount`, `hot_tree`, `new_
 (117, b'1', 'Cây Trầu Bà có ý nghĩa phong thủy mang đến cho gia chủ may mắn, thành đạt và bình an. Cây phù hợp để phòng khách, trang trí sảng, treo của sổ, hiên nhà, hoặc để bàn làm việc.', 0, b'0', b'0', 180000, 40, 'Cây Trầu Bà', 6, 5),
 (118, b'1', 'Cây phát tài đang được nhiều người nuôi trồng vì nó mang ý nghĩa tốt lành,  mang lại vận khí tốt, may mắn và tài lộc sẽ nhanh chóng đến với bạn', 0, b'0', b'0', 150000, 40, 'Cây Phát Tài', 6, 12),
 (119, b'1', 'Cây Lưỡi Hổ thủy sinh cao khoảng 30cm rất phù hợp làm cây để bàn, cây trang trí không gian nhỏ, tặng quà.', 0, b'0', b'0', 120000, 24, 'Cây Lưỡi Hổ', 6, 10),
-(120, b'1', 'Cây Ngũ Gia Bì thủy sinh giúp gia chủ phát triển vững vàng, cũng có thể ổn định tài vận, giữ được tiền tài. Cây trồng trong bình thủy tinh nên rất sạch sẽ phù hợp để bàn, trang trí nội thất, bàn làm việc, quán cà phê, bàn lễ tân...', 10, b'0', b'0', 200000, 41, 'Cây Ngũ Gia Bì', 6, 15);
+(120, b'1', 'Cây Ngũ Gia Bì thủy sinh giúp gia chủ phát triển vững vàng, cũng có thể ổn định tài vận, giữ được tiền tài. Cây trồng trong bình thủy tinh nên rất sạch sẽ phù hợp để bàn, trang trí nội thất, bàn làm việc, quán cà phê, bàn lễ tân...', 10, b'0', b'0', 200000, 41, 'Cây Ngũ Gia Bì', 1, 15);
 
 -- --------------------------------------------------------
 
@@ -544,7 +578,8 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `address`, `email`, `full_name`, `is_enabled`, `password`, `phone`) VALUES
 (2, NULL, 'user@gmail.com', NULL, b'1', '$2a$10$8MSUsc44.uAYSwPiyX/6geQetaE1MV622dc3armSbi0zZxScY3wN.', NULL),
-(3, NULL, 'admin@gmail.com', NULL, b'1', '$2a$10$VOGvnFz4xsGfk1Jy72tqy.QqbSN8OpLTq0JBjjOpvy3kK62UrRzpa', NULL);
+(3, NULL, 'admin@gmail.com', NULL, b'1', '$2a$10$VOGvnFz4xsGfk1Jy72tqy.QqbSN8OpLTq0JBjjOpvy3kK62UrRzpa', NULL),
+(6, NULL, '19130023@st.hcmuaf.edu.vn', 'chi', b'1', '$2a$10$6hA3QcCbot.nN3qDPgAgO.4yAZ2mQchfsWEj0cCqY2gJU4uLSoq8C', NULL);
 
 -- --------------------------------------------------------
 
@@ -564,7 +599,8 @@ CREATE TABLE `user_role` (
 INSERT INTO `user_role` (`user_id`, `role_id`) VALUES
 (3, 2),
 (3, 1),
-(2, 1);
+(2, 1),
+(6, 1);
 
 --
 -- Indexes for dumped tables
@@ -582,12 +618,6 @@ ALTER TABLE `banner`
 ALTER TABLE `category`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `CATEGORY_UK` (`code`);
-
---
--- Indexes for table `comment`
---
-ALTER TABLE `comment`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `confirmation_token`
@@ -690,34 +720,28 @@ ALTER TABLE `category`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT for table `comment`
---
-ALTER TABLE `comment`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `media`
 --
 ALTER TABLE `media`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=128;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=139;
 
 --
 -- AUTO_INCREMENT for table `ordered`
 --
 ALTER TABLE `ordered`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `ordered_item`
 --
 ALTER TABLE `ordered_item`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `shopping_cart`
 --
 ALTER TABLE `shopping_cart`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `tree`
@@ -729,7 +753,7 @@ ALTER TABLE `tree`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
