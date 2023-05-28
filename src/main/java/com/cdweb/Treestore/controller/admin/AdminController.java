@@ -24,6 +24,7 @@ import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
+
 @RestController
 public class AdminController {
     private static final Path CURRENT_FOLDER = Paths.get(System.getProperty("user.dir"));
@@ -54,6 +55,7 @@ public class AdminController {
         return mav;
     }
 
+    // Gửi data trong URL
     @GetMapping("/admin-productAdd")
     public ModelAndView addProductPage(Principal principal) {
         ModelAndView mav = new ModelAndView("admin/product-add.html");
@@ -62,6 +64,7 @@ public class AdminController {
         return mav;
     }
 
+    // Gửi data trong request body, gửi data trong post bảo mật hơn
     @PostMapping("/admin-productAdd")
     public ModelAndView addProduct(@ModelAttribute("AddTreeInput") AddTreeInput treeInput, Principal principal) {
         Path staticPath = Paths.get("src/main/resources/static");
@@ -75,10 +78,12 @@ public class AdminController {
         }
         Path file = CURRENT_FOLDER.resolve(staticPath)
                 .resolve(imagePath).resolve(treeInput.getImages().getOriginalFilename());
-        try (OutputStream os = Files.newOutputStream(file)) {
-            os.write(treeInput.getImages().getBytes());
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (!Files.exists(file)) {
+            try (OutputStream os = Files.newOutputStream(file)) {
+                os.write(treeInput.getImages().getBytes());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
         TreeDto treeDto = new TreeDto();
@@ -130,10 +135,6 @@ public class AdminController {
         return mav;
     }
 
-    //    PRODUCT   //
-
-    //    CATEGORY    //
-
     @GetMapping("/admin-listCategory")
     public ModelAndView listCategory(Principal principal) {
         ModelAndView mav = new ModelAndView("admin/productType.html");
@@ -183,9 +184,6 @@ public class AdminController {
         mav.addObject("username", principal.getName());
         return mav;
     }
-    //    CATEGORY    //
-
-    //    ORDER  //
 
     @GetMapping("/admin-listOrder")
     public ModelAndView listOrder(Principal principal) {
@@ -218,7 +216,6 @@ public class AdminController {
         return mav;
     }
 
-    // CUSTOMER//
 
     @GetMapping("/admin-listCustomer")
     public ModelAndView listCustomer(Principal principal) {

@@ -112,7 +112,7 @@ public class UserController {
         if (principal == null) {
             return new ModelAndView("web/login.html");
         } else {
-            return new ModelAndView("web/thong-tin-ca-nhan.html");
+            return new ModelAndView("web/tai-khoan.html");
         }
     }
 

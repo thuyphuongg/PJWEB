@@ -39,9 +39,12 @@
 <!-- Start My Account  -->
 <div class="my-account-box-main">
     <div class="container">
-        <table class="my-account-page" style="width: 50%; margin: 10px auto">
+        <form th:action="@{change-information}" method="post" th:object="${user}">
+            <table class="my-account-page" style="width: 50%; margin: 10px auto">
 
-        </table>
+            </table>
+        </form>
+
     </div>
 </div>
 <!-- End My Account -->

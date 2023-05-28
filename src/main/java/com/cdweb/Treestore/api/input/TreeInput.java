@@ -7,7 +7,7 @@ public class TreeInput {
     private String sortName="id";
     private String sortBy="asc";
     private boolean hot=false;
-    private boolean newBook=false;
+    private boolean newTree=false;
     private boolean sale=false;
 
 
@@ -60,12 +60,12 @@ public class TreeInput {
         this.hot = hot;
     }
 
-    public boolean isNewBook() {
-        return newBook;
+    public boolean isNewTree() {
+        return newTree;
     }
 
-    public void setNewBook(boolean newBook) {
-        this.newBook = newBook;
+    public void setNewTree(boolean newTree) {
+        this.newTree = newTree;
     }
 
     public boolean isSale() {

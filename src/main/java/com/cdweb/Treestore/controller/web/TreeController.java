@@ -100,7 +100,7 @@ public class TreeController {
             userDto = null;
         }
         mav.addObject("user", userDto);
-        mav.addObject("treeRelate", treeService.findTreeRelate(categoryId, 50));
+        mav.addObject("treeRelate", treeService.findTreeRelate(categoryId, 2));
         return mav;
     }
 
