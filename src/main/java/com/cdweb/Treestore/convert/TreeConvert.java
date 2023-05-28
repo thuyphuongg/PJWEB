@@ -25,8 +25,12 @@ public class TreeConvert {
         treeEntity.setName(treeDto.getName());
         treeEntity.setActive(treeDto.isActive());
         treeEntity.setDescription(treeDto.getDescription());
+        treeEntity.setDiscount(treeDto.getDiscount());
+        treeEntity.setNewTree(treeDto.isNewTree());
+        treeEntity.setHotTree(treeDto.isHotTree());
         treeEntity.setPrice(treeDto.getPrice());
         treeEntity.setQuantity(treeDto.getQuantity());
+        treeEntity.setQuantitySold(treeDto.getQuantitySold());
         treeEntity.setMediaList(treeEntity.getMediaList());
         return treeEntity;
     }
